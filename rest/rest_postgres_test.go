@@ -4,12 +4,12 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/lfq7413/tomato/cloud"
-	"github.com/lfq7413/tomato/config"
-	"github.com/lfq7413/tomato/errs"
-	"github.com/lfq7413/tomato/orm"
-	"github.com/lfq7413/tomato/types"
-	"github.com/lfq7413/tomato/utils"
+	"github.com/okobsamoht/tomato/cloud"
+	"github.com/okobsamoht/tomato/config"
+	"github.com/okobsamoht/tomato/errs"
+	"github.com/okobsamoht/tomato/orm"
+	"github.com/okobsamoht/tomato/types"
+	"github.com/okobsamoht/tomato/utils"
 )
 
 func TestPostgres_Find(t *testing.T) {

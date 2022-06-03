@@ -5,7 +5,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/lfq7413/tomato/types"
+	"github.com/okobsamoht/tomato/types"
 )
 
 func TestOAuth_Get(t *testing.T) {
@@ -28,7 +28,7 @@ func TestOAuth_Get(t *testing.T) {
 		want    types.M
 		wantErr bool
 	}{
-	// TODO: Add test cases.
+		// TODO: Add test cases.
 	}
 	for _, tt := range tests {
 		o := &OAuth{
@@ -71,7 +71,7 @@ func TestOAuth_Post(t *testing.T) {
 		want    types.M
 		wantErr bool
 	}{
-	// TODO: Add test cases.
+		// TODO: Add test cases.
 	}
 	for _, tt := range tests {
 		o := &OAuth{
@@ -112,7 +112,7 @@ func TestOAuth_Send(t *testing.T) {
 		want    types.M
 		wantErr bool
 	}{
-	// TODO: Add test cases.
+		// TODO: Add test cases.
 	}
 	for _, tt := range tests {
 		o := &OAuth{
@@ -156,7 +156,7 @@ func TestOAuth_buildRequest(t *testing.T) {
 		want    *http.Request
 		wantErr bool
 	}{
-	// TODO: Add test cases.
+		// TODO: Add test cases.
 	}
 	for _, tt := range tests {
 		o := &OAuth{

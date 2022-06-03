@@ -4,8 +4,8 @@ import (
 	"errors"
 	"net/url"
 
-	"github.com/lfq7413/tomato/config"
-	"github.com/lfq7413/tomato/storage"
+	"github.com/okobsamoht/tomato/config"
+	"github.com/okobsamoht/tomato/storage"
 	"gopkg.in/mgo.v2"
 )
 

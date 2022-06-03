@@ -3,9 +3,9 @@ package storage
 import (
 	"database/sql"
 
-	"github.com/lfq7413/tomato/config"
-	"github.com/lfq7413/tomato/test"
 	_ "github.com/lib/pq" // postgres driver
+	"github.com/okobsamoht/tomato/config"
+	"github.com/okobsamoht/tomato/test"
 	"gopkg.in/mgo.v2"
 )
 

@@ -6,12 +6,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/lfq7413/tomato/cache"
-	"github.com/lfq7413/tomato/errs"
-	"github.com/lfq7413/tomato/storage"
-	"github.com/lfq7413/tomato/storage/mongo"
-	"github.com/lfq7413/tomato/test"
-	"github.com/lfq7413/tomato/types"
+	"github.com/okobsamoht/tomato/cache"
+	"github.com/okobsamoht/tomato/errs"
+	"github.com/okobsamoht/tomato/storage"
+	"github.com/okobsamoht/tomato/storage/mongo"
+	"github.com/okobsamoht/tomato/test"
+	"github.com/okobsamoht/tomato/types"
 )
 
 func Test_AddClassIfNotExists(t *testing.T) {

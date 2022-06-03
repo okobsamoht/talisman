@@ -3,9 +3,9 @@ package job
 import (
 	"time"
 
-	"github.com/lfq7413/tomato/orm"
-	"github.com/lfq7413/tomato/types"
-	"github.com/lfq7413/tomato/utils"
+	"github.com/okobsamoht/tomato/orm"
+	"github.com/okobsamoht/tomato/types"
+	"github.com/okobsamoht/tomato/utils"
 )
 
 const jobStatusCollection = "_JobStatus"

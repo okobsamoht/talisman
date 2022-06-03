@@ -2,7 +2,7 @@ package routers
 
 import (
 	"github.com/astaxie/beego"
-	"github.com/lfq7413/tomato/controllers"
+	"github.com/okobsamoht/tomato/controllers"
 )
 
 func init() {

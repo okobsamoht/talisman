@@ -5,11 +5,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/lfq7413/tomato/cache"
-	"github.com/lfq7413/tomato/errs"
-	"github.com/lfq7413/tomato/orm"
-	"github.com/lfq7413/tomato/types"
-	"github.com/lfq7413/tomato/utils"
+	"github.com/okobsamoht/tomato/cache"
+	"github.com/okobsamoht/tomato/errs"
+	"github.com/okobsamoht/tomato/orm"
+	"github.com/okobsamoht/tomato/types"
+	"github.com/okobsamoht/tomato/utils"
 )
 
 func TestPostgres_GetAuthForSessionToken(t *testing.T) {

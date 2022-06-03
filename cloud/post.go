@@ -6,9 +6,9 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/lfq7413/tomato/config"
-	"github.com/lfq7413/tomato/types"
-	"github.com/lfq7413/tomato/utils"
+	"github.com/okobsamoht/tomato/config"
+	"github.com/okobsamoht/tomato/types"
+	"github.com/okobsamoht/tomato/utils"
 )
 
 // post 请求网络接口

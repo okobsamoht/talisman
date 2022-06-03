@@ -4,14 +4,14 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/lfq7413/tomato/cache"
-	"github.com/lfq7413/tomato/config"
-	"github.com/lfq7413/tomato/errs"
-	"github.com/lfq7413/tomato/orm"
-	"github.com/lfq7413/tomato/storage"
-	"github.com/lfq7413/tomato/storage/postgres"
-	"github.com/lfq7413/tomato/test"
-	"github.com/lfq7413/tomato/types"
+	"github.com/okobsamoht/tomato/cache"
+	"github.com/okobsamoht/tomato/config"
+	"github.com/okobsamoht/tomato/errs"
+	"github.com/okobsamoht/tomato/orm"
+	"github.com/okobsamoht/tomato/storage"
+	"github.com/okobsamoht/tomato/storage/postgres"
+	"github.com/okobsamoht/tomato/test"
+	"github.com/okobsamoht/tomato/types"
 )
 
 func TestPostgres_Execute(t *testing.T) {

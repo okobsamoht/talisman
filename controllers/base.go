@@ -6,12 +6,12 @@ import (
 	"strings"
 
 	"github.com/astaxie/beego"
-	"github.com/lfq7413/tomato/client"
-	"github.com/lfq7413/tomato/config"
-	"github.com/lfq7413/tomato/errs"
-	"github.com/lfq7413/tomato/rest"
-	"github.com/lfq7413/tomato/types"
-	"github.com/lfq7413/tomato/utils"
+	"github.com/okobsamoht/tomato/client"
+	"github.com/okobsamoht/tomato/config"
+	"github.com/okobsamoht/tomato/errs"
+	"github.com/okobsamoht/tomato/rest"
+	"github.com/okobsamoht/tomato/types"
+	"github.com/okobsamoht/tomato/utils"
 )
 
 // BaseController ...

@@ -1,8 +1,8 @@
 package files
 
 import (
-	"github.com/lfq7413/tomato/config"
-	"github.com/lfq7413/tomato/utils"
+	"github.com/okobsamoht/tomato/config"
+	"github.com/okobsamoht/tomato/utils"
 )
 
 var adapter filesAdapter

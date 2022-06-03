@@ -6,12 +6,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/lfq7413/tomato/errs"
-	"github.com/lfq7413/tomato/storage"
-	"github.com/lfq7413/tomato/storage/postgres"
-	"github.com/lfq7413/tomato/test"
-	"github.com/lfq7413/tomato/types"
-	"github.com/lfq7413/tomato/utils"
+	"github.com/okobsamoht/tomato/errs"
+	"github.com/okobsamoht/tomato/storage"
+	"github.com/okobsamoht/tomato/storage/postgres"
+	"github.com/okobsamoht/tomato/test"
+	"github.com/okobsamoht/tomato/types"
+	"github.com/okobsamoht/tomato/utils"
 )
 
 func TestPostgres_AddClassIfNotExists(t *testing.T) {

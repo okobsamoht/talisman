@@ -1,10 +1,10 @@
 package controllers
 
 import (
-	"github.com/lfq7413/tomato/errs"
-	"github.com/lfq7413/tomato/rest"
-	"github.com/lfq7413/tomato/types"
-	"github.com/lfq7413/tomato/utils"
+	"github.com/okobsamoht/tomato/errs"
+	"github.com/okobsamoht/tomato/rest"
+	"github.com/okobsamoht/tomato/types"
+	"github.com/okobsamoht/tomato/utils"
 )
 
 // SessionsController 处理 /sessions 接口的请求

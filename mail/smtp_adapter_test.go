@@ -3,8 +3,8 @@ package mail
 import (
 	"testing"
 
-	"github.com/lfq7413/tomato/config"
-	"github.com/lfq7413/tomato/types"
+	"github.com/okobsamoht/tomato/config"
+	"github.com/okobsamoht/tomato/types"
 )
 
 func Test_smtp(t *testing.T) {

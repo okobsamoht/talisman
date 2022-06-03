@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/lfq7413/tomato/errs"
-	"github.com/lfq7413/tomato/types"
+	"github.com/okobsamoht/tomato/errs"
+	"github.com/okobsamoht/tomato/types"
 )
 
 func Test_parseTypeToPostgresType(t *testing.T) {

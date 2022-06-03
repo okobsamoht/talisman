@@ -1,6 +1,6 @@
 package analytics
 
-import "github.com/lfq7413/tomato/types"
+import "github.com/okobsamoht/tomato/types"
 
 type nullAnalyticsAdapter struct {
 }

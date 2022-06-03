@@ -6,9 +6,9 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/lfq7413/tomato/config"
-	"github.com/lfq7413/tomato/errs"
-	"github.com/lfq7413/tomato/files/tencentcos"
+	"github.com/okobsamoht/tomato/config"
+	"github.com/okobsamoht/tomato/errs"
+	"github.com/okobsamoht/tomato/files/tencentcos"
 )
 
 // tencentAdapter 腾讯云存储

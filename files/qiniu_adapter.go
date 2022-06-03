@@ -7,10 +7,10 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/lfq7413/tomato/config"
-	"github.com/lfq7413/tomato/errs"
-	"github.com/qiniu/api.v7/auth/qbox"
-	"github.com/qiniu/api.v7/storage"
+	"github.com/okobsamoht/tomato/config"
+	"github.com/okobsamoht/tomato/errs"
+	"github.com/qiniu/api/auth/qbox"
+	"github.com/qiniu/api/storage"
 )
 
 // qiniuAdapter 七牛云存储

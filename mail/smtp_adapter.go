@@ -3,10 +3,10 @@ package mail
 import (
 	"net/smtp"
 
-	"github.com/lfq7413/tomato/types"
-	"github.com/lfq7413/tomato/utils"
+	"github.com/okobsamoht/tomato/types"
+	"github.com/okobsamoht/tomato/utils"
 )
-import "github.com/lfq7413/tomato/config"
+import "github.com/okobsamoht/tomato/config"
 
 // SMTPMailAdapter ...
 type SMTPMailAdapter struct {

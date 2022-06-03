@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	"github.com/lfq7413/tomato/config"
-	"github.com/lfq7413/tomato/types"
+	"github.com/okobsamoht/tomato/config"
+	"github.com/okobsamoht/tomato/types"
 )
 
 // FeaturesController ...
