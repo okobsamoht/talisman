@@ -34,11 +34,6 @@ type Config struct {
 	MailPassword                     string   // SMTP 密码，仅在 MailAdapter=smtp 时需要配置
 	FileAdapter                      string   // 文件存储模块，可选： Disk、GridFS、Qiniu、Sina、Tencent， 默认为 Disk 本地磁盘存储
 	FileDirectAccess                 bool     // 是否允许直接访问文件地址，默认为 true 允许直接访问而不是通过 tomato 中转
-	QiniuBucket                      string   // 七牛云存储 Bucket ，仅在 FileAdapter=Qiniu 时需要配置
-	QiniuDomain                      string   // 七牛云存储 Domain ，仅在 FileAdapter=Qiniu 时需要配置
-	QiniuAccessKey                   string   // 七牛云存储 AccessKey ，仅在 FileAdapter=Qiniu 时需要配置
-	QiniuSecretKey                   string   // 七牛云存储 SecretKey ，仅在 FileAdapter=Qiniu 时需要配置
-	QiniuZone                        string   // 七牛云存储所在机房，仅在 FileAdapter=Qiniu 时需要配置，可选：Huadong、Huabei、Huanan、Beimei
 	SinaBucket                       string   // 新浪云存储 Bucket ，仅在 FileAdapter=Sina 时需要配置
 	SinaDomain                       string   // 新浪云存储 Domain ，仅在 FileAdapter=Sina 时需要配置
 	SinaAccessKey                    string   // 新浪云存储 AccessKey ，仅在 FileAdapter=Sina 时需要配置
@@ -149,11 +144,6 @@ func parseConfig() {
 
 	TConfig.EnableSingleSchemaCache = beego.AppConfig.DefaultBool("EnableSingleSchemaCache", false)
 
-	TConfig.QiniuBucket = beego.AppConfig.String("QiniuBucket")
-	TConfig.QiniuDomain = beego.AppConfig.String("QiniuDomain")
-	TConfig.QiniuAccessKey = beego.AppConfig.String("QiniuAccessKey")
-	TConfig.QiniuSecretKey = beego.AppConfig.String("QiniuSecretKey")
-	TConfig.QiniuZone = beego.AppConfig.String("QiniuZone")
 	TConfig.FileDirectAccess = beego.AppConfig.DefaultBool("FileDirectAccess", true)
 
 	TConfig.SinaBucket = beego.AppConfig.String("SinaBucket")
