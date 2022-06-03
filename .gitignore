@@ -26,3 +26,6 @@ _testmain.go
 *.log
 
 routers/commentsRouter*
+./idea
+go.mod
+go.sum
