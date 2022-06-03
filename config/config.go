@@ -32,7 +32,7 @@ type Config struct {
 	SMTPServer                       string   // SMTP 邮箱服务器地址，仅在 MailAdapter=smtp 时需要配置
 	MailUsername                     string   // SMTP 用户名，仅在 MailAdapter=smtp 时需要配置
 	MailPassword                     string   // SMTP 密码，仅在 MailAdapter=smtp 时需要配置
-	FileAdapter                      string   // 文件存储模块，可选： Disk、GridFS、Qiniu、Sina、Tencent， 默认为 Disk 本地磁盘存储
+	FileAdapter                      string   // 文件存储模块，可选： Disk、GridFS、Sina、Tencent， 默认为 Disk 本地磁盘存储
 	FileDirectAccess                 bool     // 是否允许直接访问文件地址，默认为 true 允许直接访问而不是通过 tomato 中转
 	SinaBucket                       string   // 新浪云存储 Bucket ，仅在 FileAdapter=Sina 时需要配置
 	SinaDomain                       string   // 新浪云存储 Domain ，仅在 FileAdapter=Sina 时需要配置
@@ -226,12 +226,6 @@ func validateFileConfiguration() {
 	case "", "Disk":
 	case "GridFS":
 	// TODO 校验 MongoDB 配置
-	case "Qiniu":
-		if TConfig.QiniuDomain == "" || TConfig.QiniuBucket == "" || TConfig.QiniuAccessKey == "" || TConfig.QiniuSecretKey == "" || TConfig.QiniuZone == "" {
-			log.Fatalln("QiniuDomain, QiniuBucket, QiniuAccessKey, QiniuSecretKey, QiniuZone is required")
-		} else if TConfig.QiniuZone != "Huadong" && TConfig.QiniuZone != "Huabei" && TConfig.QiniuZone != "Huanan" && TConfig.QiniuZone != "Beimei" {
-			log.Fatalln("Unsupport Qiniu Zone")
-		}
 	case "Sina":
 		if TConfig.SinaDomain == "" || TConfig.SinaBucket == "" || TConfig.SinaAccessKey == "" || TConfig.SinaSecretKey == "" {
 			log.Fatalln("SinaDomain, SinaBucket, SinaAccessKey, SinaSecretKey is required")
