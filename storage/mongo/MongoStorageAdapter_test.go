@@ -7,9 +7,9 @@ import (
 
 	"gopkg.in/mgo.v2"
 
-	"github.com/okobsamoht/tomato/errs"
-	"github.com/okobsamoht/tomato/types"
-	"github.com/okobsamoht/tomato/utils"
+	"github.com/okobsamoht/talisman/errs"
+	"github.com/okobsamoht/talisman/types"
+	"github.com/okobsamoht/talisman/utils"
 )
 
 func Test_ClassExists(t *testing.T) {
@@ -764,7 +764,7 @@ func Test_getCollectionNames(t *testing.T) {
 	if names == nil || len(names) != 2 {
 		t.Error("expect:", 2, "result:", len(names))
 	} else {
-		expect := []string{"tomatouser", "tomatouser1"}
+		expect := []string{"talismanuser", "talismanuser1"}
 		if reflect.DeepEqual(expect, names) == false {
 			t.Error("expect:", expect, "result:", names)
 		}
@@ -1436,7 +1436,7 @@ func Test_storageAdapterAllCollections(t *testing.T) {
 	if result == nil || len(result) != 2 {
 		t.Error("expect:", 2, "result:", len(result))
 	} else {
-		expect := []string{"tomatouser", "tomatouser1"}
+		expect := []string{"talismanuser", "talismanuser1"}
 		names := []string{result[0].collection.Name, result[1].collection.Name}
 		if reflect.DeepEqual(expect, names) == false {
 			t.Error("expect:", expect, "result:", names)
@@ -1452,7 +1452,7 @@ func Test_storageAdapterAllCollections(t *testing.T) {
 	if result == nil || len(result) != 2 {
 		t.Error("expect:", 2, "result:", len(result))
 	} else {
-		expect := []string{"tomatouser", "tomatouser1"}
+		expect := []string{"talismanuser", "talismanuser1"}
 		names := []string{result[0].collection.Name, result[1].collection.Name}
 		if reflect.DeepEqual(expect, names) == false {
 			t.Error("expect:", expect, "result:", names)
@@ -1622,5 +1622,5 @@ func Test_mongoSchemaFromFieldsAndClassNameAndCLP(t *testing.T) {
 }
 
 func getAdapter() *MongoAdapter {
-	return NewMongoAdapter("tomato", openDB())
+	return NewMongoAdapter("talisman", openDB())
 }

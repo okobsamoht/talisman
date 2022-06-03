@@ -29,7 +29,7 @@ type HandlerType func(args ...string)
 
 // Publisher ...
 type Publisher interface {
-	// Publish 向指定通道发送消息。当有对象保存或删除时，由 tomato 调用
+	// Publish 向指定通道发送消息。当有对象保存或删除时，由 talisman 调用
 	// channel 当前支持的通道包括：afterSave、afterDelete
 	// message json 字符串，格式如下：
 	// {

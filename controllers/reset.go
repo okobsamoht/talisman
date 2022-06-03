@@ -1,9 +1,9 @@
 package controllers
 
 import (
-	"github.com/okobsamoht/tomato/errs"
-	"github.com/okobsamoht/tomato/rest"
-	"github.com/okobsamoht/tomato/types"
+	"github.com/okobsamoht/talisman/errs"
+	"github.com/okobsamoht/talisman/rest"
+	"github.com/okobsamoht/talisman/types"
 )
 
 // ResetController 处理 /requestPasswordReset 接口的请求

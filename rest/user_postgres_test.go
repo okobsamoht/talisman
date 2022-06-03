@@ -5,12 +5,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/okobsamoht/tomato/config"
-	"github.com/okobsamoht/tomato/errs"
-	"github.com/okobsamoht/tomato/mail"
-	"github.com/okobsamoht/tomato/orm"
-	"github.com/okobsamoht/tomato/types"
-	"github.com/okobsamoht/tomato/utils"
+	"github.com/okobsamoht/talisman/config"
+	"github.com/okobsamoht/talisman/errs"
+	"github.com/okobsamoht/talisman/mail"
+	"github.com/okobsamoht/talisman/orm"
+	"github.com/okobsamoht/talisman/types"
+	"github.com/okobsamoht/talisman/utils"
 )
 
 func TestPostgres_getUserIfNeeded(t *testing.T) {
@@ -63,7 +63,7 @@ func TestPostgres_getUserIfNeeded(t *testing.T) {
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/*********************************************************/
 	initPostgresEnv()
 	schema = types.M{
@@ -88,7 +88,7 @@ func TestPostgres_getUserIfNeeded(t *testing.T) {
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/*********************************************************/
 	initPostgresEnv()
 	schema = types.M{
@@ -119,7 +119,7 @@ func TestPostgres_getUserIfNeeded(t *testing.T) {
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/*********************************************************/
 	initPostgresEnv()
 	schema = types.M{
@@ -148,7 +148,7 @@ func TestPostgres_getUserIfNeeded(t *testing.T) {
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func TestPostgres_SendPasswordResetEmail(t *testing.T) {
@@ -180,7 +180,7 @@ func TestPostgres_SendPasswordResetEmail(t *testing.T) {
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/*********************************************************/
 	initPostgresEnv()
 	schema = types.M{
@@ -203,7 +203,7 @@ func TestPostgres_SendPasswordResetEmail(t *testing.T) {
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func TestPostgres_setPasswordResetToken(t *testing.T) {
@@ -234,7 +234,7 @@ func TestPostgres_setPasswordResetToken(t *testing.T) {
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/*********************************************************/
 	initPostgresEnv()
 	schema = types.M{
@@ -265,7 +265,7 @@ func TestPostgres_setPasswordResetToken(t *testing.T) {
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func TestPostgres_VerifyEmail(t *testing.T) {
@@ -314,7 +314,7 @@ func TestPostgres_VerifyEmail(t *testing.T) {
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/*********************************************************/
 	initPostgresEnv()
 	schema = types.M{
@@ -344,7 +344,7 @@ func TestPostgres_VerifyEmail(t *testing.T) {
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/*********************************************************/
 	initPostgresEnv()
 	schema = types.M{
@@ -376,7 +376,7 @@ func TestPostgres_VerifyEmail(t *testing.T) {
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func TestPostgres_CheckResetTokenValidity(t *testing.T) {
@@ -407,7 +407,7 @@ func TestPostgres_CheckResetTokenValidity(t *testing.T) {
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/*********************************************************/
 	initPostgresEnv()
 	schema = types.M{
@@ -429,7 +429,7 @@ func TestPostgres_CheckResetTokenValidity(t *testing.T) {
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/*********************************************************/
 	tmpTimeStr := utils.TimetoString(time.Now().UTC().Add(1 * time.Hour))
 	initPostgresEnv()
@@ -461,5 +461,5 @@ func TestPostgres_CheckResetTokenValidity(t *testing.T) {
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }

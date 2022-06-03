@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/okobsamoht/tomato/types"
+	"github.com/okobsamoht/talisman/types"
 )
 
 func Test_qq_ValidateAuthData(t *testing.T) {

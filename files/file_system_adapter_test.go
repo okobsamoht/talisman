@@ -3,12 +3,12 @@ package files
 import (
 	"testing"
 
-	"github.com/okobsamoht/tomato/config"
+	"github.com/okobsamoht/talisman/config"
 )
 import "reflect"
 
 func Test_fileSystemAdapter(t *testing.T) {
-	f := newFileSystemAdapter("tomato")
+	f := newFileSystemAdapter("talisman")
 	hello := "hello world!"
 	err := f.createFile("hello.txt", []byte(hello), "text/plain")
 	if err != nil {

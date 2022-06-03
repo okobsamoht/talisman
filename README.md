@@ -1,20 +1,20 @@
-# tomato
+# talisman
 
 Parse-compatible API server module for Golang/Beego
 
 ## 开始
 ###### 安装
 ```bash
-    go get github.com/okobsamoht/tomato
+    go get github.com/okobsamoht/talisman
 ```
 ###### 创建文件 hello.go
 ```go
 package main
 
-import "github.com/okobsamoht/tomato"
+import "github.com/okobsamoht/talisman"
 
 func main() {
-    tomato.Run()
+    talisman.Run()
 }
 ```
 ###### 创建配置文件 /conf/app.conf
@@ -49,18 +49,18 @@ AllowClientClassCreation = true
 ```
 
 ## 启用 LiveQuery
-###### 在 tomato 中添加配置项
+###### 在 talisman 中添加配置项
 ```ini
 LiveQueryClasses = classA|classB
 PublisherType = Redis
 PublisherURL = 192.168.99.100:6379
 ```
 ###### 启动 LiveQuery
-使用默认参数与 tomato 同时启动：
+使用默认参数与 talisman 同时启动：
 ```go
 func main() {
-    go tomato.RunLiveQueryServer(nil)
-    tomato.Run()
+    go talisman.RunLiveQueryServer(nil)
+    talisman.Run()
 }
 ```
 使用自定义参数启动或者是独立运行：
@@ -76,12 +76,12 @@ func main() {
     args["masterKey"] = "test"
     args["subType"] = "Redis"
     args["subURL"] = "192.168.99.100:6379"
-    // 使用自定义参数与 tomato 同时启动
-    go tomato.RunLiveQueryServer(args)
-    tomato.Run()
+    // 使用自定义参数与 talisman 同时启动
+    go talisman.RunLiveQueryServer(args)
+    talisman.Run()
 
     // 独立运行 LiveQueryServer
-    // tomato.RunLiveQueryServer(args)
+    // talisman.RunLiveQueryServer(args)
 }
 ```
 
@@ -213,7 +213,7 @@ func main() {
 		for _, o := range objects {
 			if object := utils.M(o); object != nil {
 				if title, ok := object["title"].(string); ok {
-					object["title"] = title + " - by tomato"
+					object["title"] = title + " - by talisman"
 				}
 			}
 		}

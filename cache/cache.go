@@ -3,7 +3,7 @@ package cache
 import (
 	"strings"
 
-	"github.com/okobsamoht/tomato/config"
+	"github.com/okobsamoht/talisman/config"
 )
 
 // Role ...

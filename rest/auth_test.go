@@ -5,11 +5,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/okobsamoht/tomato/cache"
-	"github.com/okobsamoht/tomato/errs"
-	"github.com/okobsamoht/tomato/orm"
-	"github.com/okobsamoht/tomato/types"
-	"github.com/okobsamoht/tomato/utils"
+	"github.com/okobsamoht/talisman/cache"
+	"github.com/okobsamoht/talisman/errs"
+	"github.com/okobsamoht/talisman/orm"
+	"github.com/okobsamoht/talisman/types"
+	"github.com/okobsamoht/talisman/utils"
 )
 
 func Test_GetAuthForSessionToken(t *testing.T) {
@@ -32,7 +32,7 @@ func Test_GetAuthForSessionToken(t *testing.T) {
 	if err == nil || reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/********************************************************/
 	cache.InitCache()
 	initEnv()
@@ -77,7 +77,7 @@ func Test_GetAuthForSessionToken(t *testing.T) {
 	if err == nil || reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/********************************************************/
 	cache.InitCache()
 	initEnv()
@@ -121,7 +121,7 @@ func Test_GetAuthForSessionToken(t *testing.T) {
 	if err == nil || reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/********************************************************/
 	cache.InitCache()
 	initEnv()
@@ -166,7 +166,7 @@ func Test_GetAuthForSessionToken(t *testing.T) {
 	if err == nil || reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/********************************************************/
 	cache.InitCache()
 	initEnv()
@@ -221,7 +221,7 @@ func Test_GetAuthForSessionToken(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func Test_CouldUpdateUserID(t *testing.T) {
@@ -390,7 +390,7 @@ func Test_GetUserRoles(t *testing.T) {
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func Test_loadRoles(t *testing.T) {
@@ -447,7 +447,7 @@ func Test_loadRoles(t *testing.T) {
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/********************************************************/
 	cache.InitCache()
 	initEnv()
@@ -509,7 +509,7 @@ func Test_loadRoles(t *testing.T) {
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func Test_getAllRolesNamesForRoleIds(t *testing.T) {
@@ -548,7 +548,7 @@ func Test_getAllRolesNamesForRoleIds(t *testing.T) {
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/********************************************************/
 	initEnv()
 	className = "_Role"
@@ -581,7 +581,7 @@ func Test_getAllRolesNamesForRoleIds(t *testing.T) {
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/********************************************************/
 	initEnv()
 	className = "_Role"
@@ -625,7 +625,7 @@ func Test_getAllRolesNamesForRoleIds(t *testing.T) {
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/********************************************************/
 	initEnv()
 	className = "_Role"
@@ -707,5 +707,5 @@ func Test_getAllRolesNamesForRoleIds(t *testing.T) {
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }

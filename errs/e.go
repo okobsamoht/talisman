@@ -3,23 +3,23 @@ package errs
 import (
 	"strconv"
 
-	"github.com/okobsamoht/tomato/types"
+	"github.com/okobsamoht/talisman/types"
 )
 
-// TomatoError ...
-type TomatoError struct {
+// TalismanError ...
+type TalismanError struct {
 	Code    int
 	Message string
 }
 
-func (e *TomatoError) Error() string {
+func (e *TalismanError) Error() string {
 	return `{"code": ` + strconv.Itoa(e.Code) + `,"error": "` + e.Message + `"}`
 }
 
 // E 组装 json 格式错误信息：
 // {"code": 105,"error": "invalid field name: bl!ng"}
 func E(code int, msg string) error {
-	return &TomatoError{
+	return &TalismanError{
 		Code:    code,
 		Message: msg,
 	}
@@ -27,7 +27,7 @@ func E(code int, msg string) error {
 
 // ErrorToMap 把 error 转换为 types.M 格式，准备返回给客户端
 func ErrorToMap(e error) types.M {
-	if v, ok := e.(*TomatoError); ok {
+	if v, ok := e.(*TalismanError); ok {
 		return types.M{
 			"code":  v.Code,
 			"error": v.Message,
@@ -46,7 +46,7 @@ func ErrorMessageToMap(code int, msg string) types.M {
 
 // GetErrorCode 获取 error 中的 code
 func GetErrorCode(e error) int {
-	if v, ok := e.(*TomatoError); ok {
+	if v, ok := e.(*TalismanError); ok {
 		return v.Code
 	}
 	return 0
@@ -54,7 +54,7 @@ func GetErrorCode(e error) int {
 
 // GetErrorMessage 获取 error 中的 Message
 func GetErrorMessage(e error) string {
-	if v, ok := e.(*TomatoError); ok {
+	if v, ok := e.(*TalismanError); ok {
 		return v.Message
 	}
 	return e.Error()

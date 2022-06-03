@@ -5,10 +5,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/okobsamoht/tomato/cache"
-	"github.com/okobsamoht/tomato/errs"
-	"github.com/okobsamoht/tomato/types"
-	"github.com/okobsamoht/tomato/utils"
+	"github.com/okobsamoht/talisman/cache"
+	"github.com/okobsamoht/talisman/errs"
+	"github.com/okobsamoht/talisman/types"
+	"github.com/okobsamoht/talisman/utils"
 )
 
 func Test_CollectionExists(t *testing.T) {
@@ -19,7 +19,7 @@ func Test_CollectionExists(t *testing.T) {
 	var expect bool
 	/*************************************************/
 	className = "user"
-	result = TomatoDBController.CollectionExists(className)
+	result = TalismanDBController.CollectionExists(className)
 	expect = false
 	if result != expect {
 		t.Error("expect:", expect, "result:", result)
@@ -32,7 +32,7 @@ func Test_CollectionExists(t *testing.T) {
 	}
 	Adapter.CreateObject(className, types.M{}, object)
 	className = "user"
-	result = TomatoDBController.CollectionExists(className)
+	result = TalismanDBController.CollectionExists(className)
 	expect = true
 	if result != expect {
 		t.Error("expect:", expect, "result:", result)
@@ -50,12 +50,12 @@ func Test_PurgeCollection(t *testing.T) {
 	var expects []types.M
 	/*************************************************/
 	className = "user"
-	err = TomatoDBController.PurgeCollection(className)
+	err = TalismanDBController.PurgeCollection(className)
 	expect = errs.E(errs.ObjectNotFound, "Object not found.")
 	if reflect.DeepEqual(expect, err) == false {
 		t.Error("expect:", expect, "result:", err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{"key": "001"}
@@ -63,7 +63,7 @@ func Test_PurgeCollection(t *testing.T) {
 	object = types.M{"key": "002"}
 	Adapter.CreateObject(className, types.M{}, object)
 	className = "user"
-	err = TomatoDBController.PurgeCollection(className)
+	err = TalismanDBController.PurgeCollection(className)
 	expect = nil
 	if reflect.DeepEqual(expect, err) == false {
 		t.Error("expect:", expect, "result:", err)
@@ -73,7 +73,7 @@ func Test_PurgeCollection(t *testing.T) {
 	if reflect.DeepEqual(expects, resluts) == false {
 		t.Error("expect:", expects, "result:", resluts)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 }
 
 func Test_Find(t *testing.T) {
@@ -101,12 +101,12 @@ func Test_Find(t *testing.T) {
 	className = "user"
 	query = nil
 	options = nil
-	results, err = TomatoDBController.Find(className, query, options)
+	results, err = TalismanDBController.Find(className, query, options)
 	expects = types.S{}
 	if err != nil || reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results, err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -122,12 +122,12 @@ func Test_Find(t *testing.T) {
 	className = "user"
 	query = nil
 	options = types.M{"count": true}
-	results, err = TomatoDBController.Find(className, query, options)
+	results, err = TalismanDBController.Find(className, query, options)
 	expects = types.S{0}
 	if err != nil || reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results, err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -150,7 +150,7 @@ func Test_Find(t *testing.T) {
 	className = "user"
 	query = nil
 	options = nil
-	results, err = TomatoDBController.Find(className, query, options)
+	results, err = TalismanDBController.Find(className, query, options)
 	expects = types.S{
 		types.M{
 			"objectId": "01",
@@ -164,7 +164,7 @@ func Test_Find(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results, err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -192,7 +192,7 @@ func Test_Find(t *testing.T) {
 	className = "user"
 	query = nil
 	options = types.M{"skip": 1}
-	results, err = TomatoDBController.Find(className, query, options)
+	results, err = TalismanDBController.Find(className, query, options)
 	expects = types.S{
 		types.M{
 			"objectId": "02",
@@ -206,7 +206,7 @@ func Test_Find(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results, err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -234,7 +234,7 @@ func Test_Find(t *testing.T) {
 	className = "user"
 	query = nil
 	options = types.M{"limit": 2}
-	results, err = TomatoDBController.Find(className, query, options)
+	results, err = TalismanDBController.Find(className, query, options)
 	expects = types.S{
 		types.M{
 			"objectId": "01",
@@ -248,7 +248,7 @@ func Test_Find(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results, err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -271,7 +271,7 @@ func Test_Find(t *testing.T) {
 	className = "user"
 	query = types.M{"objectId": "01"}
 	options = nil
-	results, err = TomatoDBController.Find(className, query, options)
+	results, err = TalismanDBController.Find(className, query, options)
 	expects = types.S{
 		types.M{
 			"objectId": "01",
@@ -281,7 +281,7 @@ func Test_Find(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results, err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -304,12 +304,12 @@ func Test_Find(t *testing.T) {
 	className = "user"
 	query = types.M{"objectId": "03"}
 	options = nil
-	results, err = TomatoDBController.Find(className, query, options)
+	results, err = TalismanDBController.Find(className, query, options)
 	expects = types.S{}
 	if err != nil || reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results, err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -337,7 +337,7 @@ func Test_Find(t *testing.T) {
 	className = "user"
 	query = types.M{}
 	options = types.M{"sort": []string{"key"}}
-	results, err = TomatoDBController.Find(className, query, options)
+	results, err = TalismanDBController.Find(className, query, options)
 	expects = types.S{
 		types.M{
 			"objectId": "02",
@@ -355,7 +355,7 @@ func Test_Find(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results, err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -383,7 +383,7 @@ func Test_Find(t *testing.T) {
 	className = "user"
 	query = types.M{}
 	options = types.M{"sort": []string{"-key"}}
-	results, err = TomatoDBController.Find(className, query, options)
+	results, err = TalismanDBController.Find(className, query, options)
 	expects = types.S{
 		types.M{
 			"objectId": "01",
@@ -401,7 +401,7 @@ func Test_Find(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results, err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -429,12 +429,12 @@ func Test_Find(t *testing.T) {
 	className = "user"
 	query = types.M{}
 	options = types.M{"sort": []string{"@key"}}
-	results, err = TomatoDBController.Find(className, query, options)
+	results, err = TalismanDBController.Find(className, query, options)
 	expectErr = errs.E(errs.InvalidKeyName, "Invalid field name: @key")
 	if err == nil || reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", results, err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -462,12 +462,12 @@ func Test_Find(t *testing.T) {
 	className = "user"
 	query = types.M{}
 	options = types.M{"sort": []string{"authData.facebook.id"}}
-	results, err = TomatoDBController.Find(className, query, options)
+	results, err = TalismanDBController.Find(className, query, options)
 	expectErr = errs.E(errs.InvalidKeyName, "Cannot sort by authData.facebook.id")
 	if err == nil || reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", results, err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -509,7 +509,7 @@ func Test_Find(t *testing.T) {
 		},
 	}
 	options = nil
-	results, err = TomatoDBController.Find(className, query, options)
+	results, err = TalismanDBController.Find(className, query, options)
 	expects = types.S{
 		types.M{
 			"objectId": "01",
@@ -519,7 +519,7 @@ func Test_Find(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results, err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	initEnv()
 	className = "user"
@@ -574,7 +574,7 @@ func Test_Find(t *testing.T) {
 		},
 	}
 	options = nil
-	results, err = TomatoDBController.Find(className, query, options)
+	results, err = TalismanDBController.Find(className, query, options)
 	expects = types.S{
 		types.M{
 			"objectId": "01",
@@ -588,7 +588,7 @@ func Test_Find(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results, err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -646,7 +646,7 @@ func Test_Find(t *testing.T) {
 		},
 	}
 	options = nil
-	results, err = TomatoDBController.Find(className, query, options)
+	results, err = TalismanDBController.Find(className, query, options)
 	expects = types.S{
 		types.M{
 			"objectId": "01",
@@ -660,7 +660,7 @@ func Test_Find(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results, err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -718,7 +718,7 @@ func Test_Find(t *testing.T) {
 		},
 	}
 	options = nil
-	results, err = TomatoDBController.Find(className, query, options)
+	results, err = TalismanDBController.Find(className, query, options)
 	expects = types.S{
 		types.M{
 			"objectId": "02",
@@ -740,7 +740,7 @@ func Test_Find(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results, err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -796,7 +796,7 @@ func Test_Find(t *testing.T) {
 		},
 	}
 	options = nil
-	results, err = TomatoDBController.Find(className, query, options)
+	results, err = TalismanDBController.Find(className, query, options)
 	expects = types.S{
 		types.M{
 			"objectId": "02",
@@ -818,7 +818,7 @@ func Test_Find(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results, err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -874,7 +874,7 @@ func Test_Find(t *testing.T) {
 		},
 	}
 	options = nil
-	results, err = TomatoDBController.Find(className, query, options)
+	results, err = TalismanDBController.Find(className, query, options)
 	expects = types.S{
 		types.M{
 			"objectId": "01",
@@ -888,7 +888,7 @@ func Test_Find(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results, err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -918,12 +918,12 @@ func Test_Find(t *testing.T) {
 		"@key": "hello",
 	}
 	options = nil
-	results, err = TomatoDBController.Find(className, query, options)
+	results, err = TalismanDBController.Find(className, query, options)
 	expectErr = errs.E(errs.InvalidKeyName, "Invalid key name: @key")
 	if err == nil || reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", results, err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -951,12 +951,12 @@ func Test_Find(t *testing.T) {
 	className = "user"
 	query = types.M{}
 	options = types.M{"count": true}
-	results, err = TomatoDBController.Find(className, query, options)
+	results, err = TalismanDBController.Find(className, query, options)
 	expects = types.S{3}
 	if err != nil || reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results, err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	initEnv()
 	className = "user"
@@ -977,7 +977,7 @@ func Test_Find(t *testing.T) {
 	className = "user"
 	query = types.M{}
 	options = nil
-	results, err = TomatoDBController.Find(className, query, options)
+	results, err = TalismanDBController.Find(className, query, options)
 	expects = types.S{
 		types.M{
 			"objectId": "01",
@@ -993,7 +993,7 @@ func Test_Find(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results, err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "_User"
 	object = types.M{
@@ -1013,7 +1013,7 @@ func Test_Find(t *testing.T) {
 	className = "_User"
 	query = types.M{}
 	options = nil
-	results, err = TomatoDBController.Find(className, query, options)
+	results, err = TalismanDBController.Find(className, query, options)
 	expects = types.S{
 		types.M{
 			"objectId": "01",
@@ -1024,7 +1024,7 @@ func Test_Find(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results, err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -1047,7 +1047,7 @@ func Test_Find(t *testing.T) {
 	className = "user"
 	query = types.M{}
 	options = types.M{"acl": []string{"role:1024", "123456789012345678901234"}}
-	results, err = TomatoDBController.Find(className, query, options)
+	results, err = TalismanDBController.Find(className, query, options)
 	expects = types.S{
 		types.M{
 			"objectId": "01",
@@ -1061,7 +1061,7 @@ func Test_Find(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results, err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -1087,7 +1087,7 @@ func Test_Find(t *testing.T) {
 	className = "user"
 	query = types.M{}
 	options = types.M{"acl": []string{"role:1024", "123456789012345678901234"}}
-	results, err = TomatoDBController.Find(className, query, options)
+	results, err = TalismanDBController.Find(className, query, options)
 	expects = types.S{
 		types.M{
 			"objectId": "01",
@@ -1101,7 +1101,7 @@ func Test_Find(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results, err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	initEnv()
 	className = "user"
@@ -1128,12 +1128,12 @@ func Test_Find(t *testing.T) {
 	className = "user"
 	query = types.M{}
 	options = types.M{"acl": []string{"role:1024", "123456789012345678901234"}}
-	results, err = TomatoDBController.Find(className, query, options)
+	results, err = TalismanDBController.Find(className, query, options)
 	expectErr = errs.E(errs.OperationForbidden, "Permission denied for action find on class user.")
 	if err == nil || reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", results, err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	initEnv()
 	className = "user"
@@ -1166,7 +1166,7 @@ func Test_Find(t *testing.T) {
 	className = "user"
 	query = types.M{}
 	options = types.M{"acl": []string{"role:1024", "123456789012345678901234"}}
-	results, err = TomatoDBController.Find(className, query, options)
+	results, err = TalismanDBController.Find(className, query, options)
 	expects = types.S{
 		types.M{
 			"objectId": "01",
@@ -1176,7 +1176,7 @@ func Test_Find(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results, err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	initEnv()
 	className = "user"
@@ -1204,7 +1204,7 @@ func Test_Find(t *testing.T) {
 	className = "user"
 	query = types.M{}
 	options = types.M{"acl": []string{"role:1024", "123456789012345678901234"}}
-	results, err = TomatoDBController.Find(className, query, options)
+	results, err = TalismanDBController.Find(className, query, options)
 	expects = types.S{
 		types.M{
 			"objectId": "01",
@@ -1223,7 +1223,7 @@ func Test_Find(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results, err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -1251,7 +1251,7 @@ func Test_Find(t *testing.T) {
 	className = "user"
 	query = types.M{}
 	options = types.M{"acl": []string{"role:1024", "123456789012345678901234"}}
-	results, err = TomatoDBController.Find(className, query, options)
+	results, err = TalismanDBController.Find(className, query, options)
 	expects = types.S{
 		types.M{
 			"objectId": "01",
@@ -1266,7 +1266,7 @@ func Test_Find(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results, err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "_User"
 	object = types.M{
@@ -1299,7 +1299,7 @@ func Test_Find(t *testing.T) {
 	className = "_User"
 	query = types.M{}
 	options = types.M{"acl": []string{"role:1024", "123456789012345678901234"}}
-	results, err = TomatoDBController.Find(className, query, options)
+	results, err = TalismanDBController.Find(className, query, options)
 	expects = types.S{
 		types.M{
 			"objectId": "123456789012345678901234",
@@ -1318,7 +1318,7 @@ func Test_Find(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results, err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "_User"
 	object = types.M{
@@ -1351,7 +1351,7 @@ func Test_Find(t *testing.T) {
 	className = "_User"
 	query = types.M{}
 	options = types.M{"acl": []string{"role:1024", "123456789012345678901234"}}
-	results, err = TomatoDBController.Find(className, query, options)
+	results, err = TalismanDBController.Find(className, query, options)
 	expects = types.S{
 		types.M{
 			"objectId": "123456789012345678904321",
@@ -1367,7 +1367,7 @@ func Test_Find(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results, err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 }
 
 func Test_Destroy(t *testing.T) {
@@ -1384,12 +1384,12 @@ func Test_Destroy(t *testing.T) {
 	className = "user"
 	query = nil
 	options = nil
-	err = TomatoDBController.Destroy(className, query, options)
+	err = TalismanDBController.Destroy(className, query, options)
 	expectErr = errs.E(errs.ObjectNotFound, "Object not found.")
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -1405,7 +1405,7 @@ func Test_Destroy(t *testing.T) {
 	className = "user"
 	query = nil
 	options = nil
-	err = TomatoDBController.Destroy(className, query, options)
+	err = TalismanDBController.Destroy(className, query, options)
 	expectErr = nil
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
@@ -1415,7 +1415,7 @@ func Test_Destroy(t *testing.T) {
 	if reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -1442,12 +1442,12 @@ func Test_Destroy(t *testing.T) {
 	options = types.M{
 		"acl": []string{"123456789012345678901234", "role:1001"},
 	}
-	err = TomatoDBController.Destroy(className, query, options)
+	err = TalismanDBController.Destroy(className, query, options)
 	expectErr = errs.E(errs.OperationForbidden, "Permission denied for action delete on class user.")
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	initEnv()
 	className = "user"
@@ -1475,7 +1475,7 @@ func Test_Destroy(t *testing.T) {
 	options = types.M{
 		"acl": []string{"123456789012345678901234", "role:1001"},
 	}
-	err = TomatoDBController.Destroy(className, query, options)
+	err = TalismanDBController.Destroy(className, query, options)
 	expectErr = nil
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
@@ -1485,7 +1485,7 @@ func Test_Destroy(t *testing.T) {
 	if reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -1514,7 +1514,7 @@ func Test_Destroy(t *testing.T) {
 	options = types.M{
 		"acl": []string{"123456789012345678901234", "role:1001"},
 	}
-	err = TomatoDBController.Destroy(className, query, options)
+	err = TalismanDBController.Destroy(className, query, options)
 	expectErr = nil
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
@@ -1530,7 +1530,7 @@ func Test_Destroy(t *testing.T) {
 	if reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	initEnv()
 	className = "user"
@@ -1559,12 +1559,12 @@ func Test_Destroy(t *testing.T) {
 	options = types.M{
 		"acl": []string{"role:1001"},
 	}
-	err = TomatoDBController.Destroy(className, query, options)
+	err = TalismanDBController.Destroy(className, query, options)
 	expectErr = errs.E(errs.ObjectNotFound, "Object not found.")
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -1597,7 +1597,7 @@ func Test_Destroy(t *testing.T) {
 	options = types.M{
 		"acl": []string{"123456789012345678901234", "role:1001"},
 	}
-	err = TomatoDBController.Destroy(className, query, options)
+	err = TalismanDBController.Destroy(className, query, options)
 	expectErr = nil
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
@@ -1612,17 +1612,17 @@ func Test_Destroy(t *testing.T) {
 	if reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "_Session"
 	query = nil
 	options = nil
-	err = TomatoDBController.Destroy(className, query, options)
+	err = TalismanDBController.Destroy(className, query, options)
 	expectErr = nil
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 }
 
 func Test_Update(t *testing.T) {
@@ -1645,24 +1645,24 @@ func Test_Update(t *testing.T) {
 	update = nil
 	options = nil
 	skipSanitization = false
-	result, err = TomatoDBController.Update(className, query, update, options, skipSanitization)
+	result, err = TalismanDBController.Update(className, query, update, options, skipSanitization)
 	expect = types.M{}
 	if err != nil || reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result, err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	query = types.M{}
 	update = nil
 	options = nil
 	skipSanitization = false
-	result, err = TomatoDBController.Update(className, query, update, options, skipSanitization)
+	result, err = TalismanDBController.Update(className, query, update, options, skipSanitization)
 	expect = types.M{}
 	if err != nil || reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result, err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -1675,7 +1675,7 @@ func Test_Update(t *testing.T) {
 	update = types.M{"key": "haha"}
 	options = nil
 	skipSanitization = false
-	result, err = TomatoDBController.Update(className, query, update, options, skipSanitization)
+	result, err = TalismanDBController.Update(className, query, update, options, skipSanitization)
 	expect = types.M{}
 	if err != nil || reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result, err)
@@ -1690,7 +1690,7 @@ func Test_Update(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results, err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -1708,7 +1708,7 @@ func Test_Update(t *testing.T) {
 	update = types.M{"key": "haha"}
 	options = nil
 	skipSanitization = false
-	result, err = TomatoDBController.Update(className, query, update, options, skipSanitization)
+	result, err = TalismanDBController.Update(className, query, update, options, skipSanitization)
 	expect = types.M{}
 	if err != nil || reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result, err)
@@ -1727,7 +1727,7 @@ func Test_Update(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results, err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -1747,7 +1747,7 @@ func Test_Update(t *testing.T) {
 		"many": true,
 	}
 	skipSanitization = false
-	result, err = TomatoDBController.Update(className, query, update, options, skipSanitization)
+	result, err = TalismanDBController.Update(className, query, update, options, skipSanitization)
 	expect = types.M{}
 	if err != nil || reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result, err)
@@ -1766,7 +1766,7 @@ func Test_Update(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results, err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -1786,7 +1786,7 @@ func Test_Update(t *testing.T) {
 		"upsert": true,
 	}
 	skipSanitization = false
-	result, err = TomatoDBController.Update(className, query, update, options, skipSanitization)
+	result, err = TalismanDBController.Update(className, query, update, options, skipSanitization)
 	expect = types.M{}
 	if err != nil || reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result, err)
@@ -1813,7 +1813,7 @@ func Test_Update(t *testing.T) {
 			t.Error("expect:", expects, "result:", results, err)
 		}
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -1843,7 +1843,7 @@ func Test_Update(t *testing.T) {
 	}
 	options = nil
 	skipSanitization = false
-	result, err = TomatoDBController.Update(className, query, update, options, skipSanitization)
+	result, err = TalismanDBController.Update(className, query, update, options, skipSanitization)
 	expect = types.M{}
 	if err != nil || reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result, err)
@@ -1881,7 +1881,7 @@ func Test_Update(t *testing.T) {
 			t.Error("expect:", expects, "result:", results, err)
 		}
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -1896,12 +1896,12 @@ func Test_Update(t *testing.T) {
 	}
 	options = nil
 	skipSanitization = false
-	result, err = TomatoDBController.Update(className, query, update, options, skipSanitization)
+	result, err = TalismanDBController.Update(className, query, update, options, skipSanitization)
 	expectErr = errs.E(errs.InvalidKeyName, "Invalid key name: @key")
 	if err == nil || reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -1916,12 +1916,12 @@ func Test_Update(t *testing.T) {
 	}
 	options = nil
 	skipSanitization = false
-	result, err = TomatoDBController.Update(className, query, update, options, skipSanitization)
+	result, err = TalismanDBController.Update(className, query, update, options, skipSanitization)
 	expectErr = errs.E(errs.InvalidKeyName, "Invalid field name for update: authData.facebook.id")
 	if err == nil || reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -1936,12 +1936,12 @@ func Test_Update(t *testing.T) {
 	}
 	options = nil
 	skipSanitization = false
-	result, err = TomatoDBController.Update(className, query, update, options, skipSanitization)
+	result, err = TalismanDBController.Update(className, query, update, options, skipSanitization)
 	expectErr = errs.E(errs.InvalidKeyName, "Invalid field name for update: _abc")
 	if err == nil || reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -1958,12 +1958,12 @@ func Test_Update(t *testing.T) {
 	}
 	options = nil
 	skipSanitization = false
-	result, err = TomatoDBController.Update(className, query, update, options, skipSanitization)
+	result, err = TalismanDBController.Update(className, query, update, options, skipSanitization)
 	expectErr = errs.E(errs.InvalidNestedKey, "Nested keys should not contain the '$' or '.' characters")
 	if err == nil || reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -1980,12 +1980,12 @@ func Test_Update(t *testing.T) {
 	}
 	options = nil
 	skipSanitization = false
-	result, err = TomatoDBController.Update(className, query, update, options, skipSanitization)
+	result, err = TalismanDBController.Update(className, query, update, options, skipSanitization)
 	expectErr = errs.E(errs.InvalidNestedKey, "Nested keys should not contain the '$' or '.' characters")
 	if err == nil || reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -2006,7 +2006,7 @@ func Test_Update(t *testing.T) {
 	}
 	options = nil
 	skipSanitization = false
-	result, err = TomatoDBController.Update(className, query, update, options, skipSanitization)
+	result, err = TalismanDBController.Update(className, query, update, options, skipSanitization)
 	expect = types.M{}
 	if err != nil || reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result, err)
@@ -2027,7 +2027,7 @@ func Test_Update(t *testing.T) {
 			t.Error("expect:", expects, "result:", results, err)
 		}
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -2047,7 +2047,7 @@ func Test_Update(t *testing.T) {
 	}
 	options = nil
 	skipSanitization = false
-	result, err = TomatoDBController.Update(className, query, update, options, skipSanitization)
+	result, err = TalismanDBController.Update(className, query, update, options, skipSanitization)
 	expect = types.M{}
 	if err != nil || reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result, err)
@@ -2071,7 +2071,7 @@ func Test_Update(t *testing.T) {
 			t.Error("expect:", expects, "result:", results, err)
 		}
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -2086,12 +2086,12 @@ func Test_Update(t *testing.T) {
 	}
 	options = nil
 	skipSanitization = false
-	result, err = TomatoDBController.Update(className, query, update, options, skipSanitization)
+	result, err = TalismanDBController.Update(className, query, update, options, skipSanitization)
 	expectErr = errs.E(errs.ObjectNotFound, "Object not found.")
 	if err == nil || reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -2111,7 +2111,7 @@ func Test_Update(t *testing.T) {
 	}
 	options = nil
 	skipSanitization = false
-	result, err = TomatoDBController.Update(className, query, update, options, skipSanitization)
+	result, err = TalismanDBController.Update(className, query, update, options, skipSanitization)
 	expect = types.M{
 		"key2": 20,
 	}
@@ -2133,7 +2133,7 @@ func Test_Update(t *testing.T) {
 			t.Error("expect:", expects, "result:", results, err)
 		}
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -2153,7 +2153,7 @@ func Test_Update(t *testing.T) {
 	}
 	options = nil
 	skipSanitization = true
-	result, err = TomatoDBController.Update(className, query, update, options, skipSanitization)
+	result, err = TalismanDBController.Update(className, query, update, options, skipSanitization)
 	expect = types.M{
 		"objectId": "01",
 		"key":      "haha",
@@ -2177,7 +2177,7 @@ func Test_Update(t *testing.T) {
 			t.Error("expect:", expects, "result:", results, err)
 		}
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -2194,7 +2194,7 @@ func Test_Update(t *testing.T) {
 		"acl": []string{"role:1024"},
 	}
 	skipSanitization = false
-	result, err = TomatoDBController.Update(className, query, update, options, skipSanitization)
+	result, err = TalismanDBController.Update(className, query, update, options, skipSanitization)
 	expect = types.M{}
 	if err != nil || reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result, err)
@@ -2213,7 +2213,7 @@ func Test_Update(t *testing.T) {
 			t.Error("expect:", expects, "result:", results, err)
 		}
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -2240,7 +2240,7 @@ func Test_Update(t *testing.T) {
 		"acl": []string{"role:1024"},
 	}
 	skipSanitization = false
-	result, err = TomatoDBController.Update(className, query, update, options, skipSanitization)
+	result, err = TalismanDBController.Update(className, query, update, options, skipSanitization)
 	expect = types.M{}
 	if err != nil || reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result, err)
@@ -2259,7 +2259,7 @@ func Test_Update(t *testing.T) {
 			t.Error("expect:", expects, "result:", results, err)
 		}
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	initEnv()
 	className = "user"
@@ -2287,12 +2287,12 @@ func Test_Update(t *testing.T) {
 		"acl": []string{"role:1024"},
 	}
 	skipSanitization = false
-	result, err = TomatoDBController.Update(className, query, update, options, skipSanitization)
+	result, err = TalismanDBController.Update(className, query, update, options, skipSanitization)
 	expectErr = errs.E(errs.OperationForbidden, "Permission denied for action update on class user.")
 	if err == nil || reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -2325,7 +2325,7 @@ func Test_Update(t *testing.T) {
 		"acl": []string{"role:2048", "123456789012345678901234"},
 	}
 	skipSanitization = false
-	result, err = TomatoDBController.Update(className, query, update, options, skipSanitization)
+	result, err = TalismanDBController.Update(className, query, update, options, skipSanitization)
 	expect = types.M{}
 	if err != nil || reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result, err)
@@ -2344,7 +2344,7 @@ func Test_Update(t *testing.T) {
 			t.Error("expect:", expects, "result:", results, err)
 		}
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -2377,12 +2377,12 @@ func Test_Update(t *testing.T) {
 		"acl": []string{"role:2048"},
 	}
 	skipSanitization = false
-	result, err = TomatoDBController.Update(className, query, update, options, skipSanitization)
+	result, err = TalismanDBController.Update(className, query, update, options, skipSanitization)
 	expect = types.M{}
 	if err != nil || reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result, err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	initEnv()
 	className = "user"
@@ -2416,12 +2416,12 @@ func Test_Update(t *testing.T) {
 		"acl": []string{"role:2048", "123456789012345678900000"},
 	}
 	skipSanitization = false
-	result, err = TomatoDBController.Update(className, query, update, options, skipSanitization)
+	result, err = TalismanDBController.Update(className, query, update, options, skipSanitization)
 	expectErr = errs.E(errs.ObjectNotFound, "Object not found.")
 	if err == nil || reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	initEnv()
 	className = "user"
@@ -2446,7 +2446,7 @@ func Test_Update(t *testing.T) {
 		"acl": []string{"role:2048", "123456789012345678901234"},
 	}
 	skipSanitization = false
-	result, err = TomatoDBController.Update(className, query, update, options, skipSanitization)
+	result, err = TalismanDBController.Update(className, query, update, options, skipSanitization)
 	expect = types.M{}
 	if err != nil || reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result, err)
@@ -2471,7 +2471,7 @@ func Test_Update(t *testing.T) {
 			t.Error("expect:", expects, "result:", results, err)
 		}
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 }
 
 func Test_Create(t *testing.T) {
@@ -2488,7 +2488,7 @@ func Test_Create(t *testing.T) {
 	className = "user"
 	object = nil
 	options = nil
-	err = TomatoDBController.Create(className, object, options)
+	err = TalismanDBController.Create(className, object, options)
 	expectErr = nil
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
@@ -2497,7 +2497,7 @@ func Test_Create(t *testing.T) {
 	if len(results) != 1 {
 		t.Error("expect:", 1, "result:", len(results))
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -2506,7 +2506,7 @@ func Test_Create(t *testing.T) {
 		"updatedAt": timeStr,
 	}
 	options = nil
-	err = TomatoDBController.Create(className, object, options)
+	err = TalismanDBController.Create(className, object, options)
 	expectErr = nil
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
@@ -2522,17 +2522,17 @@ func Test_Create(t *testing.T) {
 	if reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "@user"
 	object = nil
 	options = nil
-	err = TomatoDBController.Create(className, object, options)
+	err = TalismanDBController.Create(className, object, options)
 	expectErr = errs.E(errs.InvalidClassName, "invalid className: @user")
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -2547,7 +2547,7 @@ func Test_Create(t *testing.T) {
 	className = "user"
 	object = nil
 	options = nil
-	err = TomatoDBController.Create(className, object, options)
+	err = TalismanDBController.Create(className, object, options)
 	expectErr = nil
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
@@ -2556,7 +2556,7 @@ func Test_Create(t *testing.T) {
 	if len(results) != 1 {
 		t.Error("expect:", 1, "result:", len(results))
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	initEnv()
 	className = "user"
@@ -2574,7 +2574,7 @@ func Test_Create(t *testing.T) {
 	options = types.M{
 		"acl": []string{"role:1001"},
 	}
-	err = TomatoDBController.Create(className, object, options)
+	err = TalismanDBController.Create(className, object, options)
 	expectErr = nil
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
@@ -2583,7 +2583,7 @@ func Test_Create(t *testing.T) {
 	if len(results) != 1 {
 		t.Error("expect:", 1, "result:", len(results))
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -2600,12 +2600,12 @@ func Test_Create(t *testing.T) {
 	options = types.M{
 		"acl": []string{"role:2001"},
 	}
-	err = TomatoDBController.Create(className, object, options)
+	err = TalismanDBController.Create(className, object, options)
 	expectErr = errs.E(errs.OperationForbidden, "Permission denied for action create on class user.")
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -2623,7 +2623,7 @@ func Test_Create(t *testing.T) {
 		},
 	}
 	options = nil
-	err = TomatoDBController.Create(className, object, options)
+	err = TalismanDBController.Create(className, object, options)
 	expectErr = nil
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
@@ -2649,7 +2649,7 @@ func Test_Create(t *testing.T) {
 	if reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "_User"
 	object = types.M{
@@ -2662,7 +2662,7 @@ func Test_Create(t *testing.T) {
 		},
 	}
 	options = nil
-	err = TomatoDBController.Create(className, object, options)
+	err = TalismanDBController.Create(className, object, options)
 	expectErr = nil
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
@@ -2682,7 +2682,7 @@ func Test_Create(t *testing.T) {
 	if reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -2694,7 +2694,7 @@ func Test_Create(t *testing.T) {
 		},
 	}
 	options = nil
-	err = TomatoDBController.Create(className, object, options)
+	err = TalismanDBController.Create(className, object, options)
 	expectErr = nil
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
@@ -2710,7 +2710,7 @@ func Test_Create(t *testing.T) {
 	if reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -2724,7 +2724,7 @@ func Test_Create(t *testing.T) {
 		},
 	}
 	options = nil
-	err = TomatoDBController.Create(className, object, options)
+	err = TalismanDBController.Create(className, object, options)
 	expectErr = nil
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
@@ -2741,7 +2741,7 @@ func Test_Create(t *testing.T) {
 	if reflect.DeepEqual(expects, results) == false {
 		t.Error("expect:", expects, "result:", results)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 }
 
 func Test_validateClassName(t *testing.T) {
@@ -2751,14 +2751,14 @@ func Test_validateClassName(t *testing.T) {
 	var expect error
 	/*************************************************/
 	className = "user"
-	err = TomatoDBController.validateClassName(className)
+	err = TalismanDBController.validateClassName(className)
 	expect = nil
 	if reflect.DeepEqual(expect, err) == false {
 		t.Error("expect:", expect, "result:", err)
 	}
 	/*************************************************/
 	className = "@user"
-	err = TomatoDBController.validateClassName(className)
+	err = TalismanDBController.validateClassName(className)
 	expect = errs.E(errs.InvalidClassName, "invalid className: @user")
 	if reflect.DeepEqual(expect, err) == false {
 		t.Error("expect:", expect, "result:", err)
@@ -2781,8 +2781,8 @@ func Test_handleRelationUpdates(t *testing.T) {
 	className = "user"
 	objectID = "1001"
 	update = nil
-	ops = TomatoDBController.collectRelationUpdates(className, objectID, update)
-	err = TomatoDBController.handleRelationUpdates(className, objectID, update, ops)
+	ops = TalismanDBController.collectRelationUpdates(className, objectID, update)
+	err = TalismanDBController.handleRelationUpdates(className, objectID, update, ops)
 	expectErr = nil
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
@@ -2792,8 +2792,8 @@ func Test_handleRelationUpdates(t *testing.T) {
 	className = "user"
 	objectID = "1001"
 	update = types.M{"key": "hello"}
-	ops = TomatoDBController.collectRelationUpdates(className, objectID, update)
-	err = TomatoDBController.handleRelationUpdates(className, objectID, update, ops)
+	ops = TalismanDBController.collectRelationUpdates(className, objectID, update)
+	err = TalismanDBController.handleRelationUpdates(className, objectID, update, ops)
 	expectErr = nil
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
@@ -2824,8 +2824,8 @@ func Test_handleRelationUpdates(t *testing.T) {
 			},
 		},
 	}
-	ops = TomatoDBController.collectRelationUpdates(className, objectID, update)
-	err = TomatoDBController.handleRelationUpdates(className, objectID, update, ops)
+	ops = TalismanDBController.collectRelationUpdates(className, objectID, update)
+	err = TalismanDBController.handleRelationUpdates(className, objectID, update, ops)
 	expectErr = nil
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
@@ -2883,8 +2883,8 @@ func Test_handleRelationUpdates(t *testing.T) {
 			},
 		},
 	}
-	ops = TomatoDBController.collectRelationUpdates(className, objectID, update)
-	err = TomatoDBController.handleRelationUpdates(className, objectID, update, ops)
+	ops = TalismanDBController.collectRelationUpdates(className, objectID, update)
+	err = TalismanDBController.handleRelationUpdates(className, objectID, update, ops)
 	expectErr = nil
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
@@ -2952,8 +2952,8 @@ func Test_handleRelationUpdates(t *testing.T) {
 			},
 		},
 	}
-	ops = TomatoDBController.collectRelationUpdates(className, objectID, update)
-	err = TomatoDBController.handleRelationUpdates(className, objectID, update, ops)
+	ops = TalismanDBController.collectRelationUpdates(className, objectID, update)
+	err = TalismanDBController.handleRelationUpdates(className, objectID, update, ops)
 	expectErr = nil
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
@@ -2998,7 +2998,7 @@ func Test_addRelation(t *testing.T) {
 	fromClassName = "user"
 	fromID = "1001"
 	toID = "2001"
-	err = TomatoDBController.addRelation(key, fromClassName, fromID, toID)
+	err = TalismanDBController.addRelation(key, fromClassName, fromID, toID)
 	expect = nil
 	if reflect.DeepEqual(expect, err) == false {
 		t.Error("expect:", expect, "result:", err)
@@ -3024,7 +3024,7 @@ func Test_addRelation(t *testing.T) {
 	fromClassName = "user"
 	fromID = "1001"
 	toID = "2001"
-	err = TomatoDBController.addRelation(key, fromClassName, fromID, toID)
+	err = TalismanDBController.addRelation(key, fromClassName, fromID, toID)
 	expect = nil
 	if reflect.DeepEqual(expect, err) == false {
 		t.Error("expect:", expect, "result:", err)
@@ -3053,7 +3053,7 @@ func Test_removeRelation(t *testing.T) {
 	fromClassName = "user"
 	fromID = "1001"
 	toID = "2001"
-	err = TomatoDBController.removeRelation(key, fromClassName, fromID, toID)
+	err = TalismanDBController.removeRelation(key, fromClassName, fromID, toID)
 	expect = nil
 	if reflect.DeepEqual(expect, err) == false {
 		t.Error("expect:", expect, "result:", err)
@@ -3074,7 +3074,7 @@ func Test_removeRelation(t *testing.T) {
 	fromClassName = "user"
 	fromID = "1001"
 	toID = "2001"
-	err = TomatoDBController.removeRelation(key, fromClassName, fromID, toID)
+	err = TalismanDBController.removeRelation(key, fromClassName, fromID, toID)
 	expect = nil
 	if reflect.DeepEqual(expect, err) == false {
 		t.Error("expect:", expect, "result:", err)
@@ -3099,12 +3099,12 @@ func Test_ValidateObject(t *testing.T) {
 	object = types.M{}
 	query = types.M{}
 	options = types.M{}
-	err = TomatoDBController.ValidateObject(className, object, query, options)
+	err = TalismanDBController.ValidateObject(className, object, query, options)
 	expect = nil
 	if reflect.DeepEqual(expect, err) == false {
 		t.Error("expect:", expect, "result:", err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -3120,12 +3120,12 @@ func Test_ValidateObject(t *testing.T) {
 	object = types.M{"key1": "hello"}
 	query = types.M{}
 	options = types.M{}
-	err = TomatoDBController.ValidateObject(className, object, query, options)
+	err = TalismanDBController.ValidateObject(className, object, query, options)
 	expect = nil
 	if reflect.DeepEqual(expect, err) == false {
 		t.Error("expect:", expect, "result:", err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -3143,12 +3143,12 @@ func Test_ValidateObject(t *testing.T) {
 	options = types.M{
 		"acl": []string{"2001"},
 	}
-	err = TomatoDBController.ValidateObject(className, object, query, options)
+	err = TalismanDBController.ValidateObject(className, object, query, options)
 	expect = errs.E(errs.OperationForbidden, "Permission denied for action addField on class user.")
 	if reflect.DeepEqual(expect, err) == false {
 		t.Error("expect:", expect, "result:", err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -3166,12 +3166,12 @@ func Test_ValidateObject(t *testing.T) {
 	options = types.M{
 		"acl": []string{"role:1001"},
 	}
-	err = TomatoDBController.ValidateObject(className, object, query, options)
+	err = TalismanDBController.ValidateObject(className, object, query, options)
 	expect = nil
 	if reflect.DeepEqual(expect, err) == false {
 		t.Error("expect:", expect, "result:", err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 }
 
 func Test_LoadSchema(t *testing.T) {
@@ -3191,7 +3191,7 @@ func Test_LoadSchema(t *testing.T) {
 	}
 	className = "user"
 	Adapter.CreateClass(className, object)
-	result = TomatoDBController.LoadSchema(nil)
+	result = TalismanDBController.LoadSchema(nil)
 	expect = types.M{
 		"key":       types.M{"type": "String"},
 		"objectId":  types.M{"type": "String"},
@@ -3230,12 +3230,12 @@ func Test_RedirectClassNameForKey(t *testing.T) {
 	/*************************************************/
 	className = "user"
 	key = "name"
-	result = TomatoDBController.RedirectClassNameForKey(className, key)
+	result = TalismanDBController.RedirectClassNameForKey(className, key)
 	expect = "user"
 	if result != expect {
 		t.Error("expect:", expect, "result:", result)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	object = types.M{
 		"fields": types.M{
@@ -3246,12 +3246,12 @@ func Test_RedirectClassNameForKey(t *testing.T) {
 	Adapter.CreateClass(className, object)
 	className = "user"
 	key = "name"
-	result = TomatoDBController.RedirectClassNameForKey(className, key)
+	result = TalismanDBController.RedirectClassNameForKey(className, key)
 	expect = "user"
 	if result != expect {
 		t.Error("expect:", expect, "result:", result)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	initEnv()
 	object = types.M{
@@ -3266,12 +3266,12 @@ func Test_RedirectClassNameForKey(t *testing.T) {
 	Adapter.CreateClass(className, object)
 	className = "user"
 	key = "name"
-	result = TomatoDBController.RedirectClassNameForKey(className, key)
+	result = TalismanDBController.RedirectClassNameForKey(className, key)
 	expect = "post"
 	if result != expect {
 		t.Error("expect:", expect, "result:", result)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 }
 
 func Test_canAddField(t *testing.T) {
@@ -3287,7 +3287,7 @@ func Test_canAddField(t *testing.T) {
 	className = "user"
 	object = nil
 	acl = nil
-	err = TomatoDBController.canAddField(schema, className, object, acl)
+	err = TalismanDBController.canAddField(schema, className, object, acl)
 	expect = nil
 	if reflect.DeepEqual(expect, err) == false {
 		t.Error("expect:", expect, "result:", err)
@@ -3299,7 +3299,7 @@ func Test_canAddField(t *testing.T) {
 	className = "user"
 	object = nil
 	acl = nil
-	err = TomatoDBController.canAddField(schema, className, object, acl)
+	err = TalismanDBController.canAddField(schema, className, object, acl)
 	expect = nil
 	if reflect.DeepEqual(expect, err) == false {
 		t.Error("expect:", expect, "result:", err)
@@ -3317,7 +3317,7 @@ func Test_canAddField(t *testing.T) {
 	className = "user"
 	object = nil
 	acl = nil
-	err = TomatoDBController.canAddField(schema, className, object, acl)
+	err = TalismanDBController.canAddField(schema, className, object, acl)
 	expect = nil
 	if reflect.DeepEqual(expect, err) == false {
 		t.Error("expect:", expect, "result:", err)
@@ -3338,7 +3338,7 @@ func Test_canAddField(t *testing.T) {
 		"key1": "hello",
 	}
 	acl = nil
-	err = TomatoDBController.canAddField(schema, className, object, acl)
+	err = TalismanDBController.canAddField(schema, className, object, acl)
 	expect = nil
 	if reflect.DeepEqual(expect, err) == false {
 		t.Error("expect:", expect, "result:", err)
@@ -3363,7 +3363,7 @@ func Test_canAddField(t *testing.T) {
 		"key1": "hello",
 	}
 	acl = nil
-	err = TomatoDBController.canAddField(schema, className, object, acl)
+	err = TalismanDBController.canAddField(schema, className, object, acl)
 	expect = errs.E(errs.OperationForbidden, "Permission denied for action addField on class user.")
 	if reflect.DeepEqual(expect, err) == false {
 		t.Error("expect:", expect, "result:", err)
@@ -3387,7 +3387,7 @@ func Test_canAddField(t *testing.T) {
 		"key1": "hello",
 	}
 	acl = nil
-	err = TomatoDBController.canAddField(schema, className, object, acl)
+	err = TalismanDBController.canAddField(schema, className, object, acl)
 	expect = nil
 	if reflect.DeepEqual(expect, err) == false {
 		t.Error("expect:", expect, "result:", err)
@@ -3411,7 +3411,7 @@ func Test_canAddField(t *testing.T) {
 		"key1": "hello",
 	}
 	acl = []string{"role:1024"}
-	err = TomatoDBController.canAddField(schema, className, object, acl)
+	err = TalismanDBController.canAddField(schema, className, object, acl)
 	expect = errs.E(errs.OperationForbidden, "Permission denied for action addField on class user.")
 	if reflect.DeepEqual(expect, err) == false {
 		t.Error("expect:", expect, "result:", err)
@@ -3435,7 +3435,7 @@ func Test_canAddField(t *testing.T) {
 		"key1": "hello",
 	}
 	acl = []string{"role:2048"}
-	err = TomatoDBController.canAddField(schema, className, object, acl)
+	err = TalismanDBController.canAddField(schema, className, object, acl)
 	expect = nil
 	if reflect.DeepEqual(expect, err) == false {
 		t.Error("expect:", expect, "result:", err)
@@ -3453,7 +3453,7 @@ func Test_reduceRelationKeys(t *testing.T) {
 	/*************************************************/
 	className = "user"
 	query = nil
-	result = TomatoDBController.reduceRelationKeys(className, query)
+	result = TalismanDBController.reduceRelationKeys(className, query)
 	expect = nil
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
@@ -3462,7 +3462,7 @@ func Test_reduceRelationKeys(t *testing.T) {
 	/*************************************************/
 	className = "user"
 	query = types.M{}
-	result = TomatoDBController.reduceRelationKeys(className, query)
+	result = TalismanDBController.reduceRelationKeys(className, query)
 	expect = types.M{}
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
@@ -3471,7 +3471,7 @@ func Test_reduceRelationKeys(t *testing.T) {
 	/*************************************************/
 	className = "user"
 	query = types.M{"$relatedTo": "1024"}
-	result = TomatoDBController.reduceRelationKeys(className, query)
+	result = TalismanDBController.reduceRelationKeys(className, query)
 	expect = types.M{}
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
@@ -3480,7 +3480,7 @@ func Test_reduceRelationKeys(t *testing.T) {
 	/*************************************************/
 	className = "user"
 	query = types.M{"$relatedTo": types.M{}}
-	result = TomatoDBController.reduceRelationKeys(className, query)
+	result = TalismanDBController.reduceRelationKeys(className, query)
 	expect = types.M{}
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
@@ -3498,7 +3498,7 @@ func Test_reduceRelationKeys(t *testing.T) {
 			"key": "key",
 		},
 	}
-	result = TomatoDBController.reduceRelationKeys(className, query)
+	result = TalismanDBController.reduceRelationKeys(className, query)
 	expect = types.M{
 		"objectId": types.M{"$in": types.S{}},
 	}
@@ -3524,7 +3524,7 @@ func Test_reduceRelationKeys(t *testing.T) {
 			"key": "key",
 		},
 	}
-	result = TomatoDBController.reduceRelationKeys(className, query)
+	result = TalismanDBController.reduceRelationKeys(className, query)
 	expect = types.M{
 		"objectId": types.M{"$in": types.S{"2001"}},
 	}
@@ -3570,7 +3570,7 @@ func Test_reduceRelationKeys(t *testing.T) {
 			},
 		},
 	}
-	result = TomatoDBController.reduceRelationKeys(className, query)
+	result = TalismanDBController.reduceRelationKeys(className, query)
 	expect = types.M{
 		"$or": types.S{
 			types.M{
@@ -3599,7 +3599,7 @@ func Test_relatedIds(t *testing.T) {
 	className = "user"
 	key = "name"
 	owningID = "1001"
-	result = TomatoDBController.relatedIds(className, key, owningID)
+	result = TalismanDBController.relatedIds(className, key, owningID)
 	expect = types.S{}
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
@@ -3627,7 +3627,7 @@ func Test_relatedIds(t *testing.T) {
 	className = "user"
 	key = "name"
 	owningID = "1001"
-	result = TomatoDBController.relatedIds(className, key, owningID)
+	result = TalismanDBController.relatedIds(className, key, owningID)
 	expect = types.S{"01", "03"}
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
@@ -3644,7 +3644,7 @@ func Test_addInObjectIdsIds(t *testing.T) {
 	/*************************************************/
 	ids = nil
 	query = nil
-	result = TomatoDBController.addInObjectIdsIds(ids, query)
+	result = TalismanDBController.addInObjectIdsIds(ids, query)
 	expect = nil
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
@@ -3652,7 +3652,7 @@ func Test_addInObjectIdsIds(t *testing.T) {
 	/*************************************************/
 	ids = types.S{}
 	query = nil
-	result = TomatoDBController.addInObjectIdsIds(ids, query)
+	result = TalismanDBController.addInObjectIdsIds(ids, query)
 	expect = types.M{
 		"objectId": types.M{"$in": types.S{}},
 	}
@@ -3662,7 +3662,7 @@ func Test_addInObjectIdsIds(t *testing.T) {
 	/*************************************************/
 	ids = nil
 	query = types.M{}
-	result = TomatoDBController.addInObjectIdsIds(ids, query)
+	result = TalismanDBController.addInObjectIdsIds(ids, query)
 	expect = types.M{
 		"objectId": types.M{"$in": types.S{}},
 	}
@@ -3672,7 +3672,7 @@ func Test_addInObjectIdsIds(t *testing.T) {
 	/*************************************************/
 	ids = types.S{}
 	query = types.M{}
-	result = TomatoDBController.addInObjectIdsIds(ids, query)
+	result = TalismanDBController.addInObjectIdsIds(ids, query)
 	expect = types.M{
 		"objectId": types.M{"$in": types.S{}},
 	}
@@ -3682,7 +3682,7 @@ func Test_addInObjectIdsIds(t *testing.T) {
 	/*************************************************/
 	ids = types.S{"1024"}
 	query = types.M{"objectId": "1024"}
-	result = TomatoDBController.addInObjectIdsIds(ids, query)
+	result = TalismanDBController.addInObjectIdsIds(ids, query)
 	expect = types.M{
 		"objectId": types.M{"$in": types.S{"1024"}},
 	}
@@ -3692,7 +3692,7 @@ func Test_addInObjectIdsIds(t *testing.T) {
 	/*************************************************/
 	ids = types.S{"1024"}
 	query = types.M{"objectId": types.M{"$eq": "1024"}}
-	result = TomatoDBController.addInObjectIdsIds(ids, query)
+	result = TalismanDBController.addInObjectIdsIds(ids, query)
 	expect = types.M{
 		"objectId": types.M{
 			"$eq": "1024",
@@ -3705,7 +3705,7 @@ func Test_addInObjectIdsIds(t *testing.T) {
 	/*************************************************/
 	ids = types.S{"1024"}
 	query = types.M{"objectId": types.M{"$in": types.S{"1024"}}}
-	result = TomatoDBController.addInObjectIdsIds(ids, query)
+	result = TalismanDBController.addInObjectIdsIds(ids, query)
 	expect = types.M{
 		"objectId": types.M{
 			"$in": types.S{"1024"},
@@ -3723,7 +3723,7 @@ func Test_addInObjectIdsIds(t *testing.T) {
 		},
 		"key": "value",
 	}
-	result = TomatoDBController.addInObjectIdsIds(ids, query)
+	result = TalismanDBController.addInObjectIdsIds(ids, query)
 	expect = types.M{
 		"objectId": types.M{
 			"$in": types.S{"1024"},
@@ -3737,7 +3737,7 @@ func Test_addInObjectIdsIds(t *testing.T) {
 	/*************************************************/
 	ids = types.S{"1024", "2048"}
 	query = types.M{"objectId": types.M{"$in": types.S{"1024"}}}
-	result = TomatoDBController.addInObjectIdsIds(ids, query)
+	result = TalismanDBController.addInObjectIdsIds(ids, query)
 	expect = types.M{
 		"objectId": types.M{
 			"$in": types.S{"1024"},
@@ -3749,7 +3749,7 @@ func Test_addInObjectIdsIds(t *testing.T) {
 	/*************************************************/
 	ids = types.S{"1024"}
 	query = types.M{"objectId": types.M{"$in": types.S{"1024", "2048"}}}
-	result = TomatoDBController.addInObjectIdsIds(ids, query)
+	result = TalismanDBController.addInObjectIdsIds(ids, query)
 	expect = types.M{
 		"objectId": types.M{
 			"$in": types.S{"1024"},
@@ -3761,7 +3761,7 @@ func Test_addInObjectIdsIds(t *testing.T) {
 	/*************************************************/
 	ids = types.S{"1024", "2048"}
 	query = types.M{"objectId": types.M{"$in": types.S{"1024", "2048"}}}
-	result = TomatoDBController.addInObjectIdsIds(ids, query)
+	result = TalismanDBController.addInObjectIdsIds(ids, query)
 	expect = types.M{
 		"objectId": types.M{
 			"$in": types.S{"1024", "2048"},
@@ -3779,7 +3779,7 @@ func Test_addInObjectIdsIds(t *testing.T) {
 	/*************************************************/
 	ids = types.S{"1024"}
 	query = types.M{"objectId": types.M{"$in": types.S{"1024", "2048", "2048"}}}
-	result = TomatoDBController.addInObjectIdsIds(ids, query)
+	result = TalismanDBController.addInObjectIdsIds(ids, query)
 	expect = types.M{
 		"objectId": types.M{
 			"$in": types.S{"1024"},
@@ -3791,7 +3791,7 @@ func Test_addInObjectIdsIds(t *testing.T) {
 	/*************************************************/
 	ids = types.S{"1024", "2048", "2048"}
 	query = types.M{"objectId": types.M{"$in": types.S{"1024"}}}
-	result = TomatoDBController.addInObjectIdsIds(ids, query)
+	result = TalismanDBController.addInObjectIdsIds(ids, query)
 	expect = types.M{
 		"objectId": types.M{
 			"$in": types.S{"1024"},
@@ -3812,7 +3812,7 @@ func Test_addNotInObjectIdsIds(t *testing.T) {
 	/*************************************************/
 	ids = nil
 	query = nil
-	result = TomatoDBController.addNotInObjectIdsIds(ids, query)
+	result = TalismanDBController.addNotInObjectIdsIds(ids, query)
 	expect = nil
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
@@ -3820,7 +3820,7 @@ func Test_addNotInObjectIdsIds(t *testing.T) {
 	/*************************************************/
 	ids = types.S{}
 	query = nil
-	result = TomatoDBController.addNotInObjectIdsIds(ids, query)
+	result = TalismanDBController.addNotInObjectIdsIds(ids, query)
 	expect = types.M{
 		"objectId": types.M{"$nin": types.S{}},
 	}
@@ -3830,7 +3830,7 @@ func Test_addNotInObjectIdsIds(t *testing.T) {
 	/*************************************************/
 	ids = nil
 	query = types.M{}
-	result = TomatoDBController.addNotInObjectIdsIds(ids, query)
+	result = TalismanDBController.addNotInObjectIdsIds(ids, query)
 	expect = types.M{
 		"objectId": types.M{"$nin": types.S{}},
 	}
@@ -3840,7 +3840,7 @@ func Test_addNotInObjectIdsIds(t *testing.T) {
 	/*************************************************/
 	ids = types.S{}
 	query = types.M{}
-	result = TomatoDBController.addNotInObjectIdsIds(ids, query)
+	result = TalismanDBController.addNotInObjectIdsIds(ids, query)
 	expect = types.M{
 		"objectId": types.M{"$nin": types.S{}},
 	}
@@ -3850,7 +3850,7 @@ func Test_addNotInObjectIdsIds(t *testing.T) {
 	/*************************************************/
 	ids = types.S{"1024"}
 	query = types.M{"objectId": types.M{"$nin": types.S{"1024"}}}
-	result = TomatoDBController.addNotInObjectIdsIds(ids, query)
+	result = TalismanDBController.addNotInObjectIdsIds(ids, query)
 	expect = types.M{
 		"objectId": types.M{
 			"$nin": types.S{"1024"},
@@ -3868,7 +3868,7 @@ func Test_addNotInObjectIdsIds(t *testing.T) {
 		},
 		"key": "value",
 	}
-	result = TomatoDBController.addNotInObjectIdsIds(ids, query)
+	result = TalismanDBController.addNotInObjectIdsIds(ids, query)
 	expect = types.M{
 		"objectId": types.M{
 			"$nin": types.S{"1024"},
@@ -3882,7 +3882,7 @@ func Test_addNotInObjectIdsIds(t *testing.T) {
 	/*************************************************/
 	ids = types.S{"1024", "2048"}
 	query = types.M{"objectId": types.M{"$nin": types.S{"1024"}}}
-	result = TomatoDBController.addNotInObjectIdsIds(ids, query)
+	result = TalismanDBController.addNotInObjectIdsIds(ids, query)
 	expect = types.M{
 		"objectId": types.M{
 			"$nin": types.S{"1024", "2048"},
@@ -3900,7 +3900,7 @@ func Test_addNotInObjectIdsIds(t *testing.T) {
 	/*************************************************/
 	ids = types.S{"1024"}
 	query = types.M{"objectId": types.M{"$nin": types.S{"1024", "2048"}}}
-	result = TomatoDBController.addNotInObjectIdsIds(ids, query)
+	result = TalismanDBController.addNotInObjectIdsIds(ids, query)
 	expect = types.M{
 		"objectId": types.M{
 			"$nin": types.S{"1024", "2048"},
@@ -3918,7 +3918,7 @@ func Test_addNotInObjectIdsIds(t *testing.T) {
 	/*************************************************/
 	ids = types.S{"1024", "2048"}
 	query = types.M{"objectId": types.M{"$nin": types.S{"1024", "2048"}}}
-	result = TomatoDBController.addNotInObjectIdsIds(ids, query)
+	result = TalismanDBController.addNotInObjectIdsIds(ids, query)
 	expect = types.M{
 		"objectId": types.M{
 			"$nin": types.S{"1024", "2048"},
@@ -3936,7 +3936,7 @@ func Test_addNotInObjectIdsIds(t *testing.T) {
 	/*************************************************/
 	ids = types.S{"1024"}
 	query = types.M{"objectId": types.M{"$nin": types.S{"1024", "2048", "2048"}}}
-	result = TomatoDBController.addNotInObjectIdsIds(ids, query)
+	result = TalismanDBController.addNotInObjectIdsIds(ids, query)
 	expect = types.M{
 		"objectId": types.M{
 			"$nin": types.S{"1024", "2048"},
@@ -3954,7 +3954,7 @@ func Test_addNotInObjectIdsIds(t *testing.T) {
 	/*************************************************/
 	ids = types.S{"1024", "2048", "2048"}
 	query = types.M{"objectId": types.M{"$nin": types.S{"1024"}}}
-	result = TomatoDBController.addNotInObjectIdsIds(ids, query)
+	result = TalismanDBController.addNotInObjectIdsIds(ids, query)
 	expect = types.M{
 		"objectId": types.M{
 			"$nin": types.S{"1024", "2048"},
@@ -3972,7 +3972,7 @@ func Test_addNotInObjectIdsIds(t *testing.T) {
 	/*************************************************/
 	ids = types.S{"1024"}
 	query = types.M{"objectId": "2048"}
-	result = TomatoDBController.addNotInObjectIdsIds(ids, query)
+	result = TalismanDBController.addNotInObjectIdsIds(ids, query)
 	expect = types.M{
 		"objectId": types.M{
 			"$eq":  "2048",
@@ -3996,7 +3996,7 @@ func Test_reduceInRelation(t *testing.T) {
 	className = "user"
 	query = nil
 	schema = nil
-	result = TomatoDBController.reduceInRelation(className, query, schema)
+	result = TalismanDBController.reduceInRelation(className, query, schema)
 	expect = nil
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
@@ -4006,7 +4006,7 @@ func Test_reduceInRelation(t *testing.T) {
 	className = "user"
 	query = types.M{}
 	schema = nil
-	result = TomatoDBController.reduceInRelation(className, query, schema)
+	result = TalismanDBController.reduceInRelation(className, query, schema)
 	expect = types.M{}
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
@@ -4016,7 +4016,7 @@ func Test_reduceInRelation(t *testing.T) {
 	className = "user"
 	query = types.M{"key": "hello"}
 	schema = nil
-	result = TomatoDBController.reduceInRelation(className, query, schema)
+	result = TalismanDBController.reduceInRelation(className, query, schema)
 	expect = types.M{"key": "hello"}
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
@@ -4026,7 +4026,7 @@ func Test_reduceInRelation(t *testing.T) {
 	className = "user"
 	query = types.M{"key": types.M{"k": "v"}}
 	schema = nil
-	result = TomatoDBController.reduceInRelation(className, query, schema)
+	result = TalismanDBController.reduceInRelation(className, query, schema)
 	expect = types.M{"key": types.M{"k": "v"}}
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
@@ -4036,7 +4036,7 @@ func Test_reduceInRelation(t *testing.T) {
 	className = "user"
 	query = types.M{"key": types.M{"$in": "v"}}
 	schema = nil
-	result = TomatoDBController.reduceInRelation(className, query, schema)
+	result = TalismanDBController.reduceInRelation(className, query, schema)
 	expect = types.M{"key": types.M{"$in": "v"}}
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
@@ -4054,7 +4054,7 @@ func Test_reduceInRelation(t *testing.T) {
 	query = types.M{"key": types.M{"$in": "v"}}
 	schema = getSchema()
 	schema.reloadData(nil)
-	result = TomatoDBController.reduceInRelation(className, query, schema)
+	result = TalismanDBController.reduceInRelation(className, query, schema)
 	expect = types.M{"key": types.M{"$in": "v"}}
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
@@ -4086,7 +4086,7 @@ func Test_reduceInRelation(t *testing.T) {
 	}
 	schema = getSchema()
 	schema.reloadData(nil)
-	result = TomatoDBController.reduceInRelation(className, query, schema)
+	result = TalismanDBController.reduceInRelation(className, query, schema)
 	expect = types.M{
 		"objectId": types.M{
 			"$in": types.S{"1001"},
@@ -4126,7 +4126,7 @@ func Test_reduceInRelation(t *testing.T) {
 	}
 	schema = getSchema()
 	schema.reloadData(nil)
-	result = TomatoDBController.reduceInRelation(className, query, schema)
+	result = TalismanDBController.reduceInRelation(className, query, schema)
 	expect = types.M{
 		"objectId": types.M{
 			"$in": types.S{"1001"},
@@ -4166,7 +4166,7 @@ func Test_reduceInRelation(t *testing.T) {
 	}
 	schema = getSchema()
 	schema.reloadData(nil)
-	result = TomatoDBController.reduceInRelation(className, query, schema)
+	result = TalismanDBController.reduceInRelation(className, query, schema)
 	expect = types.M{
 		"objectId": types.M{
 			"$nin": types.S{"1001"},
@@ -4204,7 +4204,7 @@ func Test_reduceInRelation(t *testing.T) {
 	}
 	schema = getSchema()
 	schema.reloadData(nil)
-	result = TomatoDBController.reduceInRelation(className, query, schema)
+	result = TalismanDBController.reduceInRelation(className, query, schema)
 	expect = types.M{
 		"objectId": types.M{
 			"$nin": types.S{"1001"},
@@ -4242,7 +4242,7 @@ func Test_reduceInRelation(t *testing.T) {
 	}
 	schema = getSchema()
 	schema.reloadData(nil)
-	result = TomatoDBController.reduceInRelation(className, query, schema)
+	result = TalismanDBController.reduceInRelation(className, query, schema)
 	expect = types.M{
 		"objectId": types.M{
 			"$in": types.S{"1001"},
@@ -4281,7 +4281,7 @@ func Test_reduceInRelation(t *testing.T) {
 	}
 	schema = getSchema()
 	schema.reloadData(nil)
-	result = TomatoDBController.reduceInRelation(className, query, schema)
+	result = TalismanDBController.reduceInRelation(className, query, schema)
 	expect = types.M{
 		"objectId": types.M{
 			"$in": types.S{"1001"},
@@ -4318,7 +4318,7 @@ func Test_reduceInRelation(t *testing.T) {
 	}
 	schema = getSchema()
 	schema.reloadData(nil)
-	result = TomatoDBController.reduceInRelation(className, query, schema)
+	result = TalismanDBController.reduceInRelation(className, query, schema)
 	expect = types.M{
 		"key2": "hello",
 	}
@@ -4371,7 +4371,7 @@ func Test_reduceInRelation(t *testing.T) {
 	}
 	schema = getSchema()
 	schema.reloadData(nil)
-	result = TomatoDBController.reduceInRelation(className, query, schema)
+	result = TalismanDBController.reduceInRelation(className, query, schema)
 	expect = types.M{
 		"objectId": types.M{
 			"$in": types.S{"1001"},
@@ -4432,7 +4432,7 @@ func Test_reduceInRelation(t *testing.T) {
 	}
 	schema = getSchema()
 	schema.reloadData(nil)
-	result = TomatoDBController.reduceInRelation(className, query, schema)
+	result = TalismanDBController.reduceInRelation(className, query, schema)
 	expect = types.M{
 		"$or": types.S{
 			types.M{
@@ -4465,7 +4465,7 @@ func Test_owningIds(t *testing.T) {
 	className = "user"
 	key = "name"
 	relatedIds = types.S{"01", "02"}
-	result = TomatoDBController.owningIds(className, key, relatedIds)
+	result = TalismanDBController.owningIds(className, key, relatedIds)
 	expect = types.S{}
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
@@ -4493,7 +4493,7 @@ func Test_owningIds(t *testing.T) {
 	className = "user"
 	key = "name"
 	relatedIds = types.S{"01", "02"}
-	result = TomatoDBController.owningIds(className, key, relatedIds)
+	result = TalismanDBController.owningIds(className, key, relatedIds)
 	expect = types.S{"1001", "1002"}
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
@@ -4509,30 +4509,30 @@ func Test_DeleteSchema(t *testing.T) {
 	var expectErr error
 	/*************************************************/
 	className = "user"
-	err = TomatoDBController.DeleteSchema(className)
+	err = TalismanDBController.DeleteSchema(className)
 	expectErr = nil
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{"key": "hello"}
 	Adapter.CreateObject(className, types.M{}, object)
 	className = "user"
-	err = TomatoDBController.DeleteSchema(className)
+	err = TalismanDBController.DeleteSchema(className)
 	expectErr = errs.E(errs.ClassNotEmpty, "Class user is not empty, contains 1 objects, cannot drop schema.")
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{"key": "hello"}
 	Adapter.CreateObject(className, types.M{}, object)
 	Adapter.DeleteObjectsByQuery(className, types.M{}, types.M{"key": "hello"})
 	className = "user"
-	err = TomatoDBController.DeleteSchema(className)
+	err = TalismanDBController.DeleteSchema(className)
 	expectErr = nil
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
@@ -4540,7 +4540,7 @@ func Test_DeleteSchema(t *testing.T) {
 	if Adapter.ClassExists(className) == true {
 		t.Error("expect:", false, "result:", true)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -4553,7 +4553,7 @@ func Test_DeleteSchema(t *testing.T) {
 	Adapter.CreateObject(className, types.M{}, object)
 	Adapter.DeleteObjectsByQuery(className, types.M{}, types.M{"key": "hello"})
 	className = "user"
-	err = TomatoDBController.DeleteSchema(className)
+	err = TalismanDBController.DeleteSchema(className)
 	expectErr = nil
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
@@ -4565,7 +4565,7 @@ func Test_DeleteSchema(t *testing.T) {
 	if err != nil || (object != nil && len(object) != 0) {
 		t.Error("expect:", nil, "result:", object, err)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 	/*************************************************/
 	className = "user"
 	object = types.M{
@@ -4588,7 +4588,7 @@ func Test_DeleteSchema(t *testing.T) {
 	}
 	Adapter.CreateObject("_Join:key1:user", types.M{}, object)
 	className = "user"
-	err = TomatoDBController.DeleteSchema(className)
+	err = TalismanDBController.DeleteSchema(className)
 	expectErr = nil
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
@@ -4603,7 +4603,7 @@ func Test_DeleteSchema(t *testing.T) {
 	if Adapter.ClassExists("_Join:key1:user") == true {
 		t.Error("expect:", false, "result:", true)
 	}
-	TomatoDBController.DeleteEverything()
+	TalismanDBController.DeleteEverything()
 }
 
 func Test_addPointerPermissions(t *testing.T) {
@@ -4622,7 +4622,7 @@ func Test_addPointerPermissions(t *testing.T) {
 	operation = "get"
 	query = nil
 	aclGroup = nil
-	result = TomatoDBController.addPointerPermissions(schema, className, operation, query, aclGroup)
+	result = TalismanDBController.addPointerPermissions(schema, className, operation, query, aclGroup)
 	expect = nil
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
@@ -4635,7 +4635,7 @@ func Test_addPointerPermissions(t *testing.T) {
 	operation = "get"
 	query = nil
 	aclGroup = nil
-	result = TomatoDBController.addPointerPermissions(schema, className, operation, query, aclGroup)
+	result = TalismanDBController.addPointerPermissions(schema, className, operation, query, aclGroup)
 	expect = nil
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
@@ -4659,7 +4659,7 @@ func Test_addPointerPermissions(t *testing.T) {
 	operation = "get"
 	query = nil
 	aclGroup = nil
-	result = TomatoDBController.addPointerPermissions(schema, className, operation, query, aclGroup)
+	result = TalismanDBController.addPointerPermissions(schema, className, operation, query, aclGroup)
 	expect = nil
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
@@ -4683,7 +4683,7 @@ func Test_addPointerPermissions(t *testing.T) {
 	operation = "get"
 	query = types.M{}
 	aclGroup = []string{"123456789012345678901234"}
-	result = TomatoDBController.addPointerPermissions(schema, className, operation, query, aclGroup)
+	result = TalismanDBController.addPointerPermissions(schema, className, operation, query, aclGroup)
 	expect = types.M{}
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
@@ -4710,7 +4710,7 @@ func Test_addPointerPermissions(t *testing.T) {
 		"key": "hello",
 	}
 	aclGroup = []string{"123456789012345678901234"}
-	result = TomatoDBController.addPointerPermissions(schema, className, operation, query, aclGroup)
+	result = TalismanDBController.addPointerPermissions(schema, className, operation, query, aclGroup)
 	expect = types.M{
 		"$and": types.S{
 			types.M{
@@ -4750,7 +4750,7 @@ func Test_addPointerPermissions(t *testing.T) {
 		"key": "hello",
 	}
 	aclGroup = []string{"123456789012345678901234"}
-	result = TomatoDBController.addPointerPermissions(schema, className, operation, query, aclGroup)
+	result = TalismanDBController.addPointerPermissions(schema, className, operation, query, aclGroup)
 	expect = types.M{
 		"$and": types.S{
 			types.M{
@@ -4790,7 +4790,7 @@ func Test_addPointerPermissions(t *testing.T) {
 		"key": "hello",
 	}
 	aclGroup = []string{"role:2048"}
-	result = TomatoDBController.addPointerPermissions(schema, className, operation, query, aclGroup)
+	result = TalismanDBController.addPointerPermissions(schema, className, operation, query, aclGroup)
 	expect = nil
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
@@ -4817,7 +4817,7 @@ func Test_addPointerPermissions(t *testing.T) {
 		"key": "hello",
 	}
 	aclGroup = []string{"123456789012345678901234"}
-	result = TomatoDBController.addPointerPermissions(schema, className, operation, query, aclGroup)
+	result = TalismanDBController.addPointerPermissions(schema, className, operation, query, aclGroup)
 	expect = types.M{
 		"$or": []types.M{
 			types.M{
@@ -5881,5 +5881,5 @@ func Test_flattenUpdateOperatorsForCreate(t *testing.T) {
 func initEnv() {
 	Adapter = getAdapter()
 	schemaCache = cache.NewSchemaCache(5, false)
-	TomatoDBController = &DBController{}
+	TalismanDBController = &DBController{}
 }

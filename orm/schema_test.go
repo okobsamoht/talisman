@@ -6,12 +6,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/okobsamoht/tomato/cache"
-	"github.com/okobsamoht/tomato/errs"
-	"github.com/okobsamoht/tomato/storage"
-	"github.com/okobsamoht/tomato/storage/mongo"
-	"github.com/okobsamoht/tomato/test"
-	"github.com/okobsamoht/tomato/types"
+	"github.com/okobsamoht/talisman/cache"
+	"github.com/okobsamoht/talisman/errs"
+	"github.com/okobsamoht/talisman/storage"
+	"github.com/okobsamoht/talisman/storage/mongo"
+	"github.com/okobsamoht/talisman/test"
+	"github.com/okobsamoht/talisman/types"
 )
 
 func Test_AddClassIfNotExists(t *testing.T) {
@@ -1005,7 +1005,7 @@ func Test_validateRequiredColumns(t *testing.T) {
 		"productIdentifier": "1024",
 		"icon":              "a.jpg",
 		"order":             "name",
-		"title":             "tomato",
+		"title":             "talisman",
 	}
 	query = nil
 	err = schama.validateRequiredColumns(className, object, query)
@@ -1019,7 +1019,7 @@ func Test_validateRequiredColumns(t *testing.T) {
 		"productIdentifier": "1024",
 		"icon":              "a.jpg",
 		"order":             "name",
-		"title":             "tomato",
+		"title":             "talisman",
 		"subtitle": types.M{
 			"__op": "Delete",
 		},
@@ -3392,7 +3392,7 @@ func getSchema() *Schema {
 }
 
 func getAdapter() storage.Adapter {
-	return mongo.NewMongoAdapter("tomato", test.OpenMongoDBForTest())
+	return mongo.NewMongoAdapter("talisman", test.OpenMongoDBForTest())
 }
 
 func getSchemaCache() *cache.SchemaCache {

@@ -13,8 +13,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/okobsamoht/tomato/types"
-	"github.com/okobsamoht/tomato/utils"
+	"github.com/okobsamoht/talisman/types"
+	"github.com/okobsamoht/talisman/utils"
 )
 
 const signatureMethod = "HMAC-SHA1"

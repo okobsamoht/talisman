@@ -3,9 +3,9 @@ package job
 import (
 	"time"
 
-	"github.com/okobsamoht/tomato/orm"
-	"github.com/okobsamoht/tomato/types"
-	"github.com/okobsamoht/tomato/utils"
+	"github.com/okobsamoht/talisman/orm"
+	"github.com/okobsamoht/talisman/types"
+	"github.com/okobsamoht/talisman/utils"
 )
 
 const jobStatusCollection = "_JobStatus"
@@ -21,7 +21,7 @@ type JobStatus struct {
 func NewjobStatus() *JobStatus {
 	p := &JobStatus{
 		objectID: utils.CreateObjectID(),
-		db:       orm.TomatoDBController,
+		db:       orm.TalismanDBController,
 	}
 	return p
 }

@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	tp "github.com/okobsamoht/tomato/livequery/t"
+	tp "github.com/okobsamoht/talisman/livequery/t"
 )
 
 func Test_getReadAccess(t *testing.T) {

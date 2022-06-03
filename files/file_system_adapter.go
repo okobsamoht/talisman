@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"github.com/astaxie/beego/utils"
-	"github.com/okobsamoht/tomato/config"
+	"github.com/okobsamoht/talisman/config"
 )
 
 // fileSystemAdapter 本地文件存储模块

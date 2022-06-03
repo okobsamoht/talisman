@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/okobsamoht/tomato/types"
+	"github.com/okobsamoht/talisman/types"
 )
 
 func Test_redis(t *testing.T) {

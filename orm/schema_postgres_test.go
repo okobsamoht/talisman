@@ -6,12 +6,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/okobsamoht/tomato/errs"
-	"github.com/okobsamoht/tomato/storage"
-	"github.com/okobsamoht/tomato/storage/postgres"
-	"github.com/okobsamoht/tomato/test"
-	"github.com/okobsamoht/tomato/types"
-	"github.com/okobsamoht/tomato/utils"
+	"github.com/okobsamoht/talisman/errs"
+	"github.com/okobsamoht/talisman/storage"
+	"github.com/okobsamoht/talisman/storage/postgres"
+	"github.com/okobsamoht/talisman/test"
+	"github.com/okobsamoht/talisman/types"
+	"github.com/okobsamoht/talisman/utils"
 )
 
 func TestPostgres_AddClassIfNotExists(t *testing.T) {
@@ -1012,7 +1012,7 @@ func TestPostgres_validateRequiredColumns(t *testing.T) {
 		"productIdentifier": "1024",
 		"icon":              "a.jpg",
 		"order":             "name",
-		"title":             "tomato",
+		"title":             "talisman",
 	}
 	query = nil
 	err = schama.validateRequiredColumns(className, object, query)
@@ -1026,7 +1026,7 @@ func TestPostgres_validateRequiredColumns(t *testing.T) {
 		"productIdentifier": "1024",
 		"icon":              "a.jpg",
 		"order":             "name",
-		"title":             "tomato",
+		"title":             "talisman",
 		"subtitle": types.M{
 			"__op": "Delete",
 		},
@@ -1787,7 +1787,7 @@ func getPostgresSchema() *Schema {
 }
 
 func getPostgresAdapter() storage.Adapter {
-	return postgres.NewPostgresAdapter("tomato", test.OpenPostgreSQForTest())
+	return postgres.NewPostgresAdapter("talisman", test.OpenPostgreSQForTest())
 }
 
 func objectType(n string, x interface{}) {

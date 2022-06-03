@@ -6,11 +6,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/okobsamoht/tomato/config"
-	"github.com/okobsamoht/tomato/errs"
-	"github.com/okobsamoht/tomato/orm"
-	"github.com/okobsamoht/tomato/types"
-	"github.com/okobsamoht/tomato/utils"
+	"github.com/okobsamoht/talisman/config"
+	"github.com/okobsamoht/talisman/errs"
+	"github.com/okobsamoht/talisman/orm"
+	"github.com/okobsamoht/talisman/types"
+	"github.com/okobsamoht/talisman/utils"
 )
 
 func Test_HandleLoginAttempt(t *testing.T) {
@@ -53,7 +53,7 @@ func Test_notLocked(t *testing.T) {
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/*****************************************************************/
 	config.TConfig.AccountLockoutThreshold = 3
 	config.TConfig.AccountLockoutDuration = 5
@@ -83,7 +83,7 @@ func Test_notLocked(t *testing.T) {
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/*****************************************************************/
 	config.TConfig.AccountLockoutThreshold = 3
 	config.TConfig.AccountLockoutDuration = 5
@@ -113,7 +113,7 @@ func Test_notLocked(t *testing.T) {
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func Test_setFailedLoginCount(t *testing.T) {
@@ -153,7 +153,7 @@ func Test_setFailedLoginCount(t *testing.T) {
 	if reflect.DeepEqual(expect, results) == false {
 		t.Error("expect:", expect, "result:", results)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func Test_handleFailedLoginAttempt(t *testing.T) {
@@ -193,7 +193,7 @@ func Test_handleFailedLoginAttempt(t *testing.T) {
 	if reflect.DeepEqual(expect, results) == false {
 		t.Error("expect:", expect, "result:", results)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/*****************************************************************/
 	initEnv()
 	username = "joe"
@@ -232,7 +232,7 @@ func Test_handleFailedLoginAttempt(t *testing.T) {
 	if reflect.DeepEqual(expect, results) == false {
 		t.Error("expect:", expect, "result:", results)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func Test_initFailedLoginCount(t *testing.T) {
@@ -272,7 +272,7 @@ func Test_initFailedLoginCount(t *testing.T) {
 	if reflect.DeepEqual(expect, results) == false {
 		t.Error("expect:", expect, "result:", results)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func Test_incrementFailedLoginCount(t *testing.T) {
@@ -313,7 +313,7 @@ func Test_incrementFailedLoginCount(t *testing.T) {
 	if reflect.DeepEqual(expect, results) == false {
 		t.Error("expect:", expect, "result:", results)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func Test_setLockoutExpiration(t *testing.T) {
@@ -356,7 +356,7 @@ func Test_setLockoutExpiration(t *testing.T) {
 	if reflect.DeepEqual(expect, results) == false {
 		t.Error("expect:", expect, "result:", results)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/*****************************************************************/
 	initEnv()
 	username = "joe"
@@ -394,7 +394,7 @@ func Test_setLockoutExpiration(t *testing.T) {
 	if reflect.DeepEqual(expect, results) == false {
 		t.Error("expect:", expect, "result:", results)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func Test_isFailedLoginCountSet(t *testing.T) {
@@ -423,7 +423,7 @@ func Test_isFailedLoginCountSet(t *testing.T) {
 	if err != nil || isSet != false {
 		t.Error("expect:", false, "result:", isSet, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/*****************************************************************/
 	initEnv()
 	username = "joe"
@@ -445,5 +445,5 @@ func Test_isFailedLoginCountSet(t *testing.T) {
 	if err != nil || isSet != true {
 		t.Error("expect:", true, "result:", isSet, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }

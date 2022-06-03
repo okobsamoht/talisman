@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	"github.com/okobsamoht/tomato/config"
-	"github.com/okobsamoht/tomato/types"
+	"github.com/okobsamoht/talisman/config"
+	"github.com/okobsamoht/talisman/types"
 )
 
 // FeaturesController ...

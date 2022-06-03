@@ -3,8 +3,8 @@ package mail
 import (
 	"testing"
 
-	"github.com/okobsamoht/tomato/config"
-	"github.com/okobsamoht/tomato/types"
+	"github.com/okobsamoht/talisman/config"
+	"github.com/okobsamoht/talisman/types"
 )
 
 func Test_smtp(t *testing.T) {
@@ -16,9 +16,9 @@ func Test_smtp(t *testing.T) {
 
 	s := NewSMTPAdapter()
 	object := types.M{
-		"text":    "text from tomato",
+		"text":    "text from talisman",
 		"to":      "user@163.com",
-		"subject": "tomato send",
+		"subject": "talisman send",
 	}
 	s.SendMail(object)
 }

@@ -1,17 +1,17 @@
-package tomato
+package talisman
 
 import (
 	"strings"
 
-	"github.com/okobsamoht/tomato/config"
-	_ "github.com/okobsamoht/tomato/routers"
+	"github.com/okobsamoht/talisman/config"
+	_ "github.com/okobsamoht/talisman/routers"
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/context"
 	"github.com/astaxie/beego/plugins/cors"
-	"github.com/okobsamoht/tomato/controllers"
-	"github.com/okobsamoht/tomato/livequery"
-	"github.com/okobsamoht/tomato/orm"
+	"github.com/okobsamoht/talisman/controllers"
+	"github.com/okobsamoht/talisman/livequery"
+	"github.com/okobsamoht/talisman/orm"
 )
 
 // Run ...
@@ -20,7 +20,7 @@ func Run() {
 	config.Validate()
 
 	// 创建必要的索引
-	orm.TomatoDBController.PerformInitialization()
+	orm.TalismanDBController.PerformInitialization()
 
 	if beego.BConfig.RunMode == "dev" {
 		beego.BConfig.WebConfig.DirectoryIndex = true

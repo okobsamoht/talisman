@@ -4,14 +4,14 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/okobsamoht/tomato/cache"
-	"github.com/okobsamoht/tomato/config"
-	"github.com/okobsamoht/tomato/errs"
-	"github.com/okobsamoht/tomato/orm"
-	"github.com/okobsamoht/tomato/storage"
-	"github.com/okobsamoht/tomato/storage/mongo"
-	"github.com/okobsamoht/tomato/test"
-	"github.com/okobsamoht/tomato/types"
+	"github.com/okobsamoht/talisman/cache"
+	"github.com/okobsamoht/talisman/config"
+	"github.com/okobsamoht/talisman/errs"
+	"github.com/okobsamoht/talisman/orm"
+	"github.com/okobsamoht/talisman/storage"
+	"github.com/okobsamoht/talisman/storage/mongo"
+	"github.com/okobsamoht/talisman/test"
+	"github.com/okobsamoht/talisman/types"
 )
 
 func Test_Execute(t *testing.T) {
@@ -63,7 +63,7 @@ func Test_Execute(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initEnv()
 	className = "list"
@@ -189,7 +189,7 @@ func Test_Execute(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func Test_BuildRestWhere(t *testing.T) {
@@ -298,7 +298,7 @@ func Test_BuildRestWhere(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.Where) == false {
 		t.Error("expect:", expect, "result:", q.Where, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func Test_getUserAndRoleACL(t *testing.T) {
@@ -386,7 +386,7 @@ func Test_getUserAndRoleACL(t *testing.T) {
 	if reflect.DeepEqual(expect, q.findOptions["acl"]) == false {
 		t.Error("expect:", expect, "result:", q.findOptions["acl"])
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func Test_redirectClassNameForKey(t *testing.T) {
@@ -408,7 +408,7 @@ func Test_redirectClassNameForKey(t *testing.T) {
 	if q.redirectKey != "post" || q.redirectClassName != "user" || q.className != "user" {
 		t.Error("expect: empty result:", q.redirectKey, q.redirectClassName, q.className)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initEnv()
 	object = types.M{
@@ -423,7 +423,7 @@ func Test_redirectClassNameForKey(t *testing.T) {
 	if q.redirectKey != "post" || q.redirectClassName != "user" || q.className != "user" {
 		t.Error("expect: empty result:", q.redirectKey, q.redirectClassName, q.className)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initEnv()
 	object = types.M{
@@ -441,7 +441,7 @@ func Test_redirectClassNameForKey(t *testing.T) {
 	if q.redirectKey != "post" || q.redirectClassName != "postT" || q.className != "postT" {
 		t.Error("expect: empty result:", q.redirectKey, q.redirectClassName, q.className)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func Test_validateClientClassCreation(t *testing.T) {
@@ -492,7 +492,7 @@ func Test_validateClientClassCreation(t *testing.T) {
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initEnv()
 	config.TConfig.AllowClientClassCreation = false
@@ -503,7 +503,7 @@ func Test_validateClientClassCreation(t *testing.T) {
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func Test_replaceSelect(t *testing.T) {
@@ -629,7 +629,7 @@ func Test_replaceSelect(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.Where) == false {
 		t.Error("expect:", expect, "result:", q.Where, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initEnv()
 	className = "Team"
@@ -674,7 +674,7 @@ func Test_replaceSelect(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.Where) == false {
 		t.Error("expect:", expect, "result:", q.Where, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initEnv()
 	className = "Team"
@@ -726,7 +726,7 @@ func Test_replaceSelect(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.Where) == false {
 		t.Error("expect:", expect, "result:", q.Where, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initEnv()
 	className = "Team"
@@ -792,7 +792,7 @@ func Test_replaceSelect(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.Where) == false {
 		t.Error("expect:", expect, "result:", q.Where, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func Test_replaceDontSelect(t *testing.T) {
@@ -918,7 +918,7 @@ func Test_replaceDontSelect(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.Where) == false {
 		t.Error("expect:", expect, "result:", q.Where, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initEnv()
 	className = "Team"
@@ -963,7 +963,7 @@ func Test_replaceDontSelect(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.Where) == false {
 		t.Error("expect:", expect, "result:", q.Where, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initEnv()
 	className = "Team"
@@ -1015,7 +1015,7 @@ func Test_replaceDontSelect(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.Where) == false {
 		t.Error("expect:", expect, "result:", q.Where, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initEnv()
 	className = "Team"
@@ -1081,7 +1081,7 @@ func Test_replaceDontSelect(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.Where) == false {
 		t.Error("expect:", expect, "result:", q.Where, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func Test_replaceInQuery(t *testing.T) {
@@ -1174,7 +1174,7 @@ func Test_replaceInQuery(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.Where) == false {
 		t.Error("expect:", expect, "result:", q.Where, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initEnv()
 	className = "Post"
@@ -1233,7 +1233,7 @@ func Test_replaceInQuery(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.Where) == false {
 		t.Error("expect:", expect, "result:", q.Where, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initEnv()
 	className = "Post"
@@ -1292,7 +1292,7 @@ func Test_replaceInQuery(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.Where) == false {
 		t.Error("expect:", expect, "result:", q.Where, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initEnv()
 	className = "Post"
@@ -1370,7 +1370,7 @@ func Test_replaceInQuery(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.Where) == false {
 		t.Error("expect:", expect, "result:", q.Where, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func Test_replaceNotInQuery(t *testing.T) {
@@ -1463,7 +1463,7 @@ func Test_replaceNotInQuery(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.Where) == false {
 		t.Error("expect:", expect, "result:", q.Where, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initEnv()
 	className = "Post"
@@ -1522,7 +1522,7 @@ func Test_replaceNotInQuery(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.Where) == false {
 		t.Error("expect:", expect, "result:", q.Where, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initEnv()
 	className = "Post"
@@ -1581,7 +1581,7 @@ func Test_replaceNotInQuery(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.Where) == false {
 		t.Error("expect:", expect, "result:", q.Where, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initEnv()
 	className = "Post"
@@ -1659,7 +1659,7 @@ func Test_replaceNotInQuery(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.Where) == false {
 		t.Error("expect:", expect, "result:", q.Where, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func Test_runFind(t *testing.T) {
@@ -1681,7 +1681,7 @@ func Test_runFind(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.response["results"]) == false {
 		t.Error("expect:", expect, "result:", q.response["results"], err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initEnv()
 	className = "user"
@@ -1711,7 +1711,7 @@ func Test_runFind(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.response["results"]) == false {
 		t.Error("expect:", expect, "result:", q.response["results"], err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initEnv()
 	className = "user"
@@ -1736,7 +1736,7 @@ func Test_runFind(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.response["results"]) == false {
 		t.Error("expect:", expect, "result:", q.response["results"], err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initEnv()
 	className = "user"
@@ -1771,7 +1771,7 @@ func Test_runFind(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.response["results"]) == false {
 		t.Error("expect:", expect, "result:", q.response["results"], err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initEnv()
 	className = "user"
@@ -1806,7 +1806,7 @@ func Test_runFind(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.response["results"]) == false {
 		t.Error("expect:", expect, "result:", q.response["results"], err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initEnv()
 	className = "user"
@@ -1861,7 +1861,7 @@ func Test_runFind(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.response["results"]) == false {
 		t.Error("expect:", expect, "result:", q.response["results"], err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initEnv()
 	className = "user"
@@ -1913,7 +1913,7 @@ func Test_runFind(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.response["results"]) == false {
 		t.Error("expect:", expect, "result:", q.response["results"], err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initEnv()
 	className = "user"
@@ -1965,7 +1965,7 @@ func Test_runFind(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.response["results"]) == false {
 		t.Error("expect:", expect, "result:", q.response["results"], err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initEnv()
 	className = "user"
@@ -2012,7 +2012,7 @@ func Test_runFind(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.response["results"]) == false {
 		t.Error("expect:", expect, "result:", q.response["results"], err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initEnv()
 	className = "_User"
@@ -2074,7 +2074,7 @@ func Test_runFind(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.response["results"]) == false {
 		t.Error("expect:", expect, "result:", q.response["results"], err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initEnv()
 	config.TConfig.ServerURL = "http://127.0.0.1"
@@ -2137,7 +2137,7 @@ func Test_runFind(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.response["results"]) == false {
 		t.Error("expect:", expect, "result:", q.response["results"], err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func Test_runCount(t *testing.T) {
@@ -2172,7 +2172,7 @@ func Test_runCount(t *testing.T) {
 	if err != nil || reflect.DeepEqual(q.response["count"], expect) == false {
 		t.Error("expect:", nil, "result:", q.response["count"], err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initEnv()
 	className = "user"
@@ -2200,7 +2200,7 @@ func Test_runCount(t *testing.T) {
 	if err != nil || reflect.DeepEqual(q.response["count"], expect) == false {
 		t.Error("expect:", nil, "result:", q.response["count"], err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initEnv()
 	className = "user"
@@ -2232,7 +2232,7 @@ func Test_runCount(t *testing.T) {
 	if err != nil || reflect.DeepEqual(q.response["count"], expect) == false {
 		t.Error("expect:", nil, "result:", q.response["count"], err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func Test_handleInclude(t *testing.T) {
@@ -2353,7 +2353,7 @@ func Test_handleInclude(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.response) == false {
 		t.Error("expect:", expect, "result:", q.response)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 /////////////////////////////////////////////////////////////////
@@ -2928,7 +2928,7 @@ func Test_includePath(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, response) == false {
 		t.Error("expect:", expect, "result:", response)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initEnv()
 	className = "post"
@@ -3003,7 +3003,7 @@ func Test_includePath(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, response) == false {
 		t.Error("expect:", expect, "result:", response)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initEnv()
 	className = "user"
@@ -3083,7 +3083,7 @@ func Test_includePath(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, response) == false {
 		t.Error("expect:", expect, "result:", response)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initEnv()
 	className = "_User"
@@ -3175,7 +3175,7 @@ func Test_includePath(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, response) == false {
 		t.Error("expect:", expect, "result:", response)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initEnv()
 	className = "_User"
@@ -3257,7 +3257,7 @@ func Test_includePath(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, response) == false {
 		t.Error("expect:", expect, "result:", response)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initEnv()
 	className = "user"
@@ -3341,7 +3341,7 @@ func Test_includePath(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, response) == false {
 		t.Error("expect:", expect, "result:", response)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initEnv()
 	className = "user"
@@ -3427,7 +3427,7 @@ func Test_includePath(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, response) == false {
 		t.Error("expect:", expect, "result:", response)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func Test_findPointers(t *testing.T) {
@@ -4437,5 +4437,5 @@ func initEnv() {
 }
 
 func getAdapter() storage.Adapter {
-	return mongo.NewMongoAdapter("tomato", test.OpenMongoDBForTest())
+	return mongo.NewMongoAdapter("talisman", test.OpenMongoDBForTest())
 }

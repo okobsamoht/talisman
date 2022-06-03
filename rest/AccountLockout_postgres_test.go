@@ -6,11 +6,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/okobsamoht/tomato/config"
-	"github.com/okobsamoht/tomato/errs"
-	"github.com/okobsamoht/tomato/orm"
-	"github.com/okobsamoht/tomato/types"
-	"github.com/okobsamoht/tomato/utils"
+	"github.com/okobsamoht/talisman/config"
+	"github.com/okobsamoht/talisman/errs"
+	"github.com/okobsamoht/talisman/orm"
+	"github.com/okobsamoht/talisman/types"
+	"github.com/okobsamoht/talisman/utils"
 )
 
 func TestPostgres_notLocked(t *testing.T) {
@@ -52,7 +52,7 @@ func TestPostgres_notLocked(t *testing.T) {
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/*****************************************************************/
 	config.TConfig.AccountLockoutThreshold = 3
 	config.TConfig.AccountLockoutDuration = 5
@@ -85,7 +85,7 @@ func TestPostgres_notLocked(t *testing.T) {
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/*****************************************************************/
 	config.TConfig.AccountLockoutThreshold = 3
 	config.TConfig.AccountLockoutDuration = 5
@@ -118,7 +118,7 @@ func TestPostgres_notLocked(t *testing.T) {
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func TestPostgres_setFailedLoginCount(t *testing.T) {
@@ -160,7 +160,7 @@ func TestPostgres_setFailedLoginCount(t *testing.T) {
 	if reflect.DeepEqual(expect, results) == false {
 		t.Error("expect:", expect, "result:", results)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func TestPostgres_handleFailedLoginAttempt(t *testing.T) {
@@ -202,7 +202,7 @@ func TestPostgres_handleFailedLoginAttempt(t *testing.T) {
 	if reflect.DeepEqual(expect, results) == false {
 		t.Error("expect:", expect, "result:", results)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/*****************************************************************/
 	initPostgresEnv()
 	username = "joe"
@@ -243,7 +243,7 @@ func TestPostgres_handleFailedLoginAttempt(t *testing.T) {
 	if reflect.DeepEqual(expect, results) == false {
 		t.Error("expect:", expect, "result:", results)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func TestPostgres_initFailedLoginCount(t *testing.T) {
@@ -285,7 +285,7 @@ func TestPostgres_initFailedLoginCount(t *testing.T) {
 	if reflect.DeepEqual(expect, results) == false {
 		t.Error("expect:", expect, "result:", results)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func TestPostgres_incrementFailedLoginCount(t *testing.T) {
@@ -328,7 +328,7 @@ func TestPostgres_incrementFailedLoginCount(t *testing.T) {
 	if reflect.DeepEqual(expect, results) == false {
 		t.Error("expect:", expect, "result:", results)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func TestPostgres_setLockoutExpiration(t *testing.T) {
@@ -373,7 +373,7 @@ func TestPostgres_setLockoutExpiration(t *testing.T) {
 	if reflect.DeepEqual(expect, results) == false {
 		t.Error("expect:", expect, "result:", results, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/*****************************************************************/
 	initPostgresEnv()
 	username = "joe"
@@ -412,7 +412,7 @@ func TestPostgres_setLockoutExpiration(t *testing.T) {
 	if reflect.DeepEqual(expect, results) == false {
 		t.Error("expect:", expect, "result:", results, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func TestPostgres_isFailedLoginCountSet(t *testing.T) {
@@ -442,7 +442,7 @@ func TestPostgres_isFailedLoginCountSet(t *testing.T) {
 	if err != nil || isSet != false {
 		t.Error("expect:", false, "result:", isSet, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/*****************************************************************/
 	initPostgresEnv()
 	username = "joe"
@@ -466,5 +466,5 @@ func TestPostgres_isFailedLoginCountSet(t *testing.T) {
 	if err != nil || isSet != true {
 		t.Error("expect:", true, "result:", isSet, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }

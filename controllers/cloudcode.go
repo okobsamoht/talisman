@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	"github.com/okobsamoht/tomato/cloud"
-	"github.com/okobsamoht/tomato/types"
+	"github.com/okobsamoht/talisman/cloud"
+	"github.com/okobsamoht/talisman/types"
 )
 
 // CloudCodeController ...

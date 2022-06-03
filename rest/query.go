@@ -4,13 +4,13 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/okobsamoht/tomato/cloud"
-	"github.com/okobsamoht/tomato/config"
-	"github.com/okobsamoht/tomato/errs"
-	"github.com/okobsamoht/tomato/files"
-	"github.com/okobsamoht/tomato/orm"
-	"github.com/okobsamoht/tomato/types"
-	"github.com/okobsamoht/tomato/utils"
+	"github.com/okobsamoht/talisman/cloud"
+	"github.com/okobsamoht/talisman/config"
+	"github.com/okobsamoht/talisman/errs"
+	"github.com/okobsamoht/talisman/files"
+	"github.com/okobsamoht/talisman/orm"
+	"github.com/okobsamoht/talisman/types"
+	"github.com/okobsamoht/talisman/utils"
 )
 
 // Query 处理查询请求的结构体
@@ -258,7 +258,7 @@ func (q *Query) redirectClassNameForKey() error {
 		return nil
 	}
 
-	newClassName := orm.TomatoDBController.RedirectClassNameForKey(q.className, q.redirectKey)
+	newClassName := orm.TalismanDBController.RedirectClassNameForKey(q.className, q.redirectKey)
 	q.className = newClassName
 	q.redirectClassName = newClassName
 
@@ -281,7 +281,7 @@ func (q *Query) validateClientClassCreation() error {
 		}
 	}
 	// 允许操作已存在的表
-	schema := orm.TomatoDBController.LoadSchema(nil)
+	schema := orm.TalismanDBController.LoadSchema(nil)
 	hasClass := schema.HasClass(q.className)
 	if hasClass {
 		return nil
@@ -591,7 +591,7 @@ func (q *Query) runFind(executeOptions ...types.M) error {
 	if v, ok := options["op"].(string); ok && v != "" {
 		findOptions["op"] = v
 	}
-	response, err := orm.TomatoDBController.Find(q.className, q.Where, findOptions)
+	response, err := orm.TalismanDBController.Find(q.className, q.Where, findOptions)
 	if err != nil {
 		return err
 	}
@@ -629,7 +629,7 @@ func (q *Query) runCount() error {
 	delete(q.findOptions, "skip")
 	delete(q.findOptions, "limit")
 	// 当需要取 count 时，数据库返回结果的第一个即为 count
-	result, err := orm.TomatoDBController.Find(q.className, q.Where, q.findOptions)
+	result, err := orm.TalismanDBController.Find(q.className, q.Where, q.findOptions)
 	if err != nil {
 		return err
 	}

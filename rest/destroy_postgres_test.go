@@ -4,9 +4,9 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/okobsamoht/tomato/errs"
-	"github.com/okobsamoht/tomato/orm"
-	"github.com/okobsamoht/tomato/types"
+	"github.com/okobsamoht/talisman/errs"
+	"github.com/okobsamoht/talisman/orm"
+	"github.com/okobsamoht/talisman/types"
 )
 
 func TestPostgres_Destroy(t *testing.T) {
@@ -42,12 +42,12 @@ func TestPostgres_Destroy(t *testing.T) {
 	if err != nil {
 		t.Error("expect:", nil, "result:", err)
 	}
-	results, _ = orm.TomatoDBController.Find(className, types.M{}, types.M{})
+	results, _ = orm.TalismanDBController.Find(className, types.M{}, types.M{})
 	expect = types.S{}
 	if reflect.DeepEqual(expect, results) == false {
 		t.Error("expect:", expect, "result:", results)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/*****************************************************/
 	initPostgresEnv()
 	className = "user"
@@ -77,7 +77,7 @@ func TestPostgres_Destroy(t *testing.T) {
 	if err != nil {
 		t.Error("expect:", nil, "result:", err)
 	}
-	results, _ = orm.TomatoDBController.Find(className, types.M{}, types.M{})
+	results, _ = orm.TalismanDBController.Find(className, types.M{}, types.M{})
 	expect = types.S{
 		types.M{
 			"objectId": "1002",
@@ -87,7 +87,7 @@ func TestPostgres_Destroy(t *testing.T) {
 	if reflect.DeepEqual(expect, results) == false {
 		t.Error("expect:", expect, "result:", results)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/*****************************************************/
 	initPostgresEnv()
 	className = "user"
@@ -118,7 +118,7 @@ func TestPostgres_Destroy(t *testing.T) {
 	if err == nil || reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	results, _ = orm.TomatoDBController.Find(className, types.M{}, types.M{})
+	results, _ = orm.TalismanDBController.Find(className, types.M{}, types.M{})
 	expect = types.S{
 		types.M{
 			"objectId": "1001",
@@ -132,5 +132,5 @@ func TestPostgres_Destroy(t *testing.T) {
 	if reflect.DeepEqual(expect, results) == false {
 		t.Error("expect:", expect, "result:", results)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }

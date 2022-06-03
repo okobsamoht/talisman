@@ -1,8 +1,8 @@
 package files
 
 import (
-	"github.com/okobsamoht/tomato/config"
-	"github.com/okobsamoht/tomato/utils"
+	"github.com/okobsamoht/talisman/config"
+	"github.com/okobsamoht/talisman/utils"
 )
 
 var adapter filesAdapter

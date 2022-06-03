@@ -1,6 +1,6 @@
 package storage
 
-import "github.com/okobsamoht/tomato/types"
+import "github.com/okobsamoht/talisman/types"
 
 // Adapter 数据库操作适配器接口
 type Adapter interface {

@@ -1,6 +1,6 @@
 package mail
 
-import "github.com/okobsamoht/tomato/types"
+import "github.com/okobsamoht/talisman/types"
 
 // Adapter ...
 type Adapter interface {

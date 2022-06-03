@@ -5,7 +5,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/okobsamoht/tomato/types"
+	"github.com/okobsamoht/talisman/types"
 )
 
 func TestOAuth_Get(t *testing.T) {

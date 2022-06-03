@@ -28,7 +28,7 @@ func RunWebSocketServer(pattern, addr string, h WebSocketHandler) {
 	// 如果未设置监听地址，则与 beego 共用
 	if addr == "" {
 		// http://127.0.0.1:8080/v1 ==>> pattern = /v1
-		serverURL := TomatoInfo["serverURL"]
+		serverURL := TalismanInfo["serverURL"]
 		i := strings.Index(serverURL, `//`)
 		if i < 0 {
 			panic("RunWebSocketServer: invalid serverURL: " + serverURL)

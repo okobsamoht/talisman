@@ -3,9 +3,9 @@ package controllers
 import (
 	"strings"
 
-	"github.com/okobsamoht/tomato/orm"
-	"github.com/okobsamoht/tomato/types"
-	"github.com/okobsamoht/tomato/utils"
+	"github.com/okobsamoht/talisman/orm"
+	"github.com/okobsamoht/talisman/types"
+	"github.com/okobsamoht/talisman/utils"
 )
 
 // GlobalConfigController 处理 /config 接口的请求
@@ -24,7 +24,7 @@ func (g *GlobalConfigController) Prepare() {
 // HandleGet 获取配置信息
 // @router / [get]
 func (g *GlobalConfigController) HandleGet() {
-	results, _ := orm.TomatoDBController.Find("_GlobalConfig", types.M{"objectId": "1"}, types.M{"limit": 1})
+	results, _ := orm.TalismanDBController.Find("_GlobalConfig", types.M{"objectId": "1"}, types.M{"limit": 1})
 	if len(results) != 1 {
 		g.Data["json"] = types.M{"params": types.M{}}
 		g.ServeJSON()
@@ -57,7 +57,7 @@ func (g *GlobalConfigController) HandlePut() {
 	for k, v := range params {
 		update["params."+k] = v
 	}
-	_, err := orm.TomatoDBController.Update("_GlobalConfig", types.M{"objectId": "1"}, update, types.M{"upsert": true}, false)
+	_, err := orm.TalismanDBController.Update("_GlobalConfig", types.M{"objectId": "1"}, update, types.M{"upsert": true}, false)
 	if err != nil {
 		g.HandleError(err, 0)
 		return

@@ -1,9 +1,9 @@
 package controllers
 
 import (
-	"github.com/okobsamoht/tomato/cloud"
-	"github.com/okobsamoht/tomato/errs"
-	"github.com/okobsamoht/tomato/types"
+	"github.com/okobsamoht/talisman/cloud"
+	"github.com/okobsamoht/talisman/errs"
+	"github.com/okobsamoht/talisman/types"
 )
 
 // FunctionsController 处理 /functions 接口的请求

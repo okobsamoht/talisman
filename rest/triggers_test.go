@@ -4,10 +4,10 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/okobsamoht/tomato/cloud"
-	"github.com/okobsamoht/tomato/errs"
-	"github.com/okobsamoht/tomato/types"
-	"github.com/okobsamoht/tomato/utils"
+	"github.com/okobsamoht/talisman/cloud"
+	"github.com/okobsamoht/talisman/errs"
+	"github.com/okobsamoht/talisman/types"
+	"github.com/okobsamoht/talisman/utils"
 )
 
 func Test_maybeRunTrigger(t *testing.T) {
@@ -19,7 +19,7 @@ func Test_maybeRunTrigger(t *testing.T) {
 	cloud.BeforeSave("user", func(request cloud.TriggerRequest, response cloud.Response) {
 		object := request.Object
 		if username := utils.S(object["username"]); username != "" {
-			object["username"] = username + "_tomato"
+			object["username"] = username + "_talisman"
 			response.Success(nil)
 		} else {
 			response.Error(1, "need a username")
@@ -34,7 +34,7 @@ func Test_maybeRunTrigger(t *testing.T) {
 	expect = types.M{
 		"object": types.M{
 			"className": "user",
-			"username":  "joe_tomato",
+			"username":  "joe_talisman",
 		},
 	}
 	if reflect.DeepEqual(expect, result) == false {

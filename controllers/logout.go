@@ -1,9 +1,9 @@
 package controllers
 
 import (
-	"github.com/okobsamoht/tomato/rest"
-	"github.com/okobsamoht/tomato/types"
-	"github.com/okobsamoht/tomato/utils"
+	"github.com/okobsamoht/talisman/rest"
+	"github.com/okobsamoht/talisman/types"
+	"github.com/okobsamoht/talisman/utils"
 )
 
 // LogoutController 处理 /logout 接口的请求

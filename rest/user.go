@@ -7,12 +7,12 @@ import (
 
 	"strings"
 
-	"github.com/okobsamoht/tomato/config"
-	"github.com/okobsamoht/tomato/errs"
-	"github.com/okobsamoht/tomato/mail"
-	"github.com/okobsamoht/tomato/orm"
-	"github.com/okobsamoht/tomato/types"
-	"github.com/okobsamoht/tomato/utils"
+	"github.com/okobsamoht/talisman/config"
+	"github.com/okobsamoht/talisman/errs"
+	"github.com/okobsamoht/talisman/mail"
+	"github.com/okobsamoht/talisman/orm"
+	"github.com/okobsamoht/talisman/types"
+	"github.com/okobsamoht/talisman/utils"
 )
 
 var adapter mail.Adapter
@@ -77,7 +77,7 @@ func ResendVerificationEmail(username string) error {
 		return errors.New("emailVerified")
 	}
 	SetEmailVerifyToken(aUser)
-	_, err := orm.TomatoDBController.Update("_User", types.M{"username": username}, aUser, types.M{}, false)
+	_, err := orm.TalismanDBController.Update("_User", types.M{"username": username}, aUser, types.M{}, false)
 	if err != nil {
 		return err
 	}
@@ -163,7 +163,7 @@ func SendPasswordResetEmail(email string) error {
 // setPasswordResetToken 设置修改密码 token
 func setPasswordResetToken(email string) types.M {
 	token := utils.CreateToken()
-	db := orm.TomatoDBController
+	db := orm.TalismanDBController
 	where := types.M{
 		"$or": types.S{
 			types.M{
@@ -222,7 +222,7 @@ func VerifyEmail(username, token string) bool {
 		return false
 	}
 
-	db := orm.TomatoDBController
+	db := orm.TalismanDBController
 	query := types.M{
 		"username":            username,
 		"_email_verify_token": token,
@@ -269,7 +269,7 @@ func VerifyEmail(username, token string) bool {
 
 // CheckResetTokenValidity 检查要重置密码的用户与 token 是否存在
 func CheckResetTokenValidity(username, token string) types.M {
-	db := orm.TomatoDBController
+	db := orm.TalismanDBController
 	// 校验 token 是否过期
 	where := types.M{
 		"username":          username,
@@ -305,7 +305,7 @@ func UpdatePassword(username, token, newPassword string) error {
 	}
 
 	// 清空重置密码 token
-	db := orm.TomatoDBController
+	db := orm.TalismanDBController
 	selector := types.M{"username": username}
 	update := types.M{
 		"_perishable_token":            types.M{"__op": "Delete"},

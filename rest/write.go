@@ -8,17 +8,17 @@ import (
 
 	"strconv"
 
-	am "github.com/okobsamoht/tomato/auth"
-	"github.com/okobsamoht/tomato/cache"
-	"github.com/okobsamoht/tomato/client"
-	"github.com/okobsamoht/tomato/cloud"
-	"github.com/okobsamoht/tomato/config"
-	"github.com/okobsamoht/tomato/errs"
-	"github.com/okobsamoht/tomato/files"
-	"github.com/okobsamoht/tomato/livequery"
-	"github.com/okobsamoht/tomato/orm"
-	"github.com/okobsamoht/tomato/types"
-	"github.com/okobsamoht/tomato/utils"
+	am "github.com/okobsamoht/talisman/auth"
+	"github.com/okobsamoht/talisman/cache"
+	"github.com/okobsamoht/talisman/client"
+	"github.com/okobsamoht/talisman/cloud"
+	"github.com/okobsamoht/talisman/config"
+	"github.com/okobsamoht/talisman/errs"
+	"github.com/okobsamoht/talisman/files"
+	"github.com/okobsamoht/talisman/livequery"
+	"github.com/okobsamoht/talisman/orm"
+	"github.com/okobsamoht/talisman/types"
+	"github.com/okobsamoht/talisman/utils"
 )
 
 // Write ...
@@ -174,7 +174,7 @@ func (w *Write) validateClientClassCreation() error {
 		}
 	}
 	// 允许操作已存在的表
-	schema := orm.TomatoDBController.LoadSchema(nil)
+	schema := orm.TalismanDBController.LoadSchema(nil)
 	hasClass := schema.HasClass(w.className)
 	if hasClass {
 		return nil
@@ -185,7 +185,7 @@ func (w *Write) validateClientClassCreation() error {
 
 // validateSchema 校验数据与权限是否允许进行当前操作
 func (w *Write) validateSchema() error {
-	return orm.TomatoDBController.ValidateObject(w.className, w.data, w.query, w.RunOptions)
+	return orm.TalismanDBController.ValidateObject(w.className, w.data, w.query, w.RunOptions)
 }
 
 // handleInstallation 处理 _Installation 表的操作
@@ -245,7 +245,7 @@ func (w *Write) handleInstallation() error {
 	}
 
 	// 查找跟提交的 objectId installationId deviceToken 相同的记录
-	results, err := orm.TomatoDBController.Find("_Installation", types.M{"$or": orQueries}, types.M{})
+	results, err := orm.TalismanDBController.Find("_Installation", types.M{"$or": orQueries}, types.M{})
 	if err != nil {
 		return err
 	}
@@ -332,7 +332,7 @@ func (w *Write) handleInstallation() error {
 			if w.data["appIdentifier"] != nil {
 				delQuery["appIdentifier"] = w.data["appIdentifier"]
 			}
-			err := orm.TomatoDBController.Destroy("_Installation", delQuery, types.M{})
+			err := orm.TalismanDBController.Destroy("_Installation", delQuery, types.M{})
 			if err != nil {
 				if errs.GetErrorCode(err) == errs.ObjectNotFound {
 
@@ -355,7 +355,7 @@ func (w *Write) handleInstallation() error {
 			delQuery := types.M{
 				"objectId": idMatch["objectId"],
 			}
-			err := orm.TomatoDBController.Destroy("_Installation", delQuery, nil)
+			err := orm.TalismanDBController.Destroy("_Installation", delQuery, nil)
 			if err != nil {
 				if errs.GetErrorCode(err) == errs.ObjectNotFound {
 
@@ -389,7 +389,7 @@ func (w *Write) handleInstallation() error {
 					if w.data["appIdentifier"] != nil {
 						delQuery["appIdentifier"] = w.data["appIdentifier"]
 					}
-					err := orm.TomatoDBController.Destroy("_Installation", delQuery, nil)
+					err := orm.TalismanDBController.Destroy("_Installation", delQuery, nil)
 					if err != nil {
 						if errs.GetErrorCode(err) == errs.ObjectNotFound {
 
@@ -591,7 +591,7 @@ func (w *Write) handleAuthData(authData types.M) error {
 			w.response["response"] = userResult
 
 			// 更新数据库中的 authData 字段
-			_, err = orm.TomatoDBController.Update(w.className, types.M{"objectId": w.data["objectId"]}, types.M{"authData": mutatedAuthData}, types.M{}, false)
+			_, err = orm.TalismanDBController.Update(w.className, types.M{"objectId": w.data["objectId"]}, types.M{"authData": mutatedAuthData}, types.M{}, false)
 			return err
 		} else if w.query != nil && w.query["objectId"] != nil {
 			// 存在一个用户，并且当前为 update 请求，校验 objectId 是否一致
@@ -647,7 +647,7 @@ func (w *Write) findUsersWithAuthData(authData types.M) (types.S, error) {
 			"$or": query,
 		}
 		var err error
-		findPromise, err = orm.TomatoDBController.Find(w.className, where, types.M{})
+		findPromise, err = orm.TalismanDBController.Find(w.className, where, types.M{})
 		if err != nil {
 			return nil, err
 		}
@@ -820,7 +820,7 @@ func (w *Write) validateUserName() error {
 	option := types.M{
 		"limit": 1,
 	}
-	results, err := orm.TomatoDBController.Find(w.className, where, option)
+	results, err := orm.TalismanDBController.Find(w.className, where, option)
 	if err != nil {
 		return err
 	}
@@ -855,7 +855,7 @@ func (w *Write) validateEmail() error {
 	option := types.M{
 		"limit": 1,
 	}
-	results, err := orm.TomatoDBController.Find(w.className, where, option)
+	results, err := orm.TalismanDBController.Find(w.className, where, option)
 	if err != nil {
 		return err
 	}
@@ -902,7 +902,7 @@ func (w *Write) validatePasswordRequirements() error {
 		} else {
 			// username 不存在时，从数据库中取出再去检测
 			query := types.M{"objectId": w.objectID()}
-			results, err := orm.TomatoDBController.Find("_User", query, types.M{})
+			results, err := orm.TalismanDBController.Find("_User", query, types.M{})
 			if err != nil {
 				return err
 			}
@@ -929,7 +929,7 @@ func (w *Write) validatePasswordHistory() error {
 	options := types.M{
 		"keys": []string{"_password_history", "_hashed_password"},
 	}
-	results, err := orm.TomatoDBController.Find("_User", query, options)
+	results, err := orm.TalismanDBController.Find("_User", query, options)
 	if err != nil {
 		return err
 	}
@@ -1019,7 +1019,7 @@ func (w *Write) runDatabaseOperation() error {
 			options := types.M{
 				"keys": []string{"_password_history", "_hashed_password"},
 			}
-			results, err := orm.TomatoDBController.Find("_User", query, options)
+			results, err := orm.TalismanDBController.Find("_User", query, options)
 			if err != nil {
 				return err
 			}
@@ -1040,7 +1040,7 @@ func (w *Write) runDatabaseOperation() error {
 			w.data["_password_history"] = oldPasswords
 		}
 		// 执行更新
-		response, err := orm.TomatoDBController.Update(w.className, w.query, w.data, w.RunOptions, false)
+		response, err := orm.TalismanDBController.Update(w.className, w.query, w.data, w.RunOptions, false)
 		if err != nil {
 			return err
 		}
@@ -1078,7 +1078,7 @@ func (w *Write) runDatabaseOperation() error {
 		}
 
 		// 创建对象
-		err := orm.TomatoDBController.Create(w.className, w.data, w.RunOptions)
+		err := orm.TalismanDBController.Create(w.className, w.data, w.RunOptions)
 		if err != nil {
 			if w.className != "_User" {
 				return err
@@ -1092,7 +1092,7 @@ func (w *Write) runDatabaseOperation() error {
 					"username": w.data["username"],
 					"objectId": types.M{"$ne": w.objectID()},
 				}
-				results, err := orm.TomatoDBController.Find(w.className, where, types.M{"limit": 1})
+				results, err := orm.TalismanDBController.Find(w.className, where, types.M{"limit": 1})
 				if err != nil {
 					return err
 				}
@@ -1106,7 +1106,7 @@ func (w *Write) runDatabaseOperation() error {
 					"email":    w.data["email"],
 					"objectId": types.M{"$ne": w.objectID()},
 				}
-				results, err := orm.TomatoDBController.Find(w.className, where, types.M{"limit": 1})
+				results, err := orm.TalismanDBController.Find(w.className, where, types.M{"limit": 1})
 				if err != nil {
 					return err
 				}
@@ -1205,7 +1205,7 @@ func (w *Write) handleFollowup() error {
 			"user": user,
 		}
 		delete(w.storage, "clearSessions")
-		err := orm.TomatoDBController.Destroy("_Session", sessionQuery, types.M{})
+		err := orm.TalismanDBController.Destroy("_Session", sessionQuery, types.M{})
 		if err != nil {
 			return err
 		}

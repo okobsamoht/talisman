@@ -3,8 +3,8 @@ package cache
 import (
 	"sync"
 
-	"github.com/okobsamoht/tomato/types"
-	"github.com/okobsamoht/tomato/utils"
+	"github.com/okobsamoht/talisman/types"
+	"github.com/okobsamoht/talisman/utils"
 )
 
 const mainSchema = "__MAIN_SCHEMA"

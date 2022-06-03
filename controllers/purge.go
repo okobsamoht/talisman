@@ -1,9 +1,9 @@
 package controllers
 
 import (
-	"github.com/okobsamoht/tomato/cache"
-	"github.com/okobsamoht/tomato/orm"
-	"github.com/okobsamoht/tomato/types"
+	"github.com/okobsamoht/talisman/cache"
+	"github.com/okobsamoht/talisman/orm"
+	"github.com/okobsamoht/talisman/types"
 )
 
 // PurgeController 处理 /purge 接口的请求
@@ -18,7 +18,7 @@ func (p *PurgeController) HandleDelete() {
 		return
 	}
 	className := p.Ctx.Input.Param(":className")
-	err := orm.TomatoDBController.PurgeCollection(className)
+	err := orm.TalismanDBController.PurgeCollection(className)
 	if err != nil {
 		p.HandleError(err, 0)
 		return

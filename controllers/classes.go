@@ -5,10 +5,10 @@ import (
 	"errors"
 	"strconv"
 
-	"github.com/okobsamoht/tomato/errs"
-	"github.com/okobsamoht/tomato/rest"
-	"github.com/okobsamoht/tomato/types"
-	"github.com/okobsamoht/tomato/utils"
+	"github.com/okobsamoht/talisman/errs"
+	"github.com/okobsamoht/talisman/rest"
+	"github.com/okobsamoht/talisman/types"
+	"github.com/okobsamoht/talisman/utils"
 )
 
 // ClassesController 对象操作 API 的基础结构

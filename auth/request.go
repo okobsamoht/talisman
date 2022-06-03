@@ -7,7 +7,7 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/okobsamoht/tomato/types"
+	"github.com/okobsamoht/talisman/types"
 )
 
 func request(path string, headers map[string]string) (types.M, error) {

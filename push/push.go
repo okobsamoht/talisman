@@ -6,11 +6,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/okobsamoht/tomato/config"
-	"github.com/okobsamoht/tomato/errs"
-	"github.com/okobsamoht/tomato/rest"
-	"github.com/okobsamoht/tomato/types"
-	"github.com/okobsamoht/tomato/utils"
+	"github.com/okobsamoht/talisman/config"
+	"github.com/okobsamoht/talisman/errs"
+	"github.com/okobsamoht/talisman/rest"
+	"github.com/okobsamoht/talisman/types"
+	"github.com/okobsamoht/talisman/utils"
 )
 
 var adapter pushAdapter
@@ -22,8 +22,8 @@ var worker *pushWorker
 // 后续添加 APNS、GCM、以及其他第三方推送模块
 func init() {
 	a := config.TConfig.PushAdapter
-	if a == "tomato" {
-		adapter = newTomatoPush()
+	if a == "talisman" {
+		adapter = newTalismanPush()
 	} else if a == "FCM" {
 		adapter = newFCMPush()
 	} else {

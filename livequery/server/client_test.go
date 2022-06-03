@@ -1,7 +1,7 @@
 package server
 
 import "testing"
-import tp "github.com/okobsamoht/tomato/livequery/t"
+import tp "github.com/okobsamoht/talisman/livequery/t"
 import "reflect"
 
 func Test_transformUpdateOperators(t *testing.T) {

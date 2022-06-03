@@ -1,6 +1,6 @@
 package controllers
 
-import "github.com/okobsamoht/tomato/logger"
+import "github.com/okobsamoht/talisman/logger"
 
 // LogsController ...
 type LogsController struct {

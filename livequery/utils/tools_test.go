@@ -2,7 +2,7 @@ package utils
 
 import "testing"
 import "reflect"
-import tp "github.com/okobsamoht/tomato/livequery/t"
+import tp "github.com/okobsamoht/talisman/livequery/t"
 
 func Test_QueryHash(t *testing.T) {
 	data := []struct {

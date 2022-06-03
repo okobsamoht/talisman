@@ -6,18 +6,18 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/okobsamoht/tomato/cache"
-	"github.com/okobsamoht/tomato/config"
-	"github.com/okobsamoht/tomato/errs"
-	"github.com/okobsamoht/tomato/storage"
-	"github.com/okobsamoht/tomato/storage/mongo"
-	"github.com/okobsamoht/tomato/storage/postgres"
-	"github.com/okobsamoht/tomato/types"
-	"github.com/okobsamoht/tomato/utils"
+	"github.com/okobsamoht/talisman/cache"
+	"github.com/okobsamoht/talisman/config"
+	"github.com/okobsamoht/talisman/errs"
+	"github.com/okobsamoht/talisman/storage"
+	"github.com/okobsamoht/talisman/storage/mongo"
+	"github.com/okobsamoht/talisman/storage/postgres"
+	"github.com/okobsamoht/talisman/types"
+	"github.com/okobsamoht/talisman/utils"
 )
 
-// TomatoDBController ...
-var TomatoDBController *DBController
+// TalismanDBController ...
+var TalismanDBController *DBController
 
 // Adapter ...
 var Adapter storage.Adapter
@@ -28,15 +28,15 @@ var schemaPromise *Schema
 // init 初始化 Mongo 适配器
 func init() {
 	if config.TConfig.DatabaseType == "MongoDB" {
-		Adapter = mongo.NewMongoAdapter("tomato", storage.OpenMongoDB())
+		Adapter = mongo.NewMongoAdapter("talisman", storage.OpenMongoDB())
 	} else if config.TConfig.DatabaseType == "PostgreSQL" {
-		Adapter = postgres.NewPostgresAdapter("tomato", storage.OpenPostgreSQL())
+		Adapter = postgres.NewPostgresAdapter("talisman", storage.OpenPostgreSQL())
 	} else {
 		// 默认连接 MongoDB
-		Adapter = mongo.NewMongoAdapter("tomato", storage.OpenMongoDB())
+		Adapter = mongo.NewMongoAdapter("talisman", storage.OpenMongoDB())
 	}
 	schemaCache = cache.NewSchemaCache(config.TConfig.SchemaCacheTTL, config.TConfig.EnableSingleSchemaCache)
-	TomatoDBController = &DBController{}
+	TalismanDBController = &DBController{}
 }
 
 // DBController 数据库操作类
@@ -1700,5 +1700,5 @@ func flattenUpdateOperatorsForCreate(object types.M) error {
 func InitOrm(a storage.Adapter) {
 	Adapter = a
 	schemaCache = cache.NewSchemaCache(5, false)
-	TomatoDBController = &DBController{}
+	TalismanDBController = &DBController{}
 }

@@ -7,10 +7,10 @@ import (
 
 	"strings"
 
-	"github.com/okobsamoht/tomato/livequery/pubsub"
-	"github.com/okobsamoht/tomato/livequery/server"
-	"github.com/okobsamoht/tomato/livequery/t"
-	"github.com/okobsamoht/tomato/livequery/utils"
+	"github.com/okobsamoht/talisman/livequery/pubsub"
+	"github.com/okobsamoht/talisman/livequery/server"
+	"github.com/okobsamoht/talisman/livequery/t"
+	"github.com/okobsamoht/talisman/livequery/utils"
 )
 
 /*
@@ -182,10 +182,10 @@ type liveQueryServer struct {
 // addr WebSocket 监听地址，例如： 127.0.0.1:8089
 // logLevel 日志级别，包含： VERBOSE DEBUG INFO ERROR NONE ，默认为 NONE
 // keyPairs 用于校验客户端权限的键值对，JSON格式字符串 例如： {"clientKey":"test"}
-// serverURL tomato 地址
-// appId tomato 对应的 appId
-// clientKey tomato 对应的 clientKey
-// masterKey tomato 对应的 masterKey
+// serverURL talisman 地址
+// appId talisman 对应的 appId
+// clientKey talisman 对应的 clientKey
+// masterKey talisman 对应的 masterKey
 // subType 订阅服务类型，支持 EventEmitter Redis
 // subURL 订阅服务地址，如果是 EventEmitter 可不填写
 func Run(args map[string]string) {
@@ -223,16 +223,16 @@ func (l *liveQueryServer) initServer(args map[string]string) {
 	}
 	utils.TLog.Verbose("Support key pairs", l.keyPairs)
 
-	// 初始化 tomato 服务参数，用于获取用户信息
-	server.TomatoInfo["serverURL"] = args["serverURL"]
-	server.TomatoInfo["appId"] = args["appId"]
-	server.TomatoInfo["clientKey"] = args["clientKey"]
-	server.TomatoInfo["masterKey"] = args["masterKey"]
+	// 初始化 talisman 服务参数，用于获取用户信息
+	server.TalismanInfo["serverURL"] = args["serverURL"]
+	server.TalismanInfo["appId"] = args["appId"]
+	server.TalismanInfo["clientKey"] = args["clientKey"]
+	server.TalismanInfo["masterKey"] = args["masterKey"]
 
 	// 向 subscriber 订阅 afterSave 、 afterDelete 两个频道
 	l.subscriber = pubsub.CreateSubscriber(args["subType"], args["subURL"], args["subConfig"])
-	l.subscriber.Subscribe(server.TomatoInfo["appId"] + "afterSave")
-	l.subscriber.Subscribe(server.TomatoInfo["appId"] + "afterDelete")
+	l.subscriber.Subscribe(server.TalismanInfo["appId"] + "afterSave")
+	l.subscriber.Subscribe(server.TalismanInfo["appId"] + "afterDelete")
 
 	// 设置从 subscriber 接收到消息时的处理函数
 	var h pubsub.HandlerType
@@ -250,9 +250,9 @@ func (l *liveQueryServer) initServer(args map[string]string) {
 			return
 		}
 		l.inflateParseObject(message)
-		if channel == server.TomatoInfo["appId"]+"afterSave" {
+		if channel == server.TalismanInfo["appId"]+"afterSave" {
 			l.onAfterSave(message)
-		} else if channel == server.TomatoInfo["appId"]+"afterDelete" {
+		} else if channel == server.TalismanInfo["appId"]+"afterDelete" {
 			l.onAfterDelete(message)
 		} else {
 			utils.TLog.Error("Get message", message, "from unknown channel", channel)

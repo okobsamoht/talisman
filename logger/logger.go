@@ -1,6 +1,6 @@
 package logger
 
-import "github.com/okobsamoht/tomato/types"
+import "github.com/okobsamoht/talisman/types"
 
 const logStringTruncateLength = 1000
 const truncationMarker = "... (truncated)"

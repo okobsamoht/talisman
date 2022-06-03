@@ -4,11 +4,11 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/okobsamoht/tomato/config"
-	"github.com/okobsamoht/tomato/errs"
-	"github.com/okobsamoht/tomato/orm"
-	"github.com/okobsamoht/tomato/types"
-	"github.com/okobsamoht/tomato/utils"
+	"github.com/okobsamoht/talisman/config"
+	"github.com/okobsamoht/talisman/errs"
+	"github.com/okobsamoht/talisman/orm"
+	"github.com/okobsamoht/talisman/types"
+	"github.com/okobsamoht/talisman/utils"
 )
 
 // AccountLockout 密码错误达到一定次数，锁定账户
@@ -53,7 +53,7 @@ func (a *AccountLockout) notLocked() error {
 		},
 	}
 
-	result, err := orm.TomatoDBController.Find("_User", query, types.M{})
+	result, err := orm.TalismanDBController.Find("_User", query, types.M{})
 	if err != nil {
 		return err
 	}
@@ -73,7 +73,7 @@ func (a *AccountLockout) setFailedLoginCount(count int) error {
 	updateFields := types.M{
 		"_failed_login_count": count,
 	}
-	_, err := orm.TomatoDBController.Update("_User", query, updateFields, types.M{}, false)
+	_, err := orm.TalismanDBController.Update("_User", query, updateFields, types.M{}, false)
 	return err
 }
 
@@ -114,7 +114,7 @@ func (a *AccountLockout) incrementFailedLoginCount() error {
 			"amount": 1,
 		},
 	}
-	_, err := orm.TomatoDBController.Update("_User", query, updateFields, types.M{}, false)
+	_, err := orm.TalismanDBController.Update("_User", query, updateFields, types.M{}, false)
 	return err
 }
 
@@ -133,7 +133,7 @@ func (a *AccountLockout) setLockoutExpiration() error {
 		},
 	}
 
-	_, err := orm.TomatoDBController.Update("_User", query, updateFields, types.M{}, false)
+	_, err := orm.TalismanDBController.Update("_User", query, updateFields, types.M{}, false)
 	if err != nil {
 		if errs.GetErrorCode(err) == errs.ObjectNotFound &&
 			errs.GetErrorMessage(err) == "Object not found." {
@@ -151,7 +151,7 @@ func (a *AccountLockout) isFailedLoginCountSet() (bool, error) {
 		"username":            a.username,
 		"_failed_login_count": types.M{"$exists": true},
 	}
-	result, err := orm.TomatoDBController.Find("_User", query, types.M{})
+	result, err := orm.TalismanDBController.Find("_User", query, types.M{})
 	if err != nil {
 		return false, err
 	}

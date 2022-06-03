@@ -1,9 +1,9 @@
 package push
 
 import (
-	"github.com/okobsamoht/tomato/config"
-	"github.com/okobsamoht/tomato/types"
-	"github.com/okobsamoht/tomato/utils"
+	"github.com/okobsamoht/talisman/config"
+	"github.com/okobsamoht/talisman/types"
+	"github.com/okobsamoht/talisman/utils"
 
 	"time"
 

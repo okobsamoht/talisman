@@ -3,10 +3,10 @@ package rest
 import (
 	"time"
 
-	"github.com/okobsamoht/tomato/cache"
-	"github.com/okobsamoht/tomato/errs"
-	"github.com/okobsamoht/tomato/types"
-	"github.com/okobsamoht/tomato/utils"
+	"github.com/okobsamoht/talisman/cache"
+	"github.com/okobsamoht/talisman/errs"
+	"github.com/okobsamoht/talisman/types"
+	"github.com/okobsamoht/talisman/utils"
 )
 
 // Auth 保存当前请求的用户权限信息
@@ -100,7 +100,7 @@ func GetAuthForSessionToken(sessionToken string, installationID string) (*Auth, 
 }
 
 // GetAuthForLegacySessionToken 处理保存在 _User 中的 sessionToken。
-// 该方法处理从 parse 中迁移过来的用户数据，在 tomato 中其实不需要处理这种类型的数据，以后考虑删除
+// 该方法处理从 parse 中迁移过来的用户数据，在 talisman 中其实不需要处理这种类型的数据，以后考虑删除
 func GetAuthForLegacySessionToken(sessionToken, installationID string) (*Auth, error) {
 	restOptions := types.M{"limit": 1}
 	query, err := NewQuery(Master(), "_User", types.M{"sessionToken": sessionToken}, restOptions, nil)

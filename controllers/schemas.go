@@ -1,10 +1,10 @@
 package controllers
 
 import (
-	"github.com/okobsamoht/tomato/errs"
-	"github.com/okobsamoht/tomato/orm"
-	"github.com/okobsamoht/tomato/types"
-	"github.com/okobsamoht/tomato/utils"
+	"github.com/okobsamoht/talisman/errs"
+	"github.com/okobsamoht/talisman/orm"
+	"github.com/okobsamoht/talisman/types"
+	"github.com/okobsamoht/talisman/utils"
 )
 
 // SchemasController 处理 /schemas 接口的请求
@@ -23,7 +23,7 @@ func (s *SchemasController) Prepare() {
 // HandleFind 处理 schema 查找请求
 // @router / [get]
 func (s *SchemasController) HandleFind() {
-	schema := orm.TomatoDBController.LoadSchema(types.M{"clearCache": true})
+	schema := orm.TalismanDBController.LoadSchema(types.M{"clearCache": true})
 	schemas, err := schema.GetAllClasses(types.M{"clearCache": true})
 	if err != nil {
 		s.Data["json"] = types.M{
@@ -42,7 +42,7 @@ func (s *SchemasController) HandleFind() {
 // @router /:className [get]
 func (s *SchemasController) HandleGet() {
 	className := s.Ctx.Input.Param(":className")
-	schema := orm.TomatoDBController.LoadSchema(types.M{"clearCache": true})
+	schema := orm.TalismanDBController.LoadSchema(types.M{"clearCache": true})
 	sch, err := schema.GetOneSchema(className, false, types.M{"clearCache": true})
 	if err != nil {
 		s.HandleError(errs.E(errs.InvalidClassName, "Class "+className+" does not exist."), 0)
@@ -80,7 +80,7 @@ func (s *SchemasController) HandleCreate() {
 		return
 	}
 
-	schema := orm.TomatoDBController.LoadSchema(types.M{"clearCache": true})
+	schema := orm.TalismanDBController.LoadSchema(types.M{"clearCache": true})
 	result, err := schema.AddClassIfNotExists(className, utils.M(data["fields"]), utils.M(data["classLevelPermissions"]))
 	if err != nil {
 		s.HandleError(err, 0)
@@ -115,7 +115,7 @@ func (s *SchemasController) HandleUpdate() {
 		submittedFields = utils.M(data["fields"])
 	}
 
-	schema := orm.TomatoDBController.LoadSchema(types.M{"clearCache": true})
+	schema := orm.TalismanDBController.LoadSchema(types.M{"clearCache": true})
 	result, err := schema.UpdateClass(className, submittedFields, utils.M(data["classLevelPermissions"]))
 	if err != nil {
 		s.HandleError(err, 0)
@@ -135,7 +135,7 @@ func (s *SchemasController) HandleDelete() {
 		return
 	}
 
-	err := orm.TomatoDBController.DeleteSchema(className)
+	err := orm.TalismanDBController.DeleteSchema(className)
 	if err != nil {
 		s.HandleError(err, 0)
 		return

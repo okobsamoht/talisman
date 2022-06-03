@@ -1,22 +1,22 @@
 package push
 
-import "github.com/okobsamoht/tomato/types"
+import "github.com/okobsamoht/talisman/types"
 
-type tomatoPushAdapter struct {
+type talismanPushAdapter struct {
 	validPushTypes []string
 }
 
-func newTomatoPush() *tomatoPushAdapter {
-	t := &tomatoPushAdapter{
+func newTalismanPush() *talismanPushAdapter {
+	t := &talismanPushAdapter{
 		validPushTypes: []string{"ios", "android"},
 	}
 	return t
 }
 
-func (t *tomatoPushAdapter) send(body types.M, installations types.S, pushStatus string) []types.M {
+func (t *talismanPushAdapter) send(body types.M, installations types.S, pushStatus string) []types.M {
 	return []types.M{}
 }
 
-func (t *tomatoPushAdapter) getValidPushTypes() []string {
+func (t *talismanPushAdapter) getValidPushTypes() []string {
 	return t.validPushTypes
 }

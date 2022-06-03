@@ -4,10 +4,10 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/okobsamoht/tomato/config"
-	"github.com/okobsamoht/tomato/orm"
-	"github.com/okobsamoht/tomato/types"
-	"github.com/okobsamoht/tomato/utils"
+	"github.com/okobsamoht/talisman/config"
+	"github.com/okobsamoht/talisman/orm"
+	"github.com/okobsamoht/talisman/types"
+	"github.com/okobsamoht/talisman/utils"
 )
 
 const pushStatusCollection = "_PushStatus"
@@ -23,7 +23,7 @@ func newPushStatus(objectID string) *pushStatus {
 	}
 	p := &pushStatus{
 		objectID: objectID,
-		db:       orm.TomatoDBController,
+		db:       orm.TalismanDBController,
 	}
 	return p
 }

@@ -1,6 +1,6 @@
 package cloud
 
-import "github.com/okobsamoht/tomato/types"
+import "github.com/okobsamoht/talisman/types"
 
 // RemoteDefine ...
 func RemoteDefine(functionName string, functionHandlerURL, validatorHandlerURL string) {

@@ -1,11 +1,11 @@
 package hooks
 
 import (
-	"github.com/okobsamoht/tomato/cloud"
-	"github.com/okobsamoht/tomato/errs"
-	"github.com/okobsamoht/tomato/orm"
-	"github.com/okobsamoht/tomato/types"
-	"github.com/okobsamoht/tomato/utils"
+	"github.com/okobsamoht/talisman/cloud"
+	"github.com/okobsamoht/talisman/errs"
+	"github.com/okobsamoht/talisman/orm"
+	"github.com/okobsamoht/talisman/types"
+	"github.com/okobsamoht/talisman/utils"
 )
 
 const defaultHooksCollectionName = "_Hooks"
@@ -79,7 +79,7 @@ func DeleteTrigger(className, triggerName string) error {
 }
 
 func getHooks(query, options types.M) (types.S, error) {
-	results, err := orm.TomatoDBController.Find(defaultHooksCollectionName, query, options)
+	results, err := orm.TalismanDBController.Find(defaultHooksCollectionName, query, options)
 	if err != nil {
 		return nil, err
 	}
@@ -92,7 +92,7 @@ func getHooks(query, options types.M) (types.S, error) {
 }
 
 func removeHooks(query types.M) error {
-	return orm.TomatoDBController.Destroy(defaultHooksCollectionName, query, types.M{})
+	return orm.TalismanDBController.Destroy(defaultHooksCollectionName, query, types.M{})
 }
 
 func saveHook(hook types.M) (types.M, error) {
@@ -110,7 +110,7 @@ func saveHook(hook types.M) (types.M, error) {
 		return nil, errs.E(errs.WebhookError, "invalid hook declaration")
 	}
 
-	return orm.TomatoDBController.Update(defaultHooksCollectionName, query, hook, types.M{"upsert": true}, false)
+	return orm.TalismanDBController.Update(defaultHooksCollectionName, query, hook, types.M{"upsert": true}, false)
 }
 
 func addHookToTriggers(hook types.M) {

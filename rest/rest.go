@@ -1,11 +1,11 @@
 package rest
 
 import (
-	"github.com/okobsamoht/tomato/cloud"
-	"github.com/okobsamoht/tomato/errs"
-	"github.com/okobsamoht/tomato/livequery"
-	"github.com/okobsamoht/tomato/types"
-	"github.com/okobsamoht/tomato/utils"
+	"github.com/okobsamoht/talisman/cloud"
+	"github.com/okobsamoht/talisman/errs"
+	"github.com/okobsamoht/talisman/livequery"
+	"github.com/okobsamoht/talisman/types"
+	"github.com/okobsamoht/talisman/utils"
 )
 
 // Find 根据条件查找数据

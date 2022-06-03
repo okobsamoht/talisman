@@ -1,12 +1,12 @@
 package controllers
 
 import (
-	"github.com/okobsamoht/tomato/config"
-	"github.com/okobsamoht/tomato/errs"
-	"github.com/okobsamoht/tomato/orm"
-	"github.com/okobsamoht/tomato/rest"
-	"github.com/okobsamoht/tomato/types"
-	"github.com/okobsamoht/tomato/utils"
+	"github.com/okobsamoht/talisman/config"
+	"github.com/okobsamoht/talisman/errs"
+	"github.com/okobsamoht/talisman/orm"
+	"github.com/okobsamoht/talisman/rest"
+	"github.com/okobsamoht/talisman/types"
+	"github.com/okobsamoht/talisman/utils"
 )
 
 // UpgradeSessionController 处理 /upgradeToRevocableSession 接口的请求
@@ -61,7 +61,7 @@ func (u *UpgradeSessionController) HandleUpdateToRevocableSession() {
 			"__op": "Delete",
 		},
 	}
-	_, err = orm.TomatoDBController.Update("_User", query, update, types.M{}, false)
+	_, err = orm.TalismanDBController.Update("_User", query, update, types.M{}, false)
 	if err != nil {
 		u.HandleError(err, 0)
 		return

@@ -12,9 +12,9 @@ import (
 	"regexp"
 
 	"github.com/lib/pq"
-	"github.com/okobsamoht/tomato/errs"
-	"github.com/okobsamoht/tomato/types"
-	"github.com/okobsamoht/tomato/utils"
+	"github.com/okobsamoht/talisman/errs"
+	"github.com/okobsamoht/talisman/types"
+	"github.com/okobsamoht/talisman/utils"
 )
 
 const postgresSchemaCollectionName = "_SCHEMA"
@@ -1255,7 +1255,7 @@ func (p *PostgresAdapter) PerformInitialization(options types.M) error {
 					if e.Code != postgresDuplicateRelationError {
 						return err
 					}
-				} else if e, ok := err.(*errs.TomatoError); ok {
+				} else if e, ok := err.(*errs.TalismanError); ok {
 					if e.Code != errs.InvalidClassName {
 						return err
 					}

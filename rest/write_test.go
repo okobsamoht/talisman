@@ -5,14 +5,14 @@ import (
 	"testing"
 	"time"
 
-	"github.com/okobsamoht/tomato/cache"
-	"github.com/okobsamoht/tomato/cloud"
-	"github.com/okobsamoht/tomato/config"
-	"github.com/okobsamoht/tomato/errs"
-	"github.com/okobsamoht/tomato/livequery"
-	"github.com/okobsamoht/tomato/orm"
-	"github.com/okobsamoht/tomato/types"
-	"github.com/okobsamoht/tomato/utils"
+	"github.com/okobsamoht/talisman/cache"
+	"github.com/okobsamoht/talisman/cloud"
+	"github.com/okobsamoht/talisman/config"
+	"github.com/okobsamoht/talisman/errs"
+	"github.com/okobsamoht/talisman/livequery"
+	"github.com/okobsamoht/talisman/orm"
+	"github.com/okobsamoht/talisman/types"
+	"github.com/okobsamoht/talisman/utils"
 )
 
 func Test_NewWrite(t *testing.T) {
@@ -120,7 +120,7 @@ func Test_Execute_Write(t *testing.T) {
 	if err != nil || result == nil {
 		t.Error("expect:", nil, "result:", result, err)
 	}
-	results, _ = orm.TomatoDBController.Find(className, types.M{}, types.M{})
+	results, _ = orm.TalismanDBController.Find(className, types.M{}, types.M{})
 	if len(results) != 1 {
 		t.Error("expect:", "len 1", "result:", results)
 	}
@@ -134,11 +134,11 @@ func Test_Execute_Write(t *testing.T) {
 	if err != nil || result == nil {
 		t.Error("expect:", nil, "result:", result, err)
 	}
-	results, _ = orm.TomatoDBController.Find(className, types.M{}, types.M{})
+	results, _ = orm.TalismanDBController.Find(className, types.M{}, types.M{})
 	if len(results) != 1 {
 		t.Error("expect:", "len 1", "result:", results)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func Test_getUserAndRoleACL_Write(t *testing.T) {
@@ -236,7 +236,7 @@ func Test_getUserAndRoleACL_Write(t *testing.T) {
 	if reflect.DeepEqual(expect, w.RunOptions["acl"]) == false {
 		t.Error("expect:", expect, "result:", w.RunOptions["acl"])
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func Test_validateClientClassCreation_Write(t *testing.T) {
@@ -323,7 +323,7 @@ func Test_handleInstallation(t *testing.T) {
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	initEnv()
 	schema = types.M{
@@ -351,7 +351,7 @@ func Test_handleInstallation(t *testing.T) {
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	initEnv()
 	schema = types.M{
@@ -378,7 +378,7 @@ func Test_handleInstallation(t *testing.T) {
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	initEnv()
 	schema = types.M{
@@ -405,7 +405,7 @@ func Test_handleInstallation(t *testing.T) {
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	initEnv()
 	schema = types.M{
@@ -437,7 +437,7 @@ func Test_handleInstallation(t *testing.T) {
 	if reflect.DeepEqual(expectQuery, w.query) == false {
 		t.Error("expect:", expectQuery, "result:", w.query)
 	}
-	results, err = orm.TomatoDBController.Find("_Installation", types.M{}, types.M{})
+	results, err = orm.TalismanDBController.Find("_Installation", types.M{}, types.M{})
 	expect = types.S{
 		types.M{
 			"objectId":       "1001",
@@ -449,7 +449,7 @@ func Test_handleInstallation(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, results) == false {
 		t.Error("expect:", expect, "result:", results, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	initEnv()
 	schema = types.M{
@@ -481,7 +481,7 @@ func Test_handleInstallation(t *testing.T) {
 	if reflect.DeepEqual(expectQuery, w.query) == false {
 		t.Error("expect:", expectQuery, "result:", w.query)
 	}
-	results, err = orm.TomatoDBController.Find("_Installation", types.M{}, types.M{})
+	results, err = orm.TalismanDBController.Find("_Installation", types.M{}, types.M{})
 	expect = types.S{
 		types.M{
 			"objectId":       "1001",
@@ -493,7 +493,7 @@ func Test_handleInstallation(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, results) == false {
 		t.Error("expect:", expect, "result:", results, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	initEnv()
 	schema = types.M{
@@ -528,7 +528,7 @@ func Test_handleInstallation(t *testing.T) {
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	initEnv()
 	schema = types.M{
@@ -567,12 +567,12 @@ func Test_handleInstallation(t *testing.T) {
 	if reflect.DeepEqual(expectQuery, w.query) == false {
 		t.Error("expect:", expectQuery, "result:", w.query)
 	}
-	results, err = orm.TomatoDBController.Find("_Installation", types.M{}, types.M{})
+	results, err = orm.TalismanDBController.Find("_Installation", types.M{}, types.M{})
 	expect = types.S{}
 	if err != nil || reflect.DeepEqual(expect, results) == false {
 		t.Error("expect:", expect, "result:", results, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	initEnv()
 	schema = types.M{
@@ -610,7 +610,7 @@ func Test_handleInstallation(t *testing.T) {
 	if reflect.DeepEqual(expectQuery, w.query) == false {
 		t.Error("expect:", expectQuery, "result:", w.query)
 	}
-	results, err = orm.TomatoDBController.Find("_Installation", types.M{}, types.M{})
+	results, err = orm.TalismanDBController.Find("_Installation", types.M{}, types.M{})
 	expect = types.S{
 		types.M{
 			"objectId":    "1002",
@@ -621,7 +621,7 @@ func Test_handleInstallation(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, results) == false {
 		t.Error("expect:", expect, "result:", results, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	initEnv()
 	schema = types.M{
@@ -659,7 +659,7 @@ func Test_handleInstallation(t *testing.T) {
 	if reflect.DeepEqual(expectQuery, w.query) == false {
 		t.Error("expect:", expectQuery, "result:", w.query)
 	}
-	results, err = orm.TomatoDBController.Find("_Installation", types.M{}, types.M{})
+	results, err = orm.TalismanDBController.Find("_Installation", types.M{}, types.M{})
 	expect = types.S{
 		types.M{
 			"objectId":       "1001",
@@ -676,7 +676,7 @@ func Test_handleInstallation(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, results) == false {
 		t.Error("expect:", expect, "result:", results, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	initEnv()
 	schema = types.M{
@@ -714,7 +714,7 @@ func Test_handleInstallation(t *testing.T) {
 	if reflect.DeepEqual(expectQuery, w.query) == false {
 		t.Error("expect:", expectQuery, "result:", w.query)
 	}
-	results, err = orm.TomatoDBController.Find("_Installation", types.M{}, types.M{})
+	results, err = orm.TalismanDBController.Find("_Installation", types.M{}, types.M{})
 	expect = types.S{
 		types.M{
 			"objectId":       "1001",
@@ -731,7 +731,7 @@ func Test_handleInstallation(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, results) == false {
 		t.Error("expect:", expect, "result:", results, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	initEnv()
 	schema = types.M{
@@ -769,7 +769,7 @@ func Test_handleInstallation(t *testing.T) {
 	if reflect.DeepEqual(expectQuery, w.query) == false {
 		t.Error("expect:", expectQuery, "result:", w.query)
 	}
-	results, err = orm.TomatoDBController.Find("_Installation", types.M{}, types.M{})
+	results, err = orm.TalismanDBController.Find("_Installation", types.M{}, types.M{})
 	expect = types.S{
 		types.M{
 			"objectId":       "1001",
@@ -786,7 +786,7 @@ func Test_handleInstallation(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, results) == false {
 		t.Error("expect:", expect, "result:", results, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	initEnv()
 	schema = types.M{
@@ -825,7 +825,7 @@ func Test_handleInstallation(t *testing.T) {
 	if reflect.DeepEqual(expectQuery, w.query) == false {
 		t.Error("expect:", expectQuery, "result:", w.query)
 	}
-	results, err = orm.TomatoDBController.Find("_Installation", types.M{}, types.M{})
+	results, err = orm.TalismanDBController.Find("_Installation", types.M{}, types.M{})
 	expect = types.S{
 		types.M{
 			"objectId":       "1001",
@@ -837,7 +837,7 @@ func Test_handleInstallation(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, results) == false {
 		t.Error("expect:", expect, "result:", results, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func Test_handleSession(t *testing.T) {
@@ -901,11 +901,11 @@ func Test_handleSession(t *testing.T) {
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	results, _ = orm.TomatoDBController.Find("_Session", types.M{}, types.M{})
+	results, _ = orm.TalismanDBController.Find("_Session", types.M{}, types.M{})
 	if len(results) != 1 {
 		t.Error("expect:", "len 1", "result:", results)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func Test_validateAuthData(t *testing.T) {
@@ -928,7 +928,7 @@ func Test_validateAuthData(t *testing.T) {
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	initEnv()
 	className = "_User"
@@ -943,7 +943,7 @@ func Test_validateAuthData(t *testing.T) {
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	initEnv()
 	className = "_User"
@@ -958,7 +958,7 @@ func Test_validateAuthData(t *testing.T) {
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	initEnv()
 	className = "_User"
@@ -974,7 +974,7 @@ func Test_validateAuthData(t *testing.T) {
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	initEnv()
 	config.TConfig.EnableAnonymousUsers = true
@@ -994,7 +994,7 @@ func Test_validateAuthData(t *testing.T) {
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	initEnv()
 	className = "_User"
@@ -1013,7 +1013,7 @@ func Test_validateAuthData(t *testing.T) {
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func Test_runBeforeTrigger(t *testing.T) {
@@ -1038,7 +1038,7 @@ func Test_runBeforeTrigger(t *testing.T) {
 	cloud.BeforeSave("user", func(request cloud.TriggerRequest, response cloud.Response) {
 		object := request.Object
 		if username := utils.S(object["username"]); username != "" {
-			object["username"] = username + "_tomato"
+			object["username"] = username + "_talisman"
 			response.Success(nil)
 		} else {
 			response.Error(1, "need a username")
@@ -1060,7 +1060,7 @@ func Test_runBeforeTrigger(t *testing.T) {
 	cloud.BeforeSave("user", func(request cloud.TriggerRequest, response cloud.Response) {
 		object := request.Object
 		if username := utils.S(object["username"]); username != "" {
-			object["username"] = username + "_tomato"
+			object["username"] = username + "_talisman"
 			response.Success(nil)
 		} else {
 			response.Error(1, "need a username")
@@ -1079,7 +1079,7 @@ func Test_runBeforeTrigger(t *testing.T) {
 		t.Error("expect:", expect, "result:", result)
 	}
 	expectData = types.M{
-		"username": "joe_tomato",
+		"username": "joe_talisman",
 		"key":      "hello",
 	}
 	if reflect.DeepEqual(expectData, w.data) == false {
@@ -1125,7 +1125,7 @@ func Test_runBeforeTrigger(t *testing.T) {
 	cloud.BeforeSave("user", func(request cloud.TriggerRequest, response cloud.Response) {
 		object := request.Object
 		if username := utils.S(object["username"]); username != "" {
-			object["username"] = username + "_tomato"
+			object["username"] = username + "_talisman"
 			response.Success(nil)
 		} else {
 			response.Error(1, "need a username")
@@ -1147,7 +1147,7 @@ func Test_runBeforeTrigger(t *testing.T) {
 	cloud.BeforeSave("user", func(request cloud.TriggerRequest, response cloud.Response) {
 		object := request.Object
 		if username := utils.S(object["username"]); username != "" {
-			object["username"] = username + "_tomato"
+			object["username"] = username + "_talisman"
 			response.Success(nil)
 		} else {
 			response.Error(1, "need a username")
@@ -1166,7 +1166,7 @@ func Test_runBeforeTrigger(t *testing.T) {
 		t.Error("expect:", expect, "result:", result)
 	}
 	expectData = types.M{
-		"username": "joe_tomato",
+		"username": "joe_talisman",
 		"key":      "hello",
 	}
 	if reflect.DeepEqual(expectData, w.data) == false {
@@ -1321,7 +1321,7 @@ func Test_transformUser(t *testing.T) {
 	if reflect.DeepEqual(expect, w.data) == false {
 		t.Error("expect:", expect, "result:", w.data)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	initEnv()
 	config.TConfig.PasswordPolicy = true
@@ -1341,7 +1341,7 @@ func Test_transformUser(t *testing.T) {
 	}
 	config.TConfig.DoNotAllowUsername = false
 	config.TConfig.PasswordPolicy = false
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	initEnv()
 	config.TConfig.PasswordPolicy = true
@@ -1372,7 +1372,7 @@ func Test_transformUser(t *testing.T) {
 	}
 	config.TConfig.DoNotAllowUsername = false
 	config.TConfig.PasswordPolicy = false
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	initEnv()
 	config.TConfig.PasswordPolicy = true
@@ -1411,7 +1411,7 @@ func Test_transformUser(t *testing.T) {
 	}
 	config.TConfig.MaxPasswordHistory = 0
 	config.TConfig.PasswordPolicy = false
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	initEnv()
 	config.TConfig.PasswordPolicy = true
@@ -1447,7 +1447,7 @@ func Test_transformUser(t *testing.T) {
 	}
 	config.TConfig.MaxPasswordHistory = 0
 	config.TConfig.PasswordPolicy = false
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	initEnv()
 	schema = types.M{
@@ -1475,7 +1475,7 @@ func Test_transformUser(t *testing.T) {
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	initEnv()
 	query = nil
@@ -1492,7 +1492,7 @@ func Test_transformUser(t *testing.T) {
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	initEnv()
 	schema = types.M{
@@ -1523,7 +1523,7 @@ func Test_transformUser(t *testing.T) {
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	initEnv()
 	config.TConfig.VerifyUserEmails = false
@@ -1549,7 +1549,7 @@ func Test_transformUser(t *testing.T) {
 	if reflect.DeepEqual(expect, w.data) == false {
 		t.Error("expect:", expect, "result:", w.data)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	initEnv()
 	config.TConfig.VerifyUserEmails = true
@@ -1582,7 +1582,7 @@ func Test_transformUser(t *testing.T) {
 	if reflect.DeepEqual(expect, w.data) == false {
 		t.Error("expect:", expect, "result:", w.data)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	initEnv()
 	schema = types.M{
@@ -1625,7 +1625,7 @@ func Test_transformUser(t *testing.T) {
 	if reflect.DeepEqual(expect, w.data) == false {
 		t.Error("expect:", expect, "result:", w.data, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func Test_expandFilesForExistingObjects(t *testing.T) {
@@ -1741,7 +1741,7 @@ func Test_runDatabaseOperation(t *testing.T) {
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	initEnv()
 	schema = types.M{
@@ -1771,7 +1771,7 @@ func Test_runDatabaseOperation(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, w.response["response"]) == false {
 		t.Error("expect:", expect, "result:", w.response["response"], err)
 	}
-	results, _ = orm.TomatoDBController.Find(className, types.M{}, types.M{})
+	results, _ = orm.TalismanDBController.Find(className, types.M{}, types.M{})
 	if len(results) != 1 {
 		t.Error("expect:", "1", "result:", results)
 	} else {
@@ -1790,7 +1790,7 @@ func Test_runDatabaseOperation(t *testing.T) {
 			t.Error("expect:", expect, "result:", results[0])
 		}
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	initEnv()
 	schema = types.M{
@@ -1823,7 +1823,7 @@ func Test_runDatabaseOperation(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, w.response["response"]) == false {
 		t.Error("expect:", expect, "result:", w.response["response"], err)
 	}
-	results, _ = orm.TomatoDBController.Find(className, types.M{}, types.M{})
+	results, _ = orm.TalismanDBController.Find(className, types.M{}, types.M{})
 	if len(results) != 1 {
 		t.Error("expect:", "1", "result:", results)
 	} else {
@@ -1836,7 +1836,7 @@ func Test_runDatabaseOperation(t *testing.T) {
 			t.Error("expect:", expect, "result:", results[0])
 		}
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	initEnv()
 	className = "_User"
@@ -1862,7 +1862,7 @@ func Test_runDatabaseOperation(t *testing.T) {
 	if reflect.DeepEqual(expect, w.response) == false {
 		t.Error("expect:", expect, "result:", w.response)
 	}
-	results, _ = orm.TomatoDBController.Find(className, types.M{}, types.M{})
+	results, _ = orm.TalismanDBController.Find(className, types.M{}, types.M{})
 	if len(results) != 1 {
 		t.Error("expect:", "1", "result:", results)
 	} else {
@@ -1884,7 +1884,7 @@ func Test_runDatabaseOperation(t *testing.T) {
 			t.Error("expect:", expect, "result:", results[0])
 		}
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	initEnv()
 	className = "user"
@@ -1912,7 +1912,7 @@ func Test_runDatabaseOperation(t *testing.T) {
 	if reflect.DeepEqual(expect, w.response) == false {
 		t.Error("expect:", expect, "result:", w.response)
 	}
-	results, _ = orm.TomatoDBController.Find(className, types.M{}, types.M{})
+	results, _ = orm.TalismanDBController.Find(className, types.M{}, types.M{})
 	if len(results) != 1 {
 		t.Error("expect:", "1", "result:", results)
 	} else {
@@ -1925,7 +1925,7 @@ func Test_runDatabaseOperation(t *testing.T) {
 			t.Error("expect:", expect, "result:", results[0])
 		}
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	initEnv()
 	schema = types.M{
@@ -1956,7 +1956,7 @@ func Test_runDatabaseOperation(t *testing.T) {
 	if reflect.DeepEqual(expectErr, err) == false {
 		t.Error("expect:", expectErr, "result:", err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func Test_createSessionTokenIfNeeded(t *testing.T) {
@@ -2019,11 +2019,11 @@ func Test_handleFollowup(t *testing.T) {
 	if err != nil {
 		t.Error("expect:", nil, "result:", err)
 	}
-	results, _ = orm.TomatoDBController.Find("_Session", types.M{}, types.M{})
+	results, _ = orm.TalismanDBController.Find("_Session", types.M{}, types.M{})
 	if len(results) != 1 {
 		t.Error("expect:", "len 1", "result:", results)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func Test_runAfterTrigger(t *testing.T) {
@@ -2150,7 +2150,7 @@ func Test_handleAuthData(t *testing.T) {
 			},
 		},
 	}
-	orm.TomatoDBController.Create(className, object, nil)
+	orm.TalismanDBController.Create(className, object, nil)
 	object = types.M{
 		"objectId": "102",
 		"authData": types.M{
@@ -2159,7 +2159,7 @@ func Test_handleAuthData(t *testing.T) {
 			},
 		},
 	}
-	orm.TomatoDBController.Create(className, object, nil)
+	orm.TalismanDBController.Create(className, object, nil)
 	className = "_User"
 	query = nil
 	data = types.M{
@@ -2176,7 +2176,7 @@ func Test_handleAuthData(t *testing.T) {
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	initEnv()
 	config.TConfig.EnableAnonymousUsers = true
@@ -2193,7 +2193,7 @@ func Test_handleAuthData(t *testing.T) {
 			},
 		},
 	}
-	orm.TomatoDBController.Create(className, object, nil)
+	orm.TalismanDBController.Create(className, object, nil)
 	className = "_User"
 	query = nil
 	data = types.M{
@@ -2213,7 +2213,7 @@ func Test_handleAuthData(t *testing.T) {
 	if reflect.DeepEqual("anonymous", w.storage["authProvider"]) == false {
 		t.Error("expect:", "anonymous", "result:", w.storage["authProvider"])
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	config.TConfig = &config.Config{
 		ServerURL: "http://www.g.cn",
@@ -2233,7 +2233,7 @@ func Test_handleAuthData(t *testing.T) {
 			},
 		},
 	}
-	orm.TomatoDBController.Create(className, object, nil)
+	orm.TalismanDBController.Create(className, object, nil)
 	className = "_User"
 	query = nil
 	data = types.M{
@@ -2265,7 +2265,7 @@ func Test_handleAuthData(t *testing.T) {
 	if reflect.DeepEqual(location, w.response["location"]) == false {
 		t.Error("expect:", location, "result:", w.response["location"])
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	config.TConfig = &config.Config{
 		ServerURL: "http://www.g.cn",
@@ -2286,7 +2286,7 @@ func Test_handleAuthData(t *testing.T) {
 			},
 		},
 	}
-	orm.TomatoDBController.Create(className, object, nil)
+	orm.TalismanDBController.Create(className, object, nil)
 	className = "_User"
 	query = nil
 	data = types.M{
@@ -2320,7 +2320,7 @@ func Test_handleAuthData(t *testing.T) {
 	if reflect.DeepEqual(location, w.response["location"]) == false {
 		t.Error("expect:", location, "result:", w.response["location"])
 	}
-	r, _ := orm.TomatoDBController.Find(className, types.M{"objectId": "101"}, types.M{})
+	r, _ := orm.TalismanDBController.Find(className, types.M{"objectId": "101"}, types.M{})
 	response = types.M{
 		"objectId": "101",
 		"authData": types.M{
@@ -2333,7 +2333,7 @@ func Test_handleAuthData(t *testing.T) {
 	if reflect.DeepEqual(response, r[0]) == false {
 		t.Error("expect:", response, "result:", r[0])
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	config.TConfig = &config.Config{
 		ServerURL: "http://www.g.cn",
@@ -2354,7 +2354,7 @@ func Test_handleAuthData(t *testing.T) {
 			},
 		},
 	}
-	orm.TomatoDBController.Create(className, object, nil)
+	orm.TalismanDBController.Create(className, object, nil)
 	className = "_User"
 	query = types.M{"objectId": "101"}
 	data = types.M{
@@ -2372,7 +2372,7 @@ func Test_handleAuthData(t *testing.T) {
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	config.TConfig = &config.Config{
 		ServerURL: "http://www.g.cn",
@@ -2393,7 +2393,7 @@ func Test_handleAuthData(t *testing.T) {
 			},
 		},
 	}
-	orm.TomatoDBController.Create(className, object, nil)
+	orm.TalismanDBController.Create(className, object, nil)
 	className = "_User"
 	query = types.M{"objectId": "102"}
 	data = types.M{
@@ -2411,7 +2411,7 @@ func Test_handleAuthData(t *testing.T) {
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func Test_handleAuthDataValidation(t *testing.T) {
@@ -2482,7 +2482,7 @@ func Test_findUsersWithAuthData(t *testing.T) {
 			},
 		},
 	}
-	orm.TomatoDBController.Create(className, object, nil)
+	orm.TalismanDBController.Create(className, object, nil)
 	query = nil
 	data = types.M{}
 	originalData = nil
@@ -2498,7 +2498,7 @@ func Test_findUsersWithAuthData(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	initEnv()
 	className = "_User"
@@ -2514,7 +2514,7 @@ func Test_findUsersWithAuthData(t *testing.T) {
 			},
 		},
 	}
-	orm.TomatoDBController.Create(className, object, nil)
+	orm.TalismanDBController.Create(className, object, nil)
 	query = nil
 	data = types.M{}
 	originalData = nil
@@ -2539,7 +2539,7 @@ func Test_findUsersWithAuthData(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/***************************************************************/
 	initEnv()
 	className = "_User"
@@ -2555,7 +2555,7 @@ func Test_findUsersWithAuthData(t *testing.T) {
 			},
 		},
 	}
-	orm.TomatoDBController.Create(className, object, nil)
+	orm.TalismanDBController.Create(className, object, nil)
 	object = types.M{
 		"objectId": "102",
 		"authData": types.M{
@@ -2564,7 +2564,7 @@ func Test_findUsersWithAuthData(t *testing.T) {
 			},
 		},
 	}
-	orm.TomatoDBController.Create(className, object, nil)
+	orm.TalismanDBController.Create(className, object, nil)
 	query = nil
 	data = types.M{}
 	originalData = nil
@@ -2600,7 +2600,7 @@ func Test_findUsersWithAuthData(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func Test_createSessionToken(t *testing.T) {
@@ -2627,7 +2627,7 @@ func Test_createSessionToken(t *testing.T) {
 		},
 	}
 	w.createSessionToken()
-	results, _ = orm.TomatoDBController.Find("_Session", types.M{}, types.M{})
+	results, _ = orm.TalismanDBController.Find("_Session", types.M{}, types.M{})
 	if len(results) != 1 {
 		t.Error("expect:", "len 1", "result:", results)
 	}
@@ -2636,7 +2636,7 @@ func Test_createSessionToken(t *testing.T) {
 			t.Error("expect:", "need sessionToken", "result:", r["sessionToken"])
 		}
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func Test_location(t *testing.T) {

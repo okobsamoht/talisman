@@ -4,7 +4,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/okobsamoht/tomato/utils"
+	"github.com/okobsamoht/talisman/utils"
 )
 
 // TODO 增加定时清理过期缓存的操作

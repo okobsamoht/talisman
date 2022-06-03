@@ -4,8 +4,8 @@ import (
 	"database/sql"
 
 	_ "github.com/lib/pq" // postgres driver
-	"github.com/okobsamoht/tomato/config"
-	"github.com/okobsamoht/tomato/test"
+	"github.com/okobsamoht/talisman/config"
+	"github.com/okobsamoht/talisman/test"
 	"gopkg.in/mgo.v2"
 )
 

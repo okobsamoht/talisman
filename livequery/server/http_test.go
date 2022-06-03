@@ -7,7 +7,7 @@ import (
 )
 
 func Test_userForSessionToken(t *testing.T) {
-	TomatoInfo = map[string]string{
+	TalismanInfo = map[string]string{
 		"appId":     "test",
 		"masterKey": "test",
 		"serverURL": "http://127.0.0.1:8080/v1",

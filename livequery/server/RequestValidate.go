@@ -3,7 +3,7 @@ package server
 import (
 	"errors"
 
-	"github.com/okobsamoht/tomato/livequery/t"
+	"github.com/okobsamoht/talisman/livequery/t"
 )
 
 // Validate 校验客户端发送的请求是否合法

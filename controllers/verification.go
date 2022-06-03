@@ -1,11 +1,11 @@
 package controllers
 
 import (
-	"github.com/okobsamoht/tomato/errs"
-	"github.com/okobsamoht/tomato/orm"
-	"github.com/okobsamoht/tomato/rest"
-	"github.com/okobsamoht/tomato/types"
-	"github.com/okobsamoht/tomato/utils"
+	"github.com/okobsamoht/talisman/errs"
+	"github.com/okobsamoht/talisman/orm"
+	"github.com/okobsamoht/talisman/rest"
+	"github.com/okobsamoht/talisman/types"
+	"github.com/okobsamoht/talisman/utils"
 )
 
 // VerificationController 处理 /verificationEmailRequest 接口的请求
@@ -28,7 +28,7 @@ func (r *VerificationController) HandleVerificationEmailRequest() {
 		return
 	}
 
-	results, err := orm.TomatoDBController.Find("_User", types.M{"email": email}, types.M{})
+	results, err := orm.TalismanDBController.Find("_User", types.M{"email": email}, types.M{})
 	if err != nil {
 		r.HandleError(err, 0)
 		return

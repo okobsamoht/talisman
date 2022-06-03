@@ -4,14 +4,14 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/okobsamoht/tomato/cache"
-	"github.com/okobsamoht/tomato/config"
-	"github.com/okobsamoht/tomato/errs"
-	"github.com/okobsamoht/tomato/orm"
-	"github.com/okobsamoht/tomato/storage"
-	"github.com/okobsamoht/tomato/storage/postgres"
-	"github.com/okobsamoht/tomato/test"
-	"github.com/okobsamoht/tomato/types"
+	"github.com/okobsamoht/talisman/cache"
+	"github.com/okobsamoht/talisman/config"
+	"github.com/okobsamoht/talisman/errs"
+	"github.com/okobsamoht/talisman/orm"
+	"github.com/okobsamoht/talisman/storage"
+	"github.com/okobsamoht/talisman/storage/postgres"
+	"github.com/okobsamoht/talisman/test"
+	"github.com/okobsamoht/talisman/types"
 )
 
 func TestPostgres_Execute(t *testing.T) {
@@ -64,7 +64,7 @@ func TestPostgres_Execute(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initPostgresEnv()
 	className = "list"
@@ -193,7 +193,7 @@ func TestPostgres_Execute(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func TestPostgres_BuildRestWhere(t *testing.T) {
@@ -304,7 +304,7 @@ func TestPostgres_BuildRestWhere(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.Where) == false {
 		t.Error("expect:", expect, "result:", q.Where, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func TestPostgres_getUserAndRoleACL(t *testing.T) {
@@ -391,7 +391,7 @@ func TestPostgres_getUserAndRoleACL(t *testing.T) {
 	if reflect.DeepEqual(expect, q.findOptions["acl"]) == false {
 		t.Error("expect:", expect, "result:", q.findOptions["acl"])
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func TestPostgres_redirectClassNameForKey(t *testing.T) {
@@ -413,7 +413,7 @@ func TestPostgres_redirectClassNameForKey(t *testing.T) {
 	if q.redirectKey != "post" || q.redirectClassName != "user" || q.className != "user" {
 		t.Error("expect: empty result:", q.redirectKey, q.redirectClassName, q.className)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initPostgresEnv()
 	object = types.M{
@@ -428,7 +428,7 @@ func TestPostgres_redirectClassNameForKey(t *testing.T) {
 	if q.redirectKey != "post" || q.redirectClassName != "user" || q.className != "user" {
 		t.Error("expect: empty result:", q.redirectKey, q.redirectClassName, q.className)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initPostgresEnv()
 	object = types.M{
@@ -446,7 +446,7 @@ func TestPostgres_redirectClassNameForKey(t *testing.T) {
 	if q.redirectKey != "post" || q.redirectClassName != "postT" || q.className != "postT" {
 		t.Error("expect: empty result:", q.redirectKey, q.redirectClassName, q.className)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func TestPostgres_validateClientClassCreation(t *testing.T) {
@@ -497,7 +497,7 @@ func TestPostgres_validateClientClassCreation(t *testing.T) {
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initPostgresEnv()
 	config.TConfig.AllowClientClassCreation = false
@@ -508,7 +508,7 @@ func TestPostgres_validateClientClassCreation(t *testing.T) {
 	if reflect.DeepEqual(expect, result) == false {
 		t.Error("expect:", expect, "result:", result)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func TestPostgres_replaceSelect(t *testing.T) {
@@ -634,7 +634,7 @@ func TestPostgres_replaceSelect(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.Where) == false {
 		t.Error("expect:", expect, "result:", q.Where, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initPostgresEnv()
 	className = "Team"
@@ -680,7 +680,7 @@ func TestPostgres_replaceSelect(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.Where) == false {
 		t.Error("expect:", expect, "result:", q.Where, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initPostgresEnv()
 	className = "Team"
@@ -733,7 +733,7 @@ func TestPostgres_replaceSelect(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.Where) == false {
 		t.Error("expect:", expect, "result:", q.Where, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initPostgresEnv()
 	className = "Team"
@@ -800,7 +800,7 @@ func TestPostgres_replaceSelect(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.Where) == false {
 		t.Error("expect:", expect, "result:", q.Where, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func TestPostgres_replaceDontSelect(t *testing.T) {
@@ -926,7 +926,7 @@ func TestPostgres_replaceDontSelect(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.Where) == false {
 		t.Error("expect:", expect, "result:", q.Where, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initPostgresEnv()
 	className = "Team"
@@ -972,7 +972,7 @@ func TestPostgres_replaceDontSelect(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.Where) == false {
 		t.Error("expect:", expect, "result:", q.Where, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initPostgresEnv()
 	className = "Team"
@@ -1025,7 +1025,7 @@ func TestPostgres_replaceDontSelect(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.Where) == false {
 		t.Error("expect:", expect, "result:", q.Where, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initPostgresEnv()
 	className = "Team"
@@ -1092,7 +1092,7 @@ func TestPostgres_replaceDontSelect(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.Where) == false {
 		t.Error("expect:", expect, "result:", q.Where, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func TestPostgres_replaceInQuery(t *testing.T) {
@@ -1185,7 +1185,7 @@ func TestPostgres_replaceInQuery(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.Where) == false {
 		t.Error("expect:", expect, "result:", q.Where, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initPostgresEnv()
 	className = "Post"
@@ -1245,7 +1245,7 @@ func TestPostgres_replaceInQuery(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.Where) == false {
 		t.Error("expect:", expect, "result:", q.Where, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initPostgresEnv()
 	className = "Post"
@@ -1305,7 +1305,7 @@ func TestPostgres_replaceInQuery(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.Where) == false {
 		t.Error("expect:", expect, "result:", q.Where, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initPostgresEnv()
 	className = "Post"
@@ -1384,7 +1384,7 @@ func TestPostgres_replaceInQuery(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.Where) == false {
 		t.Error("expect:", expect, "result:", q.Where, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func TestPostgres_replaceNotInQuery(t *testing.T) {
@@ -1477,7 +1477,7 @@ func TestPostgres_replaceNotInQuery(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.Where) == false {
 		t.Error("expect:", expect, "result:", q.Where, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initPostgresEnv()
 	className = "Post"
@@ -1537,7 +1537,7 @@ func TestPostgres_replaceNotInQuery(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.Where) == false {
 		t.Error("expect:", expect, "result:", q.Where, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initPostgresEnv()
 	className = "Post"
@@ -1597,7 +1597,7 @@ func TestPostgres_replaceNotInQuery(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.Where) == false {
 		t.Error("expect:", expect, "result:", q.Where, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initPostgresEnv()
 	className = "Post"
@@ -1676,7 +1676,7 @@ func TestPostgres_replaceNotInQuery(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.Where) == false {
 		t.Error("expect:", expect, "result:", q.Where, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func TestPostgres_runFind(t *testing.T) {
@@ -1699,7 +1699,7 @@ func TestPostgres_runFind(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.response["results"]) == false {
 		t.Error("expect:", expect, "result:", q.response["results"], err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initPostgresEnv()
 	className = "user"
@@ -1730,7 +1730,7 @@ func TestPostgres_runFind(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.response["results"]) == false {
 		t.Error("expect:", expect, "result:", q.response["results"], err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initPostgresEnv()
 	className = "user"
@@ -1756,7 +1756,7 @@ func TestPostgres_runFind(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.response["results"]) == false {
 		t.Error("expect:", expect, "result:", q.response["results"], err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initPostgresEnv()
 	className = "user"
@@ -1792,7 +1792,7 @@ func TestPostgres_runFind(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.response["results"]) == false {
 		t.Error("expect:", expect, "result:", q.response["results"], err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initPostgresEnv()
 	className = "user"
@@ -1828,7 +1828,7 @@ func TestPostgres_runFind(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.response["results"]) == false {
 		t.Error("expect:", expect, "result:", q.response["results"], err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initPostgresEnv()
 	className = "user"
@@ -1884,7 +1884,7 @@ func TestPostgres_runFind(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.response["results"]) == false {
 		t.Error("expect:", expect, "result:", q.response["results"], err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initPostgresEnv()
 	className = "user"
@@ -1939,7 +1939,7 @@ func TestPostgres_runFind(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.response["results"]) == false {
 		t.Error("expect:", expect, "result:", q.response["results"], err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initPostgresEnv()
 	className = "user"
@@ -1994,7 +1994,7 @@ func TestPostgres_runFind(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.response["results"]) == false {
 		t.Error("expect:", expect, "result:", q.response["results"], err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initPostgresEnv()
 	className = "user"
@@ -2042,7 +2042,7 @@ func TestPostgres_runFind(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.response["results"]) == false {
 		t.Error("expect:", expect, "result:", q.response["results"], err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initPostgresEnv()
 	className = "_User"
@@ -2106,7 +2106,7 @@ func TestPostgres_runFind(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.response["results"]) == false {
 		t.Error("expect:", expect, "result:", q.response["results"], err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initPostgresEnv()
 	config.TConfig.ServerURL = "http://127.0.0.1"
@@ -2170,7 +2170,7 @@ func TestPostgres_runFind(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.response["results"]) == false {
 		t.Error("expect:", expect, "result:", q.response["results"], err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func TestPostgres_runCount(t *testing.T) {
@@ -2207,7 +2207,7 @@ func TestPostgres_runCount(t *testing.T) {
 	if err != nil || reflect.DeepEqual(q.response["count"], expect) == false {
 		t.Error("expect:", nil, "result:", q.response["count"], err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initPostgresEnv()
 	className = "user"
@@ -2236,7 +2236,7 @@ func TestPostgres_runCount(t *testing.T) {
 	if err != nil || reflect.DeepEqual(q.response["count"], expect) == false {
 		t.Error("expect:", nil, "result:", q.response["count"], err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initPostgresEnv()
 	className = "user"
@@ -2269,7 +2269,7 @@ func TestPostgres_runCount(t *testing.T) {
 	if err != nil || reflect.DeepEqual(q.response["count"], expect) == false {
 		t.Error("expect:", nil, "result:", q.response["count"], err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func TestPostgres_handleInclude(t *testing.T) {
@@ -2392,7 +2392,7 @@ func TestPostgres_handleInclude(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, q.response) == false {
 		t.Error("expect:", expect, "result:", q.response, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 /////////////////////////////////////////////////////////////////
@@ -2475,7 +2475,7 @@ func TestPostgres_includePath(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, response) == false {
 		t.Error("expect:", expect, "result:", response)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initPostgresEnv()
 	className = "post"
@@ -2552,7 +2552,7 @@ func TestPostgres_includePath(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, response) == false {
 		t.Error("expect:", expect, "result:", response)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initPostgresEnv()
 	className = "user"
@@ -2633,7 +2633,7 @@ func TestPostgres_includePath(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, response) == false {
 		t.Error("expect:", expect, "result:", response)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initPostgresEnv()
 	className = "_User"
@@ -2726,7 +2726,7 @@ func TestPostgres_includePath(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, response) == false {
 		t.Error("expect:", expect, "result:", response)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initPostgresEnv()
 	className = "_User"
@@ -2810,7 +2810,7 @@ func TestPostgres_includePath(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, response) == false {
 		t.Error("expect:", expect, "result:", response, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initPostgresEnv()
 	className = "user"
@@ -2897,7 +2897,7 @@ func TestPostgres_includePath(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, response) == false {
 		t.Error("expect:", expect, "result:", response, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 	/**********************************************************/
 	initPostgresEnv()
 	className = "user"
@@ -2986,7 +2986,7 @@ func TestPostgres_includePath(t *testing.T) {
 	if err != nil || reflect.DeepEqual(expect, response) == false {
 		t.Error("expect:", expect, "result:", response, err)
 	}
-	orm.TomatoDBController.DeleteEverything()
+	orm.TalismanDBController.DeleteEverything()
 }
 
 func initPostgresEnv() {
@@ -2994,5 +2994,5 @@ func initPostgresEnv() {
 }
 
 func getPostgresAdapter() storage.Adapter {
-	return postgres.NewPostgresAdapter("tomato", test.OpenPostgreSQForTest())
+	return postgres.NewPostgresAdapter("talisman", test.OpenPostgreSQForTest())
 }

@@ -33,7 +33,7 @@ type Config struct {
 	MailUsername                     string   // SMTP 用户名，仅在 MailAdapter=smtp 时需要配置
 	MailPassword                     string   // SMTP 密码，仅在 MailAdapter=smtp 时需要配置
 	FileAdapter                      string   // 文件存储模块，可选： Disk、GridFS、Sina、Tencent， 默认为 Disk 本地磁盘存储
-	FileDirectAccess                 bool     // 是否允许直接访问文件地址，默认为 true 允许直接访问而不是通过 tomato 中转
+	FileDirectAccess                 bool     // 是否允许直接访问文件地址，默认为 true 允许直接访问而不是通过 talisman 中转
 	SinaBucket                       string   // 新浪云存储 Bucket ，仅在 FileAdapter=Sina 时需要配置
 	SinaDomain                       string   // 新浪云存储 Domain ，仅在 FileAdapter=Sina 时需要配置
 	SinaAccessKey                    string   // 新浪云存储 AccessKey ，仅在 FileAdapter=Sina 时需要配置
@@ -42,7 +42,7 @@ type Config struct {
 	TencentAppID                     string   // 腾讯云存储 AppID ，仅在 FileAdapter=Tencent 时需要配置
 	TencentSecretID                  string   // 腾讯云存储 SecretID ，仅在 FileAdapter=Tencent 时需要配置
 	TencentSecretKey                 string   // 腾讯云存储 SecretKey ，仅在 FileAdapter=Tencent 时需要配置
-	PushAdapter                      string   // 推送模块，可选：FCM，默认为 tomato
+	PushAdapter                      string   // 推送模块，可选：FCM，默认为 talisman
 	PushChannel                      string   // 推送通道
 	PushBatchSize                    int      // 批量推送的大小
 	ScheduledPush                    bool     // 是否有推送调度器
@@ -114,7 +114,7 @@ func parseConfig() {
 	TConfig.EnableAnonymousUsers = beego.AppConfig.DefaultBool("EnableAnonymousUsers", true)
 	TConfig.VerifyUserEmails = beego.AppConfig.DefaultBool("VerifyUserEmails", false)
 	TConfig.FileAdapter = beego.AppConfig.DefaultString("FileAdapter", "Disk")
-	TConfig.PushAdapter = beego.AppConfig.DefaultString("PushAdapter", "tomato")
+	TConfig.PushAdapter = beego.AppConfig.DefaultString("PushAdapter", "talisman")
 	TConfig.MailAdapter = beego.AppConfig.DefaultString("MailAdapter", "smtp")
 
 	// LiveQueryClasses 支持的类列表，格式： classeA|classeB|classeC

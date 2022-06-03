@@ -1,9 +1,9 @@
 package controllers
 
 import (
-	"github.com/okobsamoht/tomato/analytics"
-	"github.com/okobsamoht/tomato/types"
-	"github.com/okobsamoht/tomato/utils"
+	"github.com/okobsamoht/talisman/analytics"
+	"github.com/okobsamoht/talisman/types"
+	"github.com/okobsamoht/talisman/utils"
 )
 
 // AnalyticsController ...

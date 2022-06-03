@@ -5,9 +5,9 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/okobsamoht/tomato/errs"
-	"github.com/okobsamoht/tomato/test"
-	"github.com/okobsamoht/tomato/types"
+	"github.com/okobsamoht/talisman/errs"
+	"github.com/okobsamoht/talisman/test"
+	"github.com/okobsamoht/talisman/types"
 
 	"gopkg.in/mgo.v2"
 )

@@ -3,9 +3,9 @@ package livequery
 import (
 	"strings"
 
-	"github.com/okobsamoht/tomato/config"
-	"github.com/okobsamoht/tomato/livequery/pubsub"
-	"github.com/okobsamoht/tomato/livequery/t"
+	"github.com/okobsamoht/talisman/config"
+	"github.com/okobsamoht/talisman/livequery/pubsub"
+	"github.com/okobsamoht/talisman/livequery/t"
 )
 
 // LiveQuery 接收指定类的对象保存与对象删除的通知，发送对象数据到发布者，由发布者通知订阅者，订阅者实时接收数据

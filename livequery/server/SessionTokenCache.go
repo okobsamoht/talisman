@@ -1,8 +1,8 @@
 package server
 
 import (
-	"github.com/okobsamoht/tomato/dependencies/lru"
-	"github.com/okobsamoht/tomato/livequery/utils"
+	"github.com/okobsamoht/talisman/dependencies/lru"
+	"github.com/okobsamoht/talisman/livequery/utils"
 )
 
 // SessionTokenCache 缓存 SessionToken 及其对应的用户 ID

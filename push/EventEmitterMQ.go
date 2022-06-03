@@ -1,6 +1,6 @@
 package push
 
-import "github.com/okobsamoht/tomato/livequery/pubsub"
+import "github.com/okobsamoht/talisman/livequery/pubsub"
 
 var emitter = pubsub.NewEventEmitter()
 var subscriptions = map[string]pubsub.HandlerType{}

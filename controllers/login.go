@@ -3,13 +3,13 @@ package controllers
 import (
 	"time"
 
-	"github.com/okobsamoht/tomato/config"
-	"github.com/okobsamoht/tomato/errs"
-	"github.com/okobsamoht/tomato/files"
-	"github.com/okobsamoht/tomato/orm"
-	"github.com/okobsamoht/tomato/rest"
-	"github.com/okobsamoht/tomato/types"
-	"github.com/okobsamoht/tomato/utils"
+	"github.com/okobsamoht/talisman/config"
+	"github.com/okobsamoht/talisman/errs"
+	"github.com/okobsamoht/talisman/files"
+	"github.com/okobsamoht/talisman/orm"
+	"github.com/okobsamoht/talisman/rest"
+	"github.com/okobsamoht/talisman/types"
+	"github.com/okobsamoht/talisman/utils"
 )
 
 // LoginController 处理 /login 接口的请求
@@ -44,7 +44,7 @@ func (l *LoginController) HandleLogIn() {
 	where := types.M{
 		"username": username,
 	}
-	results, err := orm.TomatoDBController.Find("_User", where, types.M{})
+	results, err := orm.TalismanDBController.Find("_User", where, types.M{})
 	if err != nil {
 		l.HandleError(err, 0)
 		return
@@ -93,7 +93,7 @@ func (l *LoginController) HandleLogIn() {
 			// 在启用密码过期之前的数据，需要增加该字段
 			query := types.M{"username": user["username"]}
 			update := types.M{"_password_changed_at": utils.TimetoString(time.Now().UTC())}
-			orm.TomatoDBController.Update("_User", query, update, types.M{}, false)
+			orm.TalismanDBController.Update("_User", query, update, types.M{}, false)
 		}
 	}
 

@@ -1,12 +1,12 @@
 package rest
 
 import (
-	"github.com/okobsamoht/tomato/cache"
-	"github.com/okobsamoht/tomato/cloud"
-	"github.com/okobsamoht/tomato/livequery"
-	"github.com/okobsamoht/tomato/orm"
-	"github.com/okobsamoht/tomato/types"
-	"github.com/okobsamoht/tomato/utils"
+	"github.com/okobsamoht/talisman/cache"
+	"github.com/okobsamoht/talisman/cloud"
+	"github.com/okobsamoht/talisman/livequery"
+	"github.com/okobsamoht/talisman/orm"
+	"github.com/okobsamoht/talisman/types"
+	"github.com/okobsamoht/talisman/utils"
 )
 
 // Destroy 删除对象
@@ -105,7 +105,7 @@ func (d *Destroy) runDestroy() error {
 		}
 		options["acl"] = acl
 	}
-	return orm.TomatoDBController.Destroy(d.className, d.query, options)
+	return orm.TalismanDBController.Destroy(d.className, d.query, options)
 }
 
 // runAfterTrigger 执行删后回调
