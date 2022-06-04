@@ -288,7 +288,8 @@ func (c *ClassesController) Get() {
 // Post ...
 // @router / [post]
 func (c *ClassesController) Post() {
-	c.HandleError(errors.New("Method Not Allowed"), 405)
+	c.HandleCreate()
+	//c.HandleError(errors.New("Method Not Allowed"), 405)
 }
 
 // Delete ...
